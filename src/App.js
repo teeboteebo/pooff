@@ -5,8 +5,12 @@ const App = () => {
   const [darkmode, setDarkmode] = useState(false)
   return (
     <div className={darkmode ? 'App dark-mode' : 'App'}>
-      <StartPage />
-      <button onClick={()=>setDarkmode(!darkmode)}>TOGGLE MODE</button>
+      {/* <Header /> */}
+      <main>
+        <StartPage />
+        <button onClick={()=>setDarkmode(!darkmode)}>TOGGLE MODE</button>
+
+      </main>
     </div>
   )
 }

@@ -1,6 +1,14 @@
+// Import of necessary bootstrap files
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
 // Import all our light / dark color variables
 @import './variables';
+
+// Our basic layout styles
 @import './basic-styles';
 
-// Component stylings
+// Components Styling
+@import '../components/TransactionHistoryPreview/styles';
+
+// Views Styling
 @import '../views/StartPage/styles';

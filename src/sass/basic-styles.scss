@@ -5,10 +5,16 @@
 html {
   body .App {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
     flex-direction: column;
+    overflow: hidden;
+    transition: .6s color;
+
     main {
       flex: 1;
+      h2.page-title {
+        color: var(--textColor);
+      }
     }
   }
 }

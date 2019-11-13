@@ -1,0 +1,41 @@
+.preview-container {
+  position: absolute;
+  width: 100vw;
+  height: 70vh;
+  margin: 0 auto;
+  top: calc(100vh - 28px);
+  transition: 0.3s top;
+
+  background-color: var(--transactionPreviewBackground);
+  box-shadow: 0 0 5px 2px var(--transactionBackgroundShadow);
+  &.open {
+    top: 30vh;
+    transition: 0.3s top;
+  }
+  p {
+    margin: 0;
+  }
+  .preview-tab {
+    position: relative;
+    top: -24px;
+    height: 25px;
+    width: 150px;
+    cursor: pointer;
+    margin: 0 auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: var(--transactionPreviewBackground);
+    box-shadow: 0 -3px 3px 0px var(--transactionBackgroundShadow);
+  }
+  .lister-container {
+    max-height: 100%;
+    overflow-y: scroll;
+    .transaction-card {
+      padding: 5px;
+      background-color: var(--transactionBackground);
+      height: 70px;
+      border: 1px solid var(--textColor);
+      border-radius: 4px;
+    }
+  }
+}
