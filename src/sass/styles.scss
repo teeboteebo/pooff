@@ -1,6 +1,11 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
 // Import all our light / dark color variables
-@import './variables';
-@import './basic-styles';
+@import "./variables";
+@import "./basic-styles";
+
+// Views stylings
+@import "../views/StartPage/styles";
 
 // Component stylings
-@import '../views/StartPage/styles';
+@import "../components/UserRegister/styles";
