@@ -2,7 +2,8 @@
   text-align: center;
   max-width: 100vw;
   overflow: hidden;
-  background-color: --background;
+  background-color: var(--background);
+  color: var(--primary);
   .title-field {
     margin: 2rem 0 2rem 0;
   }
@@ -16,9 +17,16 @@
   .number-field {
     margin-bottom: 2rem;
   }
-}
-
-button {
-  margin: 1rem auto;
-  display: block;
+  button {
+    margin: 1rem auto;
+    display: block;
+    width: 70%;
+    height: 3rem;
+    outline: none;
+    border: none;
+    background-color: var(--primary);
+    color: var(--background);
+    font-size: 1rem;
+    border-radius: 0.25rem;
+  }
 }

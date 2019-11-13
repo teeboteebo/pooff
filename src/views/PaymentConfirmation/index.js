@@ -7,7 +7,7 @@ const PaymentConfirmation = props => {
       <h1 className="title-field">Betalning skickad</h1>
       <img
         className="check-mark"
-        src="/images/checkmarkDM.png"
+        src="/images/checkmarkLM.png"
         alt="checkmark"
       ></img>
       <h2 className="name-field">{props.name}</h2>
