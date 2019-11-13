@@ -84,14 +84,14 @@ const TransactionHistoryPreview = () => {
     },
     {
       sender: {
-        firstName: 'Don',
+        firstName: 'Lasse',
         lastName: 'Bank'
       },
       receiver: {
-        firstName: 'Lasse',
+        firstName: 'Bank',
         lastName: 'Skida'
       },
-      amount: 10000,
+      amount: -10000,
       message: "Top up",
       date: Date.now(),
     },
@@ -109,18 +109,26 @@ const TransactionHistoryPreview = () => {
       date: Date.now(),
     }
   ]
+  let user = 'Lasse'
+  let name
   let transactionLister = transactions.map((transaction, i) => {
+    if (transaction.sender.firstName === user) {
+      name = transaction.receiver.firstName
+    } else {
+      name = transaction.sender.firstName
+    }
     return (
       <Row className="mb-2 no-gutters transaction-card" key={'transaction_' + i}>
         <Col xs="7">
           <p className="trans-date">{new Date(transaction.date).toLocaleString('sv-SE', { day: "numeric", month: "short" })}</p>
-          <p>{transaction.sender.firstName}</p>
+          <p>{name}</p>
         </Col>
-        <Col xs="4">{transaction.amount}</Col>
-        <Col xs="1">></Col>
+        <Col xs="4">{transaction.amount.toLocaleString('sv-SE')}</Col>
+        <Col xs="1" style={{color: 'var(--primary)'}}>></Col>
       </Row>
     )
   })
+  // Alla / Mottagna / Skickade
 
   const [showPreview, setShowPreview] = useState(false)
 
