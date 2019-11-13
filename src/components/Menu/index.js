@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Row, Col, CustomInput } from 'reactstrap'
-import { Home, Users, Eye, User, Plus, Heart, Settings, HelpCircle, LogOut } from 'react-feather'
+import { Home, Users, ChevronDown, Eye, User, Plus, Heart, Settings, HelpCircle, LogOut } from 'react-feather'
 
 const Menu = () => {
+  // const [foldedMenu, setFoldedMenu] = useState(true)
+
   return (
-    <nav className="menu">
+    <nav className='menu open'>
       <ul>
         <li><h4><u>Lasse Skida</u></h4></li>
         <li>
@@ -14,6 +16,7 @@ const Menu = () => {
         <li>
           <Users />
           <span>Mina barn</span>
+          <ChevronDown />
           <ul>
             <li>
               <Eye />
@@ -49,7 +52,7 @@ const Menu = () => {
           <Row className="no-gutters align-items-center">
             <Col>
               <p>Mörkt telefonläge</p>
-              <p>För ökad mysfaktor i tillvaron</p>
+              <p className="cozy-text">För ökad mysfaktor i tillvaron</p>
             </Col>
             <Col xs="auto">
               <CustomInput type="switch" id="dark-mode" name="dark-mode" />
