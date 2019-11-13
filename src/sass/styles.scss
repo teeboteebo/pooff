@@ -1,6 +1,8 @@
 // Import all our light / dark color variables
-@import './variables';
-@import './basic-styles';
+@import "./variables";
+@import "./basic-styles";
 
 // Component stylings
-@import '../views/StartPage/styles';
+@import "../views/StartPage/styles";
+@import "../views/LoginPage/styles";
+@import "../components/Login/styles";
