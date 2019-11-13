@@ -1,0 +1,29 @@
+.tabs {
+  .tab-select {
+    justify-content: center;
+    border-bottom: 0;
+    margin-bottom: 3rem;
+  }
+  .nav-item {
+    width: 92px;
+    text-align: center;
+    // border: 1px solid;
+    :active {
+      background-color: rgb(24, 102, 116);
+    }
+    .nav-link {
+      padding: 0.5rem 0rem;
+      background-color: white;
+      .active {
+        background-color: blue;
+      }
+    }
+  }
+  .transaction-card {
+    padding: 5px;
+    background-color: var(--transactionBackground);
+    height: 70px;
+    border: 1px solid var(--textColor);
+    border-radius: 2px;
+  }
+}
