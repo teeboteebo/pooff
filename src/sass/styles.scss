@@ -1,6 +1,9 @@
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
 // Import all our light / dark color variables
 @import './variables';
 @import './basic-styles';
 
 // Component stylings
 @import '../views/StartPage/styles';
+@import '../components/Menu/styles';
