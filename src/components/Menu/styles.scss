@@ -25,6 +25,14 @@
     li {
       padding: 10px;
 
+      a {
+        color: var(--secondary);
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
       svg {
         width: 20px;
         height: 20px;
