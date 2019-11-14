@@ -3,13 +3,23 @@
   --background: #eee;
   --primary: #07575b;
   --headerBackground: #003b46;
+  --transactionBackground: #fff;
+  --transactionPreviewBackground: #fff;
+  --transactionBackgroundShadow: #666;
+
+  &.dark-mode {
+    --textColor: #eee;
+    --background: #393e46;
+    --primary: #4ecca3;
+    --headerBackground: #232931;
+    --transactionBackground: rgb(27, 27, 27);
+    --transactionPreviewBackground: #232931;
+    --transactionBackgroundShadow: #333;
+
+
+  }
 }
-.dark-mode {
-  --textColor: #eee;
-  --background: #393e46;
-  --primary: #4ecca3;
-  --headerBackground: #232931;
-}
+
 
 .App {
   color: var(--textColor);
