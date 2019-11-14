@@ -1,11 +1,16 @@
-@import "../../node_modules/bootstrap/scss/bootstrap";
+// Import of necessary bootstrap files
+@import '../../node_modules/bootstrap/scss/bootstrap';
 
 // Import all our light / dark color variables
-@import "./variables";
-@import "./basic-styles";
+@import './variables';
 
-// Views stylings
-@import "../views/StartPage/styles";
+// Our basic layout styles
+@import './basic-styles';
 
-// Component stylings
-@import "../components/UserRegister/styles";
+// Components Styling
+@import '../components/TransactionHistoryPreview/styles';
+@import '../components/TransactionLister/styles';
+
+// Views Styling
+@import '../views/StartPage/styles';
+@import '../views/TransHistoryPage/styles';
