@@ -16,61 +16,7 @@ const StartPage = () => {
         <h2 className="page-title">
           <span className="amount-integer">{integer}</span>
           <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-        <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
-        </h2>
-
-        <button className="btn">+</button>
+        </h2>        
       </div>
       <TransactionHistoryPreview />
     </div>

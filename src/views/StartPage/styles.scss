@@ -1,3 +1,11 @@
 .startpage {
   position: relative;
+  .page-title {
+    margin-top: 120px;
+    .amount-decimal {
+      font-size: 16px;
+      letter-spacing: 2px;
+      margin-left: 2px;
+    }
+  }
 }
