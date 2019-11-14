@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
-import StartPage from './views/StartPage'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import StartPage from './views/StartPage'
+import TransHistoryPage from './views/TransHistoryPage'
 const App = () => {
   const [darkmode, setDarkmode] = useState(false)
   return (
-    <div className={darkmode ? 'App dark-mode' : 'App'}>
-      <StartPage />
-      <button onClick={()=>setDarkmode(!darkmode)}>TOGGLE MODE</button>
-    </div>
+    <Router>
+      <div className={darkmode ? 'App dark-mode' : 'App'}>
+        {/* <Header /> */}
+        <main>
+          <Switch>
+            <Route exact path="/" component={StartPage} />
+            <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
+
+          </Switch>
+        </main>
+      </div>
+    </Router>
   )
 }
 
