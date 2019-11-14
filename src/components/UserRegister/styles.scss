@@ -15,11 +15,7 @@
     width: 20px;
   }
   .matcher {
-    position: absolute;
-    right: 8px;
-    top: 10px;
-    height: 20px;
-    width: 20px;
+    
   }
   .input-field {
     text-indent: 35px;
@@ -37,5 +33,21 @@
       outline: none;
       border-bottom: 1px solid var(--primary);
     }
+  }
+  .checkmark {
+    display: none;
+    
+  }
+  .checked {
+    display: initial;
+    color: red;   
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    height: 20px;
+    width: 20px;
+  }
+  .green {
+    color: green !important;
   }
 }

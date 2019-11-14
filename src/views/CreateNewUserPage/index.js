@@ -53,12 +53,12 @@ const CreateNewUserPage = () => {
   ]
   return (
     <Container>
-      <h2>Registrera Användare</h2>
-      <p>Ange personuppgifter</p>
+      <h2 className="page-title">Registrera Användare</h2>
+      <p className="page-info">Ange personuppgifter</p>
       <UserRegister inputs={inputData} />
       <div className="text-center">
         <button className="save-button">Registrera</button>
-        <p>Har du redan ett konto?<Link className="login" href="url">Logga in</Link></p>
+        <p>Har du redan ett konto?<Link className="login" to="/logga-in">Logga in</Link></p>
       </div>
     </Container>
   )
