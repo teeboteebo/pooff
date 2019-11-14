@@ -5,11 +5,12 @@
 html {
   body .App {
     display: flex;
-    height: 100vh;
-    max-height: 100vh;
+    height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+    height: $vh;
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: scroll;
+    font-family: "Roboto", sans-serif;
     main {
       flex: 1;
       & > div {
@@ -26,8 +27,13 @@ html {
     p {
       margin: 0;
     }
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Montserrat', sans-serif;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Montserrat", sans-serif;
     }
   }
 }

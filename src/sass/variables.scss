@@ -25,6 +25,8 @@
   }
 }
 
+$vh: calc(var(--vh, 1vh) * 100);
+
 
 .App {
   color: var(--textColor);
