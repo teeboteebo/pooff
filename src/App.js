@@ -1,6 +1,13 @@
 import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 import StartPage from "./views/StartPage";
-import UserRegister from "./components/UserRegister";
+import CreateNewUserPage from "./views/CreateNewUserPage";
 
 const App = () => {
   const [darkmode, setDarkmode] = useState(false);
@@ -8,7 +15,7 @@ const App = () => {
     <div className={darkmode ? "App dark-mode" : "App"}>
       <StartPage />
       <button onClick={() => setDarkmode(!darkmode)}>TOGGLE MODE</button>
-      <UserRegister />
+      <CreateNewUserPage />
     </div>
   );
 };
