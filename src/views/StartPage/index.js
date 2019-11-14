@@ -4,7 +4,7 @@ import TransactionHistoryPreview from '../../components/TransactionHistoryPrevie
 const StartPage = () => {
   let integer, decimal
   const getBalanceAndSplit = async () => {
-    let balance = 5000.69 // axios get mytrans/balance
+    let balance = 522000.69 // axios get mytrans/balance
     balance = balance.toLocaleString('sv-SE').split(',')
     integer = balance[0]
     decimal = balance[1]

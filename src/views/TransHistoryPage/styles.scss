@@ -1,11 +1,10 @@
 .trans-history {
   .tab-select {
     border: 3px solid var(--primary);
-    background-color: var(--transactionBackground);
     box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
     border-radius: 4px;
     overflow: hidden;
-    width: 300px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     margin: 0 auto 3rem;
@@ -13,6 +12,8 @@
       border-left: none !important;
     }
     .items {
+      box-shadow: inset 0 0 3px 0 var(--transactionBackgroundShadow);
+
       border-radius: 0;
       flex: 1;
       text-align: center;
@@ -24,6 +25,8 @@
         cursor: pointer;
       }
       .active {
+        box-shadow: none;
+
         flex: 1;
         font-weight: bold;
         color: var(--background);
