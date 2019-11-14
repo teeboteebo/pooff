@@ -4,18 +4,23 @@
     border-bottom: 0;
     margin-bottom: 3rem;
   }
-  .nav-item {
+  .items {
     width: 92px;
     text-align: center;
-    // border: 1px solid;
-    :active {
-      background-color: rgb(24, 102, 116);
-    }
+    background-color: white;
+
     .nav-link {
       padding: 0.5rem 0rem;
-      background-color: white;
-      .active {
-        background-color: blue;
+      color: var(--textColor);
+      cursor: pointer;
+    }
+    .active {
+      background-color: rgb(24, 102, 116);
+      border-radius: 3px;
+      :hover {
+        background-color: rgb(24, 102, 116);
+        color: var(--textColor);
+        transition: height 0.3s, opacity 0.3s;
       }
     }
   }
@@ -25,5 +30,36 @@
     height: 70px;
     border: 1px solid var(--textColor);
     border-radius: 2px;
+    .name {
+      font-size: 22px;
+      margin-bottom: 0;
+    }
+    .trans-date {
+      margin-bottom: 0;
+      font-size: 12px;
+      font-style: italic;
+    }
+    .amount{
+      color: var(--textColor);
+      font-size: 24px;
+      top: 24px;
+      margin-top: -0.5em;
+    }
+    .negative-amount {
+      color: #F02727;
+      font-size: 24px;
+      top: 24px;
+      margin-top: -0.5em;
+    }
+    .click {
+      top: 24px;
+      margin-top: -0.5em;
+      color: var(--textColor);
+      font-weight: bold;
+      svg {
+        cursor:pointer;
+        margin: 2px;
+      }
+    }
   }
 }
