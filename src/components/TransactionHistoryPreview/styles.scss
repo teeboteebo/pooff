@@ -3,7 +3,7 @@
   width: 100vw;
   height: 70vh;
   padding: 0;
-  top: calc(100vh - 28px);
+  top: calc(100vh - 25px);
   left: 0;
   transition: 0.3s top;
 
@@ -32,7 +32,7 @@
 
   .lister-container {
     border-top: 1px solid var(--primary);
-    padding: 5px 3px;
+    padding: 7px 3px 5px;
     max-height: calc(70vh - 25px);
     overflow-y: scroll;
   }
