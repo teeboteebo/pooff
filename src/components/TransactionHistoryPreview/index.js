@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Row, Col } from 'reactstrap'
-import { } from 'react-feather'
+import { ChevronDown, ChevronUp} from 'react-feather'
 
 const TransactionHistoryPreview = () => {
   const transactions = [
@@ -128,16 +128,14 @@ const TransactionHistoryPreview = () => {
       </Row>
     )
   })
-  // Alla / Mottagna / Skickade
 
   const [showPreview, setShowPreview] = useState(false)
-
 
   return (
     <Container
       fluid={true}
       className={showPreview ? "preview-container p-1 open" : "preview-container p-1"}>
-      <div className="preview-tab" onClick={() => setShowPreview(!showPreview)} />
+      <div className="preview-tab" onClick={() => setShowPreview(!showPreview)}>{showPreview ? <ChevronDown /> : <ChevronUp/> }</div>
       <div className="lister-container">
         {transactionLister}
       </div>

@@ -6,12 +6,19 @@ html {
   body .App {
     display: flex;
     height: 100vh;
+    max-height: 100vh;
     flex-direction: column;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
     main {
       flex: 1;
+      & > div {
+        height: 100%;
+        padding-top: 60px;
+      }
       h2.page-title {
         color: var(--textColor);
+        margin: 0 auto 40px;
       }
     }
   }

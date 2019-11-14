@@ -1,5 +1,5 @@
 .preview-container {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 70vh;
   margin: 0 auto;
@@ -22,13 +22,15 @@
     width: 150px;
     cursor: pointer;
     margin: 0 auto;
+    text-align: center;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: var(--transactionPreviewBackground);
     box-shadow: 0 -3px 3px 0px var(--transactionBackgroundShadow);
   }
+
   .lister-container {
-    max-height: 100%;
+    max-height: calc(70vh - 25px);
     overflow-y: scroll;
     .transaction-card {
       padding: 5px;
