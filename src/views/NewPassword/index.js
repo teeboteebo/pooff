@@ -8,23 +8,27 @@ const NewPassword = () => {
     const fetchLink = async () => {
       let fetchedLink = await fetch("/api/links/" + path)
       fetchedLink = await fetchedLink.json()
-      await setLink(fetchedLink)
+      fetchedLink.link ? await setLink(fetchedLink) : await setLink("")
     }
     fetchLink()
   }, [])
 
-  const changePassword = async () => {}
+  const findUserAndChangePassword = async () => {}
+
+  const findUser = async () => {
+    fetch("/api/users/id/:id")
+  }
 
   return (
     <div>
-      {link.link ? (
+      {link ? (
         <div className="new-password-container">
           <h1>Välj nytt lösenord</h1>{" "}
           <label className="new-password-item">Nytt lösenord</label>
           <input className="new-password-item"></input>
           <label className="new-password-item">Upprepa lösenord</label>
           <input className="new-password-item"></input>
-          <button onClick={changePassword}>Bekräfta</button>
+          <button onClick={findUserAndChangePassword}>Bekräfta</button>
         </div>
       ) : (
         <p>Link not found</p>
