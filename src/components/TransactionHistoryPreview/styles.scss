@@ -3,7 +3,7 @@
   width: 100vw;
   height: 70vh;
   padding: 0;
-  top: calc(100vh - 25px);
+  top: calc(calc(var(--vh, 1vh) * 100) - 25px);
   left: 0;
   transition: 0.3s top;
 
