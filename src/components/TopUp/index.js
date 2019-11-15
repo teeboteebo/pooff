@@ -23,7 +23,7 @@ const TopUp = (props) => {
       className={props.toggle ? "top-up-container open" : "top-up-container"}
     >
       <h2 className="page-title">Fyll på pengar</h2>
-      <button className="close-btn" onClick={props.clickHandler}><X size="28" /></button>
+      <button className="close-btn" onClick={props.clickHandler}><X size="18" /></button>
       <form onSubmit={postTopUp}>
         <input
           name="amount"
