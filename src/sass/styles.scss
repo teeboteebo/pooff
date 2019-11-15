@@ -1,6 +1,7 @@
 // Import of necessary bootstrap files
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,700,700i&display=swap');
 // Import all our light / dark color variables
 @import "./variables";
 
@@ -12,6 +13,8 @@
 @import '../components/TransactionHistoryPreview/styles';
 @import '../components/TransactionLister/styles';
 @import "../components/UserRegister/styles";
+@import '../components/Header/styles';
+@import '../components/Menu/styles';
 
 // Views Styling
 @import "../views/StartPage/styles";
