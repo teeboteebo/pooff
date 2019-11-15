@@ -10,6 +10,7 @@
   --transactionBackgroundShadow: #666;
   --transactionIncoming: #003b46;
   --transactionOutgoing: #f02727;
+  --mainHeight: calc(calc(var(--vh, 1vh) * 100) - 44px);
 
   &.dark-mode {
     --textColor: #eee;
@@ -23,18 +24,7 @@
     --transactionBackgroundShadow: #333;
     --transactionIncoming: #4ecca3;
     --transactionOutgoing: #f02727;
-
   }
 }
 
 $vh: calc(var(--vh, 1vh) * 100);
-
-
-.App {
-  color: var(--textColor);
-  background-color: var(--background);
-  h1 {
-    color: var(--textColor);
-    background-color: var(--background);
-  }
-}
