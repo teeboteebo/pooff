@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
-import { Row, Col } from 'reactstrap'
 import { Menu as MenuIcon } from 'react-feather'
 
 import Menu from '../Menu'
 
-const Header = () => {
+const Header = props => {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const toggle = () => setMenuOpen(!menuOpen)
+  
   return (
     <div>
       <header>
-        <MenuIcon />
+        <MenuIcon onClick={toggle} />
         <img src="/images/logos/pooff-white.png" alt="pooff-logo" />
       </header>
-      <Menu />
+      <Menu open={menuOpen} toggleMenu={toggle} toggleDarkmode={props.toggleDarkmode} />
     </div>
   )
 }
