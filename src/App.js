@@ -4,9 +4,12 @@ import Header from './components/Header'
 
 const App = () => {
   const [darkmode, setDarkmode] = useState(false)
+
+  const toggleDarkmode = () => setDarkmode(!darkmode)
+
   return (
     <div className={darkmode ? 'App dark-mode' : 'App'}>
-      <Header />
+      <Header toggleDarkmode={toggleDarkmode} />
       <main>
       </main>
     </div>
