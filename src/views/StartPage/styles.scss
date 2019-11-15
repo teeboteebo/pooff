@@ -2,11 +2,11 @@
   position: relative;
   .page-content {
     .page-title {
-      margin-top: 80px;
-      font-size: 48px;
+      margin-top: 40px;
+      font-size: 38px;
       margin-bottom: 40px;
       .amount-decimal {
-        font-size: 24px;
+        font-size: 19px;
         letter-spacing: 2px;
         margin-left: 2px;
       }
@@ -18,8 +18,9 @@
         color: var(--background);
         border: none;
         border-radius: 1000px;
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
+        padding: 0;
       }
       p {
         font-weight: 500;

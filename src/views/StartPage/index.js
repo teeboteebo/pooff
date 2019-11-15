@@ -25,11 +25,11 @@ const StartPage = () => {
         </h2>
         <Row className="buttons">
           <Col xs={{ size: "5", offset: 1 }}>
-            <button className="pay-btn"><DollarSign size="28" /></button>
+            <button className="pay-btn"><DollarSign size="22" /></button>
             <p>Betala</p>
           </Col>
           <Col xs="5">
-            <button onClick={() => setTopUpToggle(true)}className="top-up-btn"><Plus size="28" /></button>
+            <button onClick={() => setTopUpToggle(true)}className="top-up-btn"><Plus size="22" /></button>
             <p>Fyll på pengar</p>
           </Col>
         </Row>
