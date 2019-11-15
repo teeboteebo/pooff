@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import StartPage from './views/StartPage'
 import TransHistoryPage from './views/TransHistoryPage'
+import CreateNewUserPage from './views/CreateNewUserPage'
+
 const App = () => {
   let vh = window.innerHeight * 0.01;  
   document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -18,7 +20,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={StartPage} />
             <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
-
+            <Route exact path="/registrera" component={CreateNewUserPage} />
           </Switch>
         </main>
       </div>
@@ -26,4 +28,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;

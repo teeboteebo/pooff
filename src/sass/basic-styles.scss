@@ -23,6 +23,12 @@ html {
         font-weight: bold;
         text-align: center;
       }
+      p.page-info {
+        position: relative;
+        opacity: 0.7;
+        text-align: center;
+        top: -20px;
+      }
     }
     p {
       margin: 0;
