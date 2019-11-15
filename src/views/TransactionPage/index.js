@@ -55,7 +55,7 @@ const TransactionPage = () => {
     return (
       <Container className="transaction" key={'trans' + i} fluid={true}>
         <h2 className="page-title">Transaktion</h2>
-        <Row>
+        <Row className="no-gutters">
           <Col xs="12">
             <div className="card">
               <div className="card-body mx-auto d-flex flex-column">

@@ -1,8 +1,11 @@
 .transaction {
   .card {
     border: none;
-    background-color: var(--background);
+    background-color: var(--transactionBackground);
+    box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
     .card-body {
+      margin-top: 10px;
+      padding: 0;
       text-align: center;
       .name,
       .phone,
@@ -10,9 +13,10 @@
       .message {
         color: var(--textColorContrast);
         margin-bottom: 25px;
+        font-size: 25px;
       }
       .name {
-        font-size: 22px;
+        font-size: 25px;
         font-weight: bold;
       }
       .message {
