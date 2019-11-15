@@ -1,5 +1,7 @@
 html {
   body .App {
+    color: var(--textColor);
+    background-color: var(--background);
     display: flex;
     height: 100vh; /* Fallback for browsers that do not support Custom Properties */
     height: $vh;
