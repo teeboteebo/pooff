@@ -16,6 +16,7 @@
     --textColorContrast: #eee;
     --background: #393e46;
     --primary: #4ecca3;
+    --secondary: #4ecca3;
     --headerBackground: #232931;
     --transactionBackground: rgb(27, 27, 27);
     --transactionPreviewBackground: #232931;
@@ -24,13 +25,6 @@
     --transactionOutgoing: #f02727;
 
   }
-}
-.dark-mode {
-  --textColor: #eee;
-  --background: #393e46;
-  --primary: #4ecca3;
-  --secondary: #4ecca3;
-  --headerBackground: #232931;
 }
 
 $vh: calc(var(--vh, 1vh) * 100);

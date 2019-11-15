@@ -10,6 +10,7 @@
   font-size: 15px;
   font-weight: 300;
   color: var(--secondary);
+  z-index: 1000;
   transition: 0.3s left;
   &.open {
     left: 0;

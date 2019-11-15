@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import Header from './components/Header'
 import StartPage from './views/StartPage'
 import TransHistoryPage from './views/TransHistoryPage'
 import CreateNewUserPage from './views/CreateNewUserPage'
 
 const App = () => {
-  let vh = window.innerHeight * 0.01;  
+  let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
   const [darkmode, setDarkmode] = useState(false)
-  document.querySelector('body').addEventListener("keyup", (e)=> {
-    if(e.keyCode === 192 || e.keyCode === 220)  setDarkmode(!darkmode)
+  document.querySelector('body').addEventListener("keyup", (e) => {
+    if (e.keyCode === 192 || e.keyCode === 220) setDarkmode(!darkmode)
   })
 
   const toggleDarkmode = () => setDarkmode(!darkmode)
@@ -18,6 +19,7 @@ const App = () => {
   return (
     <Router>
       <div className={darkmode ? 'App dark-mode' : 'App'}>
+        <Header toggleDarkmode={toggleDarkmode} />
         <main>
           <Switch>
             <Route exact path="/" component={StartPage} />
@@ -27,7 +29,6 @@ const App = () => {
         </main>
       </div>
     </Router>
-      <Header toggleDarkmode={toggleDarkmode} />
   )
 }
 
