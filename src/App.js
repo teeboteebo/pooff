@@ -8,7 +8,7 @@ import CreateNewUserPage from './views/CreateNewUserPage'
 const App = () => {
   const [darkmode, setDarkmode] = useState(false)
   document.querySelector('body').addEventListener("keyup", (e) => {
-    if (e.keyCode === 192) setDarkmode(!darkmode)
+    if (e.keyCode === 192 || e.keyCode === 220) setDarkmode(!darkmode)
   })
   return (
     <Router>
