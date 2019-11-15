@@ -1,0 +1,10 @@
+.transaction {
+  .card {
+    background-color: var(--background);
+    .name,
+    .phone,
+    .amount {
+      color: var(--textColorContrast);
+    }
+  }
+}
