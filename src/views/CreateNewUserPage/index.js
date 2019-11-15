@@ -49,7 +49,6 @@ const CreateNewUserPage = () => {
       class: 'repeat-password',
       icon: <Lock className="main-icon" />
     }
-
   ]
   return (
     <Container>
