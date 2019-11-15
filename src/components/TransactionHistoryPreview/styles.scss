@@ -3,7 +3,7 @@
   width: 100vw;
   height: 70vh;
   padding: 0;
-  top: calc(100vh - 28px);
+  top: calc(calc(var(--vh, 1vh) * 100) - 25px);
   left: 0;
   transition: 0.3s top;
 
@@ -32,8 +32,8 @@
 
   .lister-container {
     border-top: 1px solid var(--primary);
-    padding: 5px 3px;
-    max-height: calc(70vh - 25px);
+    padding: 7px 3px 5px;
+    max-height: calc(var(--vh, 1vh) * 61);
     overflow-y: scroll;
   }
 }

@@ -8,8 +8,9 @@
 @import "./basic-styles";
 
 // Components Styling
-@import "../components/TransactionHistoryPreview/styles";
-@import "../components/TransactionLister/styles";
+@import '../components/TopUp/styles';
+@import '../components/TransactionHistoryPreview/styles';
+@import '../components/TransactionLister/styles';
 @import "../components/UserRegister/styles";
 
 // Views Styling

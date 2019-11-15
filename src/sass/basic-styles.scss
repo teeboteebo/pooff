@@ -5,11 +5,12 @@
 html {
   body .App {
     display: flex;
-    height: 100vh;
-    max-height: 100vh;
+    height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+    height: $vh;
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: scroll;
+    font-family: "Roboto", sans-serif;
     main {
       flex: 1;
       & > div {
@@ -19,6 +20,7 @@ html {
       h2.page-title {
         color: var(--textColor);
         margin-bottom: 80px;
+        font-weight: bold;
         text-align: center;
       }
       p.page-info {
