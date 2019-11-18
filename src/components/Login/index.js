@@ -20,7 +20,7 @@ return (
         <h1 className="text-center">Login</h1>
         </Col>
       </Row>
-      <Row>
+      <Row className="input-field">
         <Col sm="12" md={{ size: 6, offset: 3 }}>
         <Label  className="floating-label" for="exampleEmail">Email</Label>
           <Input

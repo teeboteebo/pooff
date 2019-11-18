@@ -25,8 +25,8 @@ const Menu = props => {
               <span className="side-margin">Mina barn</span>
               <ChevronDown className={childrenListOpen ? 'chevron chevron-up' : 'chevron'} />
             </span>
-            {/* {childrenListOpen ? */}
-            <ul className={childrenListOpen ? 'children-links children-links-open' : 'children-links'}>
+            {childrenListOpen ?
+            <ul>
               <li>
                 <Eye />
                 <span className="side-margin">Översikt</span>
@@ -44,7 +44,7 @@ const Menu = props => {
                 <span className="side-margin">Lägg till barn</span>
               </li>
             </ul>
-            {/* : ''} */}
+            : ''}
           </li>
           <li>
             <Link to="/">

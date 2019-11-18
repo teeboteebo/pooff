@@ -6,11 +6,28 @@
     font-weight: 400;
     margin: 0.5rem 0rem;
     line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    border: 1px solid #ced4da;
+    color: var(--inputtext);
+    background-color: var(--inputbackground);
+    border: 1px solid var(--inputborder);
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus{
+    background-color: var(--inputbackground);
+    color: var(--inputtext);
+}
+
+a, a:hover{
+    color: var(--linkcolor);
+}
+
+input.form-control.form-control::placeholder{
+    color: var(--inputplaceholder);
+}
+
+.input-field{
+    margin-top: 2rem;
 }
 
 .text-center{
@@ -31,9 +48,10 @@
   }
 
   .login{
-      background-color: var(--primary);
-      color: var(--secondary);
+      background-color: var(--buttonprimary);
+      color: var(--buttontext);
       padding: 0.25rem 3rem;
+      border: none;
   }
 
   .button-field{
