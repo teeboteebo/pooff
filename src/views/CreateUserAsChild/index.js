@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import UserRegister from '../../components/UserRegister'
 import { Container } from 'reactstrap'
 import { User, Mail, Phone, Lock } from 'react-feather'
 
