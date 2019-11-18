@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container } from 'reactstrap'
-
 import { User, Mail, Phone, Lock } from 'react-feather'
+
+import UserRegister from "../../components/UserRegister";
+
 
 const createUserAsChild = () => {
   let childInputData = [
@@ -20,7 +22,7 @@ const createUserAsChild = () => {
       name: 'Personnummer',
       type: 'text',
       icon: <User className="main-icon" />
-    }
+    },
     {
       name: 'Användarnamn',
       type: 'text',
