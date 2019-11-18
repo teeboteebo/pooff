@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
-import Header from "./components/Header"
-import StartPage from "./views/StartPage"
-import TransHistoryPage from "./views/TransHistoryPage"
-import CreateNewUserPage from "./views/CreateNewUserPage"
+import Header from './components/Header'
+import StartPage from './views/StartPage'
+import TransHistoryPage from './views/TransHistoryPage'
+import CreateNewUserPage from './views/CreateNewUserPage'
+import createUserAsChild from './views/CreateUserAsChild'
 import PaymentConfirmation from "./views/PaymentConfirmation"
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
               component={TransHistoryPage}
             />
             <Route exact path="/registrera" component={CreateNewUserPage} />
+            <Route exact path="/registrera-barn" component={createUserAsChild} />
             <Route
               exact
               path="/lyckad-betalning"
