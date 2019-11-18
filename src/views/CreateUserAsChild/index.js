@@ -6,7 +6,7 @@ import { User, Mail, Phone, Lock } from 'react-feather'
 import UserRegister from "../../components/UserRegister";
 
 
-const createUserAsChild = () => {
+const CreateUserAsChild = () => {
   let childInputData = [
     {
       name: 'Förnamn',
@@ -53,7 +53,7 @@ const createUserAsChild = () => {
     }
   ]
   return (
-    <Container>
+    <Container fluid={true}>
       <h2 className="page-title">Registrera användare</h2>
       <p className="page-info">Ange personuppgifter</p>
       <UserRegister inputs={childInputData} />
