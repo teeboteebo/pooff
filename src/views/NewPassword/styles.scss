@@ -1,8 +1,5 @@
 .new-password-container {
   display: block;
-  h2 {
-    margin-left: 10px;
-  }
   .new-password-item {
     margin-left: 10px;
   }
@@ -23,4 +20,8 @@
     border: none;
     border-radius: 0.25rem;
   }
+}
+
+h2 {
+  margin-left: 10px;
 }

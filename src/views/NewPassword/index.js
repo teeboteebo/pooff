@@ -59,7 +59,7 @@ const NewPassword = () => {
           <h1>Lösenord uppdaterat</h1>
         )
       ) : (
-        <p>Link not found</p>
+        <h2>Vi kunde inte hitta länken</h2>
       )}
     </div>
   )
