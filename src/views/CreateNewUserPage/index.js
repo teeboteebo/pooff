@@ -51,7 +51,7 @@ const CreateNewUserPage = () => {
     }
   ]
   return (
-    <Container>
+    <Container fluid={true}>
       <h2 className="page-title">Registrera användare</h2>
       <p className="page-info">Ange personuppgifter</p>
       <UserRegister inputs={inputData} />
