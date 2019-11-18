@@ -54,7 +54,7 @@ const CreateUserAsChild = () => {
   ]
   return (
     <Container fluid={true}>
-      <h2 className="page-title">Registrera användare</h2>
+      <h2 className="page-title">Komplettera din profil</h2>
       <p className="page-info">Ange personuppgifter</p>
       <UserRegister inputs={childInputData} />
       <div className="text-center">
