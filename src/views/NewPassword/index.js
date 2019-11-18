@@ -33,7 +33,7 @@ const NewPassword = () => {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        password: document.querySelector(".new-password").value,
+        password: document.querySelector(".password-input").value,
       }), // We send data in JSON format
     })
   }
@@ -43,12 +43,17 @@ const NewPassword = () => {
       {link ? (
         link && !updated ? (
           <div className="new-password-container">
-            <h1>Välj nytt lösenord</h1>{" "}
+            <h2>Välj nytt lösenord</h2>
             <label className="new-password-item">Nytt lösenord</label>
-            <input className="new-password"></input>
+            <input className="password-input"></input>
             <label className="new-password-item">Upprepa lösenord</label>
-            <input className="new-password-confirm"></input>
-            <button onClick={findUserAndChangePassword}>Bekräfta</button>
+            <input className="password-input"></input>
+            <button
+              className="password-button"
+              onClick={findUserAndChangePassword}
+            >
+              Bekräfta
+            </button>
           </div>
         ) : (
           <h1>Lösenord uppdaterat</h1>
