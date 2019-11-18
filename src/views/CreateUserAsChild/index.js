@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container } from "reactstrap";
-import UserRegister from "../../components/UserRegister";
-import { User, Mail, Phone, Lock } from "react-feather";
+import { Container } from 'reactstrap'
 
-const CreateNewUserPage = () => {
-  let inputData = [
+import { User, Mail, Phone, Lock } from 'react-feather'
+
+const createUserAsChild = () => {
+  let childInputData = [
     {
       name: 'Förnamn',
       type: 'text',
@@ -20,7 +20,7 @@ const CreateNewUserPage = () => {
       name: 'Personnummer',
       type: 'text',
       icon: <User className="main-icon" />
-    },
+    }
     {
       name: 'Användarnamn',
       type: 'text',
@@ -54,7 +54,7 @@ const CreateNewUserPage = () => {
     <Container>
       <h2 className="page-title">Registrera användare</h2>
       <p className="page-info">Ange personuppgifter</p>
-      <UserRegister inputs={inputData} />
+      <UserRegister inputs={childInputData} />
       <div className="text-center">
         <button className="save-button">Registrera</button>
         <p>Har du redan ett konto?<Link className="login" to="/logga-in">Logga in</Link></p>
@@ -62,4 +62,4 @@ const CreateNewUserPage = () => {
     </Container>
   )
 }
-export default CreateNewUserPage
+export default createUserAsChild

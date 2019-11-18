@@ -1,5 +1,7 @@
 html {
   body .App {
+    color: var(--textColor);
+    background-color: var(--background);
     display: flex;
     height: 100vh; /* Fallback for browsers that do not support Custom Properties */
     height: $vh;
@@ -13,8 +15,9 @@ html {
     main {
       flex: 1;
       & > div {
-        height: 100%;
         padding-top: 60px;
+        height: calc(calc(var(--vh, 1vh) * 100) - 44px);
+        overflow-y: scroll;
       }
       h2.page-title {
         color: var(--textColor);
