@@ -1,5 +1,5 @@
 import React, {useState } from "react";
-import { Form, Row, Col, Input, Button, Label } from "reactstrap";
+import { Form, Row, Col, Input, Button, Label, Container } from "reactstrap";
 const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -13,7 +13,13 @@ const Login = () => {
     )
 }
 return (
+  <Container>
     <Form onSubmit={onSubmit}>
+      <Row>
+        <Col sm="12"  md={{ size: 6, offset: 3 }}>
+        <h1 className="text-center">Login</h1>
+        </Col>
+      </Row>
       <Row>
         <Col sm="12" md={{ size: 6, offset: 3 }}>
         <Label  className="floating-label" for="exampleEmail">Email</Label>
@@ -36,13 +42,30 @@ return (
           placeholder="Lösenord"
          ></Input>
         </Col>
+        <Col sm="3" md={{ size: 6, offset: 3 }} >
+      <a  className="float-right" href="/">glömt lösenord?</a>
+      </Col>
       </Row>
 
-      <a href="/">glömt lösenord?</a>
-      <Row>
-      <Button type="submit" value="Submit" >Logga in</Button>
+      <Row className="button-field">
+        <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
+        <Button className="login" type="submit" value="Submit" >Logga in</Button>
+        </Col>
       </Row>
     </Form>
+
+    <Row className="link-field">
+      <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
+      <p  className="no-account" href="/">Har ej ett konto?</p>
+      </Col>
+      <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
+      <a  className="register" href="/">Registrera</a>
+      </Col>
+      <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
+      <a  className="" href="/">Frågor och svar</a>
+      </Col>
+    </Row>
+    </Container>
   );
 };
 

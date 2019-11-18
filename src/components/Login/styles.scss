@@ -13,12 +13,33 @@
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-
+.text-center{
+    text-align: center;
+}
   
 
   .floating-label {
     pointer-events: none;
     left: 20px;
+    margin: 0.5rem 0rem;
     transition: 0.2s ease all;
+  }
+
+  .no-account{
+      color: gray;
+  }
+
+  .login{
+      background-color: var(--primary);
+      color: var(--secondary);
+      padding: 0.25rem 3rem;
+  }
+
+  .button-field{
+    margin-top: 2rem;
+  }
+
+  .link-field{
+    margin-top: 1.5rem;
   }
 
