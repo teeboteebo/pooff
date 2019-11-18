@@ -2,10 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import UserRegister from '../../components/UserRegister'
 import { Container } from 'reactstrap'
-
 import { User, Mail, Phone, Lock } from 'react-feather'
 
-const CreateUserAsChild = () => {
+import UserRegister from "../../components/UserRegister";
+
+
+const createUserAsChild = () => {
   let childInputData = [
     {
       name: 'Förnamn',

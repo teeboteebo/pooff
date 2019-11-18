@@ -5,7 +5,7 @@ import Header from './components/Header'
 import StartPage from './views/StartPage'
 import TransHistoryPage from './views/TransHistoryPage'
 import CreateNewUserPage from './views/CreateNewUserPage'
-import CreateUserAsChild from './views/CreateUserAsChild';
+import createUserAsChild from './views/CreateUserAsChild'
 
 const App = () => {
   let vh = window.innerHeight * 0.01;
@@ -26,7 +26,7 @@ const App = () => {
             <Route exact path="/" component={StartPage} />
             <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
             <Route exact path="/registrera" component={CreateNewUserPage} />
-            <Route exact path="/registrera-barn" component={CreateUserAsChild} />
+            <Route exact path="/registrera-barn" component={createUserAsChild} />
           </Switch>
         </main>
       </div>
