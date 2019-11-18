@@ -34,12 +34,19 @@
         }
       }
 
+      .chevron {
+        transition: transform 0.3s;
+        &.chevron-up {
+          transform: rotate(-180deg);
+        }
+      }
+
       svg {
         width: 20px;
         height: 20px;
       }
 
-      span {
+      span.side-margin {
         margin-left: 15px;
         margin-right: 5px;
         vertical-align: middle;
