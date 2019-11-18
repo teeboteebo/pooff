@@ -2,13 +2,15 @@ import React, { useState } from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { Spinner } from 'reactstrap'
 
-import Header from './components/Header'
-import StartPage from './views/StartPage'
-import TransHistoryPage from './views/TransHistoryPage'
-import CreateNewUserPage from './views/CreateNewUserPage'
-import createUserAsChild from './views/CreateUserAsChild'
+import Header from "./components/Header"
+import StartPage from "./views/StartPage"
+import TransHistoryPage from "./views/TransHistoryPage"
+import CreateNewUserPage from "./views/CreateNewUserPage"
+import createUserAsChild from "./views/CreateUserAsChild"
 import PaymentConfirmation from "./views/PaymentConfirmation"
 import LoginPage from './views/Login-temp';
+import ResetPassword from "./views/ResetPassword"
+import NewPassword from "./views/NewPassword"
 
 const App = (props) => {
   console.log('App rendering');
