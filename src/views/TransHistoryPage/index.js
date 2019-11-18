@@ -20,6 +20,7 @@ const TransHistoryPage = () => {
         firstName: 'Lasse',
         lastName: 'Skida'
       },
+      id:1,
       amount: 10000,
       message: "Top up",
       date: Date.now(),
@@ -33,6 +34,7 @@ const TransHistoryPage = () => {
         firstName: 'Lasse',
         lastName: 'Skida'
       },
+      id:3,
       amount: 10000,
       message: "Top up",
       date: Date.now(),
@@ -46,6 +48,7 @@ const TransHistoryPage = () => {
         firstName: 'Lasse',
         lastName: 'Skida'
       },
+      id: 6,
       amount: 10000,
       message: "Top up",
       date: Date.now(),
@@ -59,6 +62,7 @@ const TransHistoryPage = () => {
         firstName: 'Lasse',
         lastName: 'Skida'
       },
+      id:9,
       amount: 10000,
       message: "Top up",
       date: Date.now(),
@@ -72,6 +76,7 @@ const TransHistoryPage = () => {
         firstName: 'Lasse',
         lastName: 'Skida'
       },
+      id:98,
       amount: 100000,
       message: "Top up",
       date: Date.now(),
@@ -85,6 +90,7 @@ const TransHistoryPage = () => {
         firstName: 'Lasse',
         lastName: 'Skida'
       },
+      id:9898,
       amount: 10000,
       message: "Top up",
       date: Date.now(),
@@ -98,6 +104,7 @@ const TransHistoryPage = () => {
         firstName: 'Bank',
         lastName: 'Skida'
       },
+      id: 1234,
       amount: -10000,
       message: "Top up",
       date: Date.now(),
@@ -111,6 +118,7 @@ const TransHistoryPage = () => {
         firstName: 'Lasse',
         lastName: 'Skida'
       },
+      id: 23456,
       amount: 10000,
       message: "Top up",
       date: Date.now(),
