@@ -7,7 +7,7 @@ import { ChevronRight } from 'react-feather'
 
 
 const TransactionLister = (props) => {
-  function getTransaction(id) {
+  const getTransaction = (id)=> {
     const transaction = props.transactions;
     let  test = transaction.find((item) =>{
       return item.id === id
