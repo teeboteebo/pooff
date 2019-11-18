@@ -1,0 +1,67 @@
+.transaction-form {
+  .input-component {
+    position: relative;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: var(--inputIcon);
+    }
+
+    input, textarea {
+      padding: 8.5px;
+      width: 100%;
+      border: 1px solid var(--inputBorder);
+      border-radius: .3rem;
+      color: var(--textColor);
+      text-indent: 40px;
+      background-color: var(--inputBackground);
+
+      &:focus {
+        border-radius: .3rem;
+        border-color: var(--inputBorder);
+        outline-color: var(--inputBorder);
+        box-shadow: var(--primary);
+      }
+    }
+
+    input {
+      line-height: 0;   
+    }
+
+    &.textarea {
+      svg {
+        top: 9px;
+        transform: none;
+      }
+    }
+
+  }
+
+  .add-to-favorites {
+    color: rgb(117, 117, 117);
+
+    &.checked {
+      color: var(--transactionOutgoing);
+    }
+  }
+
+  .button-div {
+    text-align: center;
+
+    button {
+      margin: 0 auto;
+      min-width: 50%;
+      background-color: var(--primary);
+      border: 1px solid var(--primary);
+      color: var(--buttonText);
+
+      span {
+        margin-left: 10px;
+        vertical-align: middle;
+      }
+    }
+  }
+}
