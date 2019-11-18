@@ -7,6 +7,7 @@ import TransHistoryPage from "./views/TransHistoryPage"
 import CreateNewUserPage from "./views/CreateNewUserPage"
 import createUserAsChild from "./views/CreateUserAsChild"
 import PaymentConfirmation from "./views/PaymentConfirmation"
+import LoginPage from './views/Login-temp';
 import ResetPassword from "./views/ResetPassword"
 import NewPassword from "./views/NewPassword"
 
@@ -52,6 +53,7 @@ const App = () => {
                 />
               )}
             />
+            <Route exact path="/login-test" component={LoginPage} />
           </Switch>
         </main>
       </div>
