@@ -33,7 +33,6 @@ return (
         </Col>
         <Col sm="12" md={{ size: 6, offset: 3 }}>
         <Label className="floating-label" for="examplePassword">Lösenord</Label>
-
           <Input 
           type="password"
           value={password}
