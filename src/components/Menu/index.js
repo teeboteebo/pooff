@@ -4,7 +4,7 @@ import { Row, Col, CustomInput } from 'reactstrap'
 import { Home, Users, ChevronDown, Eye, User, Plus, Heart, Settings, HelpCircle, LogOut } from 'react-feather'
 
 const Menu = props => {
-  const { open, toggleMenu, toggleDarkmode } = props
+  const { open, toggleMenu, toggleDarkmode, loginHandler } = props
 
   const [childrenListOpen, setChildrenListOpen] = useState(false)
 
@@ -80,6 +80,7 @@ const Menu = props => {
             <span className="side-margin" onClick={async () => {
               await fetch('/api/login', { method: 'DELETE' })
               toggleMenu()
+              loginHandler()
             }}>Logga ut</span>
           </li>
         </ul>

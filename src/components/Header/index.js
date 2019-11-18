@@ -14,7 +14,7 @@ const Header = props => {
         <MenuIcon onClick={toggle} style={{color: '#fff'}} />
         <img src="/images/logos/pooff-white.png" alt="pooff-logo" />
       </header>
-      <Menu open={menuOpen} toggleMenu={toggle} toggleDarkmode={props.toggleDarkmode} />
+      <Menu open={menuOpen} toggleMenu={toggle} loginHandler={props.loginHandler} toggleDarkmode={props.toggleDarkmode} />
     </div>
   )
 }

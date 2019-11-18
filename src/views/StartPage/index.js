@@ -7,10 +7,15 @@ import TransactionHistoryPreview from '../../components/TransactionHistoryPrevie
 
 const StartPage = () => {
   
-  let integer, decimal
+  let integer, decimal, balance
   const getBalanceAndSplit = async () => {
-    let balance = 522000.69 // axios get mytrans/balance
+    let balanceRaw = await fetch('/api/mytransactions/balance') // axios get mytrans/balance
+    balance = (await balanceRaw.json()).balance
+    console.log(balance);
+    
     balance = balance.toLocaleString('sv-SE').split(',')
+    console.log(balance);
+    
     integer = balance[0]
     decimal = balance[1]
   }
@@ -20,8 +25,8 @@ const StartPage = () => {
     <Container className="startpage">
       <div className="page-content">
         <h2 className="page-title">
-          <span className="amount-integer">{integer}</span>
-          <span className="amount-decimal">,{decimal} kr</span>
+          <span className="amount-integer">{integer ? integer : balance}</span>
+          <span className="amount-decimal">{decimal ? `, ${decimal}` : ' '} kr</span>
         </h2>
         <Row className="buttons">
           <Col xs={{ size: "5", offset: 1 }}>

@@ -25,9 +25,9 @@ const LoginPage = (props) => {
       setStatusMessage('Användarnamn eller lösenord är fel')
     } else {
       setStatusMessage(`Inloggad som ${message.username} - (${message.role})`)
-      setTimeout(() => props.history.push('/'), 2000)
+      props.history.push('/')
     }
-    
+    props.loginHandler()
   }
   const inputStyle = {
     width: '100%',
