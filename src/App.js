@@ -5,6 +5,7 @@ import Header from './components/Header'
 import StartPage from './views/StartPage'
 import TransHistoryPage from './views/TransHistoryPage'
 import CreateNewUserPage from './views/CreateNewUserPage'
+import LoginPage from './views/Login-temp';
 
 const App = () => {
   let vh = window.innerHeight * 0.01;
@@ -25,6 +26,8 @@ const App = () => {
             <Route exact path="/" component={StartPage} />
             <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
             <Route exact path="/registrera" component={CreateNewUserPage} />
+            <Route exact path="/login-test" component={LoginPage} />
+
           </Switch>
         </main>
       </div>
