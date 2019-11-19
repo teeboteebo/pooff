@@ -78,12 +78,13 @@ const App = (props) => {
                 <Route exact path="/" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
                 <Route exact path="/registrera" component={CreateNewUserPage} />
                 <Route exact path="/login-test" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
+                <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
+                <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
               </Switch>
             }
           </main>
           : <Spinner />}
-            <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
-            <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
+
       </div>
     </Router>
   )
