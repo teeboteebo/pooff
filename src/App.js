@@ -14,7 +14,7 @@ import LoginPage from './views/Login-temp';
 import TransactionPage from './views/TransactionPage'
 
 const App = (props) => {
-  console.log('App rendering');
+  // console.log('App rendering');
 
   let vh = window.innerHeight * 0.01
   document.documentElement.style.setProperty("--vh", `${vh}px`)
@@ -27,20 +27,20 @@ const App = (props) => {
   })
   const toggleDarkmode = () => setDarkmode(!darkmode)
   const checkIfLoggedIn = async () => {
-    console.log('running');
+    // console.log('running');
     let loggedInRaw = await fetch('/api/login')
     let message = await loggedInRaw.json()
     if (message.status) {
       setLoggedIn(false)
-      console.log('you just logged out');
+      // console.log('you just logged out');
     } else if (!message.status) {
       setLoggedIn(true)
-      console.log('you just logged in');
+      // console.log('you just logged in');
 
     }
     setLoginFetched(true)
 
-    console.log(loggedIn);
+    // console.log(loggedIn);
 
   }
   checkIfLoggedIn()
@@ -73,6 +73,8 @@ const App = (props) => {
                   />
                 )}
               />
+              <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
+              <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
             </Switch>
               : <Switch> {/* NOT LOGGED IN */}
                 <Route exact path="/" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
