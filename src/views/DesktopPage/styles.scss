@@ -17,18 +17,26 @@
     background-size: 100% 100%;
   }
   .text-side {
+    padding: 25vh 0;
+    height: 100vh;
+    overflow-y: scroll;
     position: relative;
     background-color: #c4dfe6;
     .text-content {
-      margin: 30vh 0 0 10vh;
+      margin-left: 10vh;
       font-family: "Roboto", sans-serif;
       max-width: 400px;
       line-height: initial;
       display: inline-block;
+      font-size: 22px;
       .page-title {
         font-family: "Montserrat", sans-serif;
         font-weight: bold;
         margin: 0 0 40px;
+        font-size: 42px;
+      }
+      p {
+        margin-bottom: 1.5rem;
       }
     }
     .logo {

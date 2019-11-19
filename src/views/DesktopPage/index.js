@@ -20,7 +20,6 @@ const DesktopPage = () => {
           <img className="logo" src="/images/logos/pooff-dark.png" alt="pooff logo" />
         </Col>
       </Row>
-
     </Container>
   )
 }
