@@ -1,0 +1,42 @@
+.desktop-container {
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  .img-side {
+    line-height: 100vh;
+    text-align: center;
+    img {
+      display: inline-block;
+      width: 100%;
+      height: auto;
+      max-width: 450px;
+    }
+  }
+  .triangle {
+    background-image: url("/images/diagonal.png");
+    background-size: 100% 100%;
+  }
+  .text-side {
+    position: relative;
+    background-color: #c4dfe6;
+    .text-content {
+      margin: 30vh 0 0 10vh;
+      font-family: "Roboto", sans-serif;
+      max-width: 400px;
+      line-height: initial;
+      display: inline-block;
+      .page-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: bold;
+        margin: 0 0 40px;
+      }
+    }
+    .logo {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
