@@ -17,6 +17,8 @@ const TransactionLister = (props) => {
           <p className="trans-name">{transaction.amount > 0 ? `${transaction.sender.firstName} ${transaction.sender.lastName}` : `${transaction.receiver.firstName} ${transaction.receiver.lastName}`}</p>
         </Col>
         <Col xs="4" className="trans-amount">{transaction.amount.toLocaleString('sv-SE')}</Col>
+        
+        {/* glöm inte ändra till transaction._id sen mkay */}
         <Link to={'/enskild-transaktion/' + transaction.id} className="trans-arrow col-1"><ChevronRight /></Link>
       </Row>
     )
