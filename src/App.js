@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { Spinner } from 'reactstrap'
 
 import Header from './components/Header'
 import StartPage from './views/StartPage'
 import TransHistoryPage from './views/TransHistoryPage'
 import CreateNewUserPage from './views/CreateNewUserPage'
 import TransactionForm from './views/TransactionForm'
+import createUserAsChild from "./views/CreateUserAsChild"
+import PaymentConfirmation from "./views/PaymentConfirmation"
+import LoginPage from './views/Login-temp';
+import ResetPassword from "./views/ResetPassword"
+import NewPassword from "./views/NewPassword"
 
 import { usePooff } from './context'
 
@@ -15,23 +21,70 @@ const App = () => {
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`)
 
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [loginFetched, setLoginFetched] = useState(false)
+
   document.querySelector('body').addEventListener("keyup", (e) => {
     if (e.keyCode === 192 || e.keyCode === 220) state.setDarkMode(!state.darkMode)
   })
 
-  return (
+  const checkIfLoggedIn = async () => {
+    console.log('running');
+    let loggedInRaw = await fetch('/api/login')
+    let message = await loggedInRaw.json()
+    if (message.status) {
+      setLoggedIn(false)
+      console.log('you just logged out');
+    } else if (!message.status) {
+      setLoggedIn(true)
+      console.log('you just logged in');
 
+    }
+    setLoginFetched(true)
+
+    console.log(loggedIn);
+
+  }
+  checkIfLoggedIn()
+
+  return (
     <Router>
       <div className={state.darkMode ? 'App dark-mode' : 'App'}>
-        <Header />
-        <main>
-          <Switch>
-            <Route exact path="/" component={StartPage} />
-            <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
-            <Route exact path="/registrera" component={CreateNewUserPage} />
-            <Route exact path="/ny-transaktion" component={TransactionForm} />
-          </Switch>
-        </main>
+        {loggedIn ? <Header /> : null}
+        {loginFetched ?
+          <main>
+            {loggedIn ? <Switch> {/* LOGGED IN */}
+              <Route exact path="/" component={StartPage} />
+              <Route
+                exact
+                path="/mina-transaktioner"
+                component={TransHistoryPage}
+              />
+              <Route exact path="/registrera" component={CreateNewUserPage} />
+              <Route exact path="/registrera-barn" component={createUserAsChild} />
+              <Route exact path="/ny-transaktion" component={TransactionForm} />
+              <Route
+                exact
+                path="/lyckad-betalning"
+                render={(props) => (
+                  <PaymentConfirmation
+                    {...props}
+                    name="Sture Stoppmur"
+                    number="070123123"
+                    amount="100 kr"
+                    message="Du blocka mig"
+                  />
+                )}
+              />
+            </Switch>
+              : <Switch> {/* NOT LOGGED IN */}
+                <Route exact path="/" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
+                <Route exact path="/registrera" component={CreateNewUserPage} />
+                <Route exact path="/login-test" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
+              </Switch>
+            }
+          </main>
+          : <Spinner />}
       </div>
     </Router>
   )
