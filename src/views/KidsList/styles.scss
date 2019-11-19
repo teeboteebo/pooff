@@ -1,9 +1,20 @@
 .kids-list {
   .child-box {
     background-color: var(--transactionPreviewBackground);
+    box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
 
     h6 {
       color: var(--primary);
+
+      span {
+        vertical-align: middle;
+      }
+    }
+
+    .balance {
+      font-family: 'Courier New', Courier, monospace;
+      letter-spacing: 1.5px;
+      font-weight: bold;
     }
 
     .info-text {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'reactstrap'
-import { Info, ChevronRight } from 'react-feather'
+import { User, Info, ChevronRight } from 'react-feather'
 
 const KidsList = () => {
   const [children, setChildren] = useState([])
@@ -40,10 +40,13 @@ const KidsList = () => {
       {children.map((child, i) => {
         const { firstName, lastName, balance, transThisMonth } = child
         return (
-          <Row key={i} className="no-gutters align-items-center mb-3 p-3 child-box">
+          <Row key={i} className="no-gutters align-items-center mb-4 p-3 child-box">
             <Col>
-              <h6 className="mb-3">{firstName + ' ' + lastName}</h6>
-              <p className="mb-2">Saldo: {balance}kr</p>
+              <h6 className="mb-3">
+                <User />
+                <span className="ml-2">{firstName + ' ' + lastName}</span>
+              </h6>
+              <p className="mb-2">Saldo: <span className="balance">{balance}</span> SEK</p>
               <p className="info-text">
                 <Info />
                 <span className="ml-2">

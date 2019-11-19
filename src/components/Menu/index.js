@@ -28,25 +28,27 @@ const Menu = () => {
               <ChevronDown className={childrenListOpen ? 'chevron chevron-up' : 'chevron'} />
             </span>
             {childrenListOpen ?
-            <ul>
-              <li>
-                <Eye />
-                <span className="side-margin">Översikt</span>
-              </li>
-              <li>
-                <User />
-                <span className="side-margin">Larry Skida</span>
-              </li>
-              <li>
-                <User />
-                <span className="side-margin">Ragnar Skida</span>
-              </li>
-              <li>
-                <Plus />
-                <span className="side-margin">Lägg till barn</span>
-              </li>
-            </ul>
-            : ''}
+              <ul>
+                <li>
+                  <Link to="/mina-barn">
+                    <Eye />
+                    <span className="side-margin">Översikt</span>
+                  </Link>
+                </li>
+                <li>
+                  <User />
+                  <span className="side-margin">Larry Skida</span>
+                </li>
+                <li>
+                  <User />
+                  <span className="side-margin">Ragnar Skida</span>
+                </li>
+                <li>
+                  <Plus />
+                  <span className="side-margin">Lägg till barn</span>
+                </li>
+              </ul>
+              : ''}
           </li>
           <li>
             <Link to="/">
@@ -73,7 +75,7 @@ const Menu = () => {
                 <p className="cozy-text">För ökad mysfaktor i tillvaron</p>
               </Col>
               <Col xs="auto">
-                <CustomInput 
+                <CustomInput
                   type="switch"
                   id="dark-mode"
                   name="dark-mode"
