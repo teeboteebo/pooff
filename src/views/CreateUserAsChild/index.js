@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container } from 'reactstrap'
-
 import { User, Mail, Phone, Lock } from 'react-feather'
 
-const createUserAsChild = () => {
+import UserRegister from "../../components/UserRegister";
+
+
+const CreateUserAsChild = () => {
   let childInputData = [
     {
       name: 'Förnamn',
@@ -16,17 +18,17 @@ const createUserAsChild = () => {
       type: 'text',
       icon: <User className="main-icon" />
     },
-    {
+    { // We wait for createChild component to pre-write Id number
       name: 'Personnummer',
       type: 'text',
       icon: <User className="main-icon" />
-    }
+    },
     {
       name: 'Användarnamn',
       type: 'text',
       icon: <User className="main-icon" />
     },
-    {
+    { // We wait for createChild component to pre-write E-mail
       name: 'E-post',
       type: 'email',
       icon: <Mail className="main-icon" />
@@ -51,8 +53,8 @@ const createUserAsChild = () => {
     }
   ]
   return (
-    <Container>
-      <h2 className="page-title">Registrera användare</h2>
+    <Container fluid={true}>
+      <h2 className="page-title">Komplettera din profil</h2>
       <p className="page-info">Ange personuppgifter</p>
       <UserRegister inputs={childInputData} />
       <div className="text-center">
@@ -62,4 +64,4 @@ const createUserAsChild = () => {
     </Container>
   )
 }
-export default createUserAsChild
+export default CreateUserAsChild
