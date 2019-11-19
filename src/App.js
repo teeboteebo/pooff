@@ -62,7 +62,7 @@ const App = () => {
               />
               <Route exact path="/registrera" component={CreateNewUserPage} />
               <Route exact path="/registrera-barn" component={createUserAsChild} />
-              <Route exact path="/ny-transaktion" component={TransactionForm} />
+              <Route exact path="/ny-betalning" component={TransactionForm} />
               <Route
                 exact
                 path="/lyckad-betalning"
