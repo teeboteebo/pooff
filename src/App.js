@@ -20,6 +20,7 @@ const App = () => {
   })
 
   return (
+
     <Router>
       <div className={state.darkMode ? 'App dark-mode' : 'App'}>
         <Header />
@@ -36,4 +37,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App
