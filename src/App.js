@@ -25,7 +25,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={StartPage} />
             <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
-            <Route exact path="/enskild-transaktion" component={TransactionPage} />
+            <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
             <Route exact path="/registrera" component={CreateNewUserPage} />
           </Switch>
         </main>

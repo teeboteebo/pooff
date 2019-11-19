@@ -1,19 +1,10 @@
 import React from 'react'
-
 import { Row, Col } from 'reactstrap';
-
-import { ChevronRight } from 'react-feather'
-// import TransactionPage from '../../views/TransactionPage';
+import { ChevronRight } from 'react-feather';
+import {Link} from 'react-router-dom';
 
 
 const TransactionLister = (props) => {
-  const getTransaction = (id)=> {
-    const transaction = props.transactions;
-    let  test = transaction.find((item) =>{
-      return item.id === id
-    })
-    console.log(test, 'rätt transaktion')
-  }
 
   let transactions = props.transactions.map((transaction, i) => {
     // format date and remove punctuation
@@ -26,7 +17,7 @@ const TransactionLister = (props) => {
           <p className="trans-name">{transaction.amount > 0 ? `${transaction.sender.firstName} ${transaction.sender.lastName}` : `${transaction.receiver.firstName} ${transaction.receiver.lastName}`}</p>
         </Col>
         <Col xs="4" className="trans-amount">{transaction.amount.toLocaleString('sv-SE')}</Col>
-        <Col xs="1" className="trans-arrow" onClick={(e) => getTransaction(transaction.id, e)}><ChevronRight /></Col>
+        <Link to={'/enskild-transaktion/' + transaction.id} className="trans-arrow col-1"><ChevronRight /></Link>
       </Row>
     )
   })

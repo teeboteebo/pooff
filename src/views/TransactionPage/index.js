@@ -1,9 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { ArrowLeft } from 'react-feather'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Col, Row, Container, Button } from 'reactstrap';
 
 const TransactionPage = () => {
+
+  const [transaction, setTransaction] = useState(null);
+  const idToGet = useParams('id');
+
+  useEffect(() => {
+    (async () => {
+      // now ask  REST for the transaction with id = idToGet
+      // ...await result from REST, using fetch
+      // then do
+      setTransaction({somethingFromDB: true});
+      console.log('idToGet', idToGet, transaction);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // const transactions = await fetch('/api/mytransactions')
   const transactions = [
@@ -22,9 +36,10 @@ const TransactionPage = () => {
       message: "Mega festligt med sär skrivning och sånt",
       date: Date.now(),
     },
-  ]
+  ];
 
-  let transaction = transactions.map((trans, i) => {
+
+  let transactionx = transactions.map((trans, i) => {
     // format date and remove punctuation
     let date = new Date(trans.date).toLocaleString('sv-SE', { day: "numeric", month: "short" })
     date = date.substring(0, date.length - 1);
@@ -39,7 +54,7 @@ const TransactionPage = () => {
                 <p className="phone">{trans.receiver.phone}</p>
                 <p className="amount"> {trans.amount}kr </p>
                 <p className="message">" {trans.message} "</p>
-                <p className="message">" {date} "</p>
+                <p className="message">"{date}"</p>
               </div>
             </div>
           </Col>
@@ -52,7 +67,7 @@ const TransactionPage = () => {
       </Container>
     )
   })
-  return transaction
+  return transactionx
 
 }
 
