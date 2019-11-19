@@ -10,6 +10,7 @@ import PaymentConfirmation from "./views/PaymentConfirmation"
 import LoginPage from './views/Login-temp';
 import ResetPassword from "./views/ResetPassword"
 import NewPassword from "./views/NewPassword"
+import UserFavorite from "./views/UserFavorites"
 
 const App = () => {
   let vh = window.innerHeight * 0.01
@@ -54,6 +55,8 @@ const App = () => {
               )}
             />
             <Route exact path="/login-test" component={LoginPage} />
+            <Route exact path="/Favorites" component={UserFavorite} />
+
           </Switch>
         </main>
       </div>
