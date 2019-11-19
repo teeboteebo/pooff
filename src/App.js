@@ -9,7 +9,8 @@ import CreateNewUserPage from './views/CreateNewUserPage'
 import TransactionForm from './views/TransactionForm'
 import createUserAsChild from "./views/CreateUserAsChild"
 import PaymentConfirmation from "./views/PaymentConfirmation"
-import LoginPage from './views/Login-temp';
+import LoginPage from './views/Login-temp'
+import KidsList from './views/KidsList'
 import ResetPassword from "./views/ResetPassword"
 import NewPassword from "./views/NewPassword"
 
@@ -29,20 +30,20 @@ const App = () => {
   })
 
   const checkIfLoggedIn = async () => {
-    console.log('running');
+    // console.log('running');
     let loggedInRaw = await fetch('/api/login')
     let message = await loggedInRaw.json()
     if (message.status) {
       setLoggedIn(false)
-      console.log('you just logged out');
+      // console.log('you just logged out');
     } else if (!message.status) {
       setLoggedIn(true)
-      console.log('you just logged in');
+      // console.log('you just logged in');
 
     }
     setLoginFetched(true)
 
-    console.log(loggedIn);
+    // console.log(loggedIn);
 
   }
   checkIfLoggedIn()
@@ -63,6 +64,7 @@ const App = () => {
               <Route exact path="/registrera" component={CreateNewUserPage} />
               <Route exact path="/registrera-barn" component={createUserAsChild} />
               <Route exact path="/ny-betalning" component={TransactionForm} />
+              <Route exact path="/mina-barn" component={KidsList} />
               <Route
                 exact
                 path="/lyckad-betalning"
