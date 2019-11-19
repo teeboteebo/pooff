@@ -17,12 +17,15 @@ const QandA = props => {
   }
 
   return (
-    <div className="faq-panels">
-      <div
-        type="text"
-        className="collapsible"
-        onClick={openQna}><HelpCircle /> {qna.question ? qna.question : 'Fråga saknas'}</div>
-      {toggleState && <p className="content"> <MessageCircle /> {qna.answer ? qna.answer : 'Svar saknas'} </p>}
+    <div className="qna-content mb-4">
+      <div type="text" className="question-content" onClick={openQna}>
+        <HelpCircle className="qna-icon" /><p className="text-style"> {qna.question ? qna.question : 'Fråga saknas'}</p>
+      </div>
+      {toggleState &&
+        <div className="answer-content"> <MessageCircle className="qna-icon" />
+          <p className="text-style"> {qna.answer ? qna.answer : 'Svar saknas'} </p>
+        </div>}
+
     </div>
   )
 }

@@ -1,20 +1,34 @@
-.collapsible {
-  background-color: var(--background);
+.qna-content {
+  box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
+  .qna-icon {
+    float: left;
+  }
+  .text-style {
+    padding-left: 32px;
+  }
+}
+.question-content {
+  background-color: var(--transactionPreviewBackground);
   color: var(--textColor);
   cursor: pointer;
-  padding: 18px;
+  padding: 10px;
   width: 100%;
   border: none;
-  text-align: left;
   outline: none;
   font-size: 15px;
+  svg {
+    color: var(--primary);
+  }
 }
-.active,
-.collapsible:hover {
-  background-color: #ccc;
-}
-.content {
-  padding: 0 18px;
+
+// .active,
+// .collapsible:hover {
+//   background-color: #ccc;
+// }
+.answer-content {
+  padding: 10px;
   overflow: hidden;
-  background-color: var(--background);
+  color: #333;
+  background-color: var(--secondary);
+  font-size: 15px;
 }
