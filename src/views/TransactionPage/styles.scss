@@ -1,34 +1,43 @@
 .transaction {
-  // position: relative;
   .card {
     border: none;
+    border-radius: 2px;
     background-color: var(--transactionBackground);
     box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
     .card-body {
-      margin-top: 10px;
       padding: 0;
       text-align: center;
       .name,
       .phone,
-      .amount,
       .message {
         color: var(--textColorContrast);
-        margin-bottom: 25px;
         font-size: 25px;
       }
       .name {
-        font-size: 25px;
         font-weight: bold;
+      }
+      .date {
+        opacity: 0.7;
+        font-style: italic;
+        font-size: 18px;
       }
       .message {
         font-style: italic;
       }
+      .amount,
+      .outgoing {
+        font-size: 25px;
+      }
+      .amount, .incoming {
+        color: var(--transactionIncoming);
+        font-size: 25px;
+      }
+      .outgoing {
+        color: var(--transactionOutgoing);
+      }
     }
   }
   .back-btn {
-    // position: absolute;
-    // bottom: 20px;
-    // right: 15px;
     float: right;
     background-color: var(--transactionIncoming);
     color: var(--background);

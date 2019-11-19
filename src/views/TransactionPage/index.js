@@ -9,16 +9,12 @@ const TransactionPage = () => {
   const idToGet = useParams('id');
   useEffect(() => {
     const getOneTransaction = async () => {
-      console.log('idToGet', idToGet);
-
       const t = await fetch(`/api/mytransactions/id/${idToGet.id}`)
       const transaction = await t.json()
       setTransaction(transaction);
     }
     getOneTransaction();
-    // now ask  REST for the transaction with id = idToGet
-    // ...await result from REST, using fetch
-    // then do
+    //comment below removes varning to include or exclude idToGet
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(transaction)
@@ -26,20 +22,19 @@ const TransactionPage = () => {
 
   // format date and remove punctuation
   if (transaction) {
-    let date = new Date(transaction.date).toLocaleString('sv-SE', { day: "numeric", month: "short" })
-    date = date.substring(0, date.length - 1);
+    let date = new Date(transaction.date).toLocaleString('sv-SE', { timeZone: 'UTC'  })
     return (
       <Container className="transaction" fluid={true}>
         <h2 className="page-title">Transaktion</h2>
-        <Row className="no-gutters">
+        <Row>
           <Col xs="12">
-            <div className="card">
-              <div className="card-body ">
-                <p className="name"> {transaction.receiver.firstName + ' ' + transaction.receiver.lastName} </p>
-                <p className="phone">{transaction.receiver.phone}</p>
-                <p className="amount"> {transaction.amount}kr </p>
-                <p className="message">" {transaction.message} "</p>
-                <p className="message">"{date}"</p>
+            <div className="card mx-auto">
+              <div className="card-body mt-4">
+                <p className="name mb-2">{transaction.amount > 0 ? `${transaction.sender.firstName} ${transaction.sender.lastName}` : `${transaction.receiver.firstName} ${transaction.receiver.lastName}`}</p>
+                <p className="date mb-4">{date}</p>
+                <p className="phone mb-4">{transaction.receiver.phone}</p>
+                <p className={transaction.amount > 0 ? "mb-3 incoming" : "mb-3 outgoing"}>{transaction.amount}kr</p>
+                <p className="message mb-4">{transaction.message}</p>
               </div>
             </div>
           </Col>
