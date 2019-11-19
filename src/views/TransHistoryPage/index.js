@@ -16,14 +16,7 @@ const TransHistoryPage = () => {
   }
 
   useEffect(() => {
-    async function getTransactions() {
-      
-      const transactionsRaw = await fetch('/api/mytransactions')
-      const transactions = await transactionsRaw.json()
-
-      setTransactions(transactions)
-    }
-    async function separateTransaction() {
+    async function getTransaction() {
       let allSent = []
       let allReceived = []
       const transactionsRaw = await fetch('/api/mytransactions')
@@ -35,11 +28,11 @@ const TransHistoryPage = () => {
           allSent.push(trans)
         }
       })
+      setTransactions(transactions)
       setReceivedTransactions(allReceived);
       setSentTransactions(allSent)
     }
-    getTransactions()
-    separateTransaction();
+    getTransaction();
   }, [])
 
 
