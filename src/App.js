@@ -10,8 +10,10 @@ import TransactionForm from './views/TransactionForm'
 import createUserAsChild from "./views/CreateUserAsChild"
 import PaymentConfirmation from "./views/PaymentConfirmation"
 import LoginPage from './views/Login-temp';
-import ResetPassword from "./views/ResetPassword"
-import NewPassword from "./views/NewPassword"
+import DesktopPage from './views/DesktopPage'
+// import ResetPassword from "./views/ResetPassword"
+// import NewPassword from "./views/NewPassword"
+import TransactionPage from './views/TransactionPage'
 
 import { usePooff } from './context'
 
@@ -47,7 +49,9 @@ const App = () => {
   }
   checkIfLoggedIn()
 
-  return (
+  if (window.innerWidth > 699) return <DesktopPage />
+  else return (
+
     <Router>
       <div className={state.darkMode ? 'App dark-mode' : 'App'}>
         {loggedIn ? <Header /> : null}
