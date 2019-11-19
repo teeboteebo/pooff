@@ -36,14 +36,18 @@ const TransactionForm = () => {
   const onSubmit = async () => {
     if (validate()) {
       console.log('Valid!')
-      /* await fetch('/api/transactions', {
+      const response = await fetch('/api/transactions', {
         method: 'POST',
-        body: {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
           receiver: receiver.current.value,
           amount: amount.current.value,
           message: message.current.value
-        }
-      }) */
+        })
+      })
+      console.log(await response.json())
     }
   }
 
