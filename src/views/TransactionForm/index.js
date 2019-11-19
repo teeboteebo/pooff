@@ -4,6 +4,7 @@ import { Phone, Heart, DollarSign, MessageCircle, Send } from 'react-feather'
 
 const TransactionForm = () => {
   const [favorite, setFavorite] = useState(false)
+  const [receiverName, setReceiverName] = useState('')
   const [validInputs, setValidInputs] = useState({
     receiver: true,
     amount: true
@@ -14,7 +15,7 @@ const TransactionForm = () => {
   const message = useRef()
 
   const validate = () => {
-    const valid = {...validInputs}
+    const valid = { ...validInputs }
 
     if (!receiver.current.value) {
       valid.receiver = false
@@ -32,7 +33,19 @@ const TransactionForm = () => {
     setValidInputs(valid)
     return Object.keys(valid).every(key => valid[key])
   }
+  const checkNumber = async (e) => {
+    setReceiverName('')
 
+    if (e.target.value.length > 9) {
+      let response = await fetch(`/api/mytransactions/number/${e.target.value}`)
+      let foundUser = await response.json()
+      console.log(foundUser);
+      if (foundUser !== null) {
+        foundUser = `${foundUser.firstName} ${foundUser.lastName}`
+        setReceiverName(foundUser)
+      } else setReceiverName('')
+    }
+  }
   const onSubmit = async () => {
     if (validate()) {
       console.log('Valid!')
@@ -56,9 +69,10 @@ const TransactionForm = () => {
       <h2 className="page-title">Ny överföring</h2>
       <Row className="no-gutters align-items-center mt-4">
         <Col>
+          <p className="number-msg">{receiverName}</p>
           <div className="input-component">
             <Phone />
-            <input type="telephone" ref={receiver} placeholder="Telefonnummer" className={!validInputs.receiver ? 'error-input' : ''} />
+            <input type="telephone" ref={receiver} placeholder="Telefonnummer" onChange={checkNumber} className={!validInputs.receiver ? 'error-input' : ''} />
           </div>
         </Col>
         <Col xs="auto">
