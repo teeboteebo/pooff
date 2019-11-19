@@ -9,8 +9,8 @@ import CreateNewUserPage from "./views/CreateNewUserPage"
 import createUserAsChild from "./views/CreateUserAsChild"
 import PaymentConfirmation from "./views/PaymentConfirmation"
 import LoginPage from './views/Login-temp';
-import ResetPassword from "./views/ResetPassword"
-import NewPassword from "./views/NewPassword"
+// import ResetPassword from "./views/ResetPassword"
+// import NewPassword from "./views/NewPassword"
 import TransactionPage from './views/TransactionPage'
 
 const App = (props) => {

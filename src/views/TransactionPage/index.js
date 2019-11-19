@@ -4,42 +4,24 @@ import { Link, useParams } from 'react-router-dom'
 import { Col, Row, Container, Button } from 'reactstrap';
 
 const TransactionPage = () => {
-
+console.log(useParams('id'))
   const [transaction, setTransaction] = useState(null);
-  const idToGet = useParams('id');
-
   useEffect(() => {
     (async () => {
       // now ask  REST for the transaction with id = idToGet
+      // const idToGet = useParams('id');
       // ...await result from REST, using fetch
       // then do
+      // console.log('idToGet', idToGet);
       setTransaction({somethingFromDB: true});
-      console.log('idToGet', idToGet, transaction);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  
   // const transactions = await fetch('/api/mytransactions')
-  const transactions = [
-    {
-      sender: {
-        firstName: 'Don',
-        lastName: 'Bank',
-        phone: '97884 83884',
-      },
-      receiver: {
-        firstName: 'Lasse',
-        lastName: 'Skida',
-        phone: '0700029929',
-      },
-      amount: 10000,
-      message: "Mega festligt med sär skrivning och sånt",
-      date: Date.now(),
-    },
-  ];
 
 
-  let transactionx = transactions.map((trans, i) => {
+  let transactionx = transaction.map((trans, i) => {
     // format date and remove punctuation
     let date = new Date(trans.date).toLocaleString('sv-SE', { day: "numeric", month: "short" })
     date = date.substring(0, date.length - 1);

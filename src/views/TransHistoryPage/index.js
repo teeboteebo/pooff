@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Nav, NavItem, NavLink, Container } from 'reactstrap';
 import classnames from 'classnames';
 
@@ -6,135 +6,43 @@ import TransactionLister from '../../components/TransactionLister'
 
 const TransHistoryPage = () => {
   const [activeTab, setActiveTab] = useState('1');
+
+  const [transactions, setTransactions] = useState([]);
+  const [receivedTransaction, setReceivedTransactions] = useState([]);
+  const [sentTransaction, setSentTransactions] = useState([]);
+
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   }
-  // const transactions = await fetch('/api/mytransactions')
-  const transactions = [
-    {
-      sender: {
-        firstName: 'Don',
-        lastName: 'Bank'
-      },
-      receiver: {
-        firstName: 'Lasse',
-        lastName: 'Skida'
-      },
-      id:1,
-      amount: 10000,
-      message: "Top up",
-      date: Date.now(),
-    },
-    {
-      sender: {
-        firstName: 'Don',
-        lastName: 'Bank'
-      },
-      receiver: {
-        firstName: 'Lasse',
-        lastName: 'Skida'
-      },
-      id:3,
-      amount: 10000,
-      message: "Top up",
-      date: Date.now(),
-    },
-    {
-      sender: {
-        firstName: 'Don',
-        lastName: 'Bank'
-      },
-      receiver: {
-        firstName: 'Lasse',
-        lastName: 'Skida'
-      },
-      id: 6,
-      amount: 10000,
-      message: "Top up",
-      date: Date.now(),
-    },
-    {
-      sender: {
-        firstName: 'Don',
-        lastName: 'Bank'
-      },
-      receiver: {
-        firstName: 'Lasse',
-        lastName: 'Skida'
-      },
-      id:9,
-      amount: 10000,
-      message: "Top up",
-      date: Date.now(),
-    },
-    {
-      sender: {
-        firstName: 'Don',
-        lastName: 'Bank'
-      },
-      receiver: {
-        firstName: 'Lasse',
-        lastName: 'Skida'
-      },
-      id:98,
-      amount: 100000,
-      message: "Top up",
-      date: Date.now(),
-    },
-    {
-      sender: {
-        firstName: 'Don',
-        lastName: 'Bank'
-      },
-      receiver: {
-        firstName: 'Lasse',
-        lastName: 'Skida'
-      },
-      id:9898,
-      amount: 10000,
-      message: "Top up",
-      date: Date.now(),
-    },
-    {
-      sender: {
-        firstName: 'Lasse',
-        lastName: 'Bank'
-      },
-      receiver: {
-        firstName: 'Bank',
-        lastName: 'Skida'
-      },
-      id: 1234,
-      amount: -10000,
-      message: "Top up",
-      date: Date.now(),
-    },
-    {
-      sender: {
-        firstName: 'Don',
-        lastName: 'Bank'
-      },
-      receiver: {
-        firstName: 'Lasse',
-        lastName: 'Skida'
-      },
-      id: 23456,
-      amount: 10000,
-      message: "Top up",
-      date: Date.now(),
-    }
-  ]
 
-  let allSent = []
-  let allReceived = []
+  useEffect(() => {
+    async function getTransactions() {
+      
+      const transactionsRaw = await fetch('/api/mytransactions')
+      const transactions = await transactionsRaw.json()
 
-  transactions.forEach(trans => {
-    if (trans.amount > 0) {
-      allReceived.push(trans)
-    } else if (trans.amount < 0) {
-      allSent.push(trans)
+      setTransactions(transactions)
     }
-  })
+    async function separateTransaction() {
+      let allSent = []
+      let allReceived = []
+      const transactionsRaw = await fetch('/api/mytransactions')
+      const transactions = await transactionsRaw.json()
+      transactions.forEach(trans => {
+        if (trans.amount > 0) {
+          allReceived.push(trans)
+        } else if (trans.amount < 0) {
+          allSent.push(trans)
+        }
+      })
+      setReceivedTransactions(allReceived);
+      setSentTransactions(allSent)
+    }
+    getTransactions()
+    separateTransaction();
+  }, [])
+
+
   return (
     <Container className="trans-history">
       <h2 className="page-title">Transaktioner</h2>
@@ -165,8 +73,8 @@ const TransHistoryPage = () => {
         </NavItem>
       </Nav>
       { activeTab === '1' ? <TransactionLister transactions={transactions} /> : null}
-      { activeTab === '2' ? <TransactionLister transactions={allReceived} /> : null}
-      { activeTab === '3' ? <TransactionLister transactions={allSent} /> : null}
+      { activeTab === '2' ? <TransactionLister transactions={receivedTransaction} /> : null}
+      { activeTab === '3' ? <TransactionLister transactions={sentTransaction} /> : null}
     </Container>
   )
 }
