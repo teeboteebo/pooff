@@ -47,13 +47,13 @@ const LoginPage = (props) => {
 
         <Row>
           <Col>
-            <input autoComplete="username" onChange={(e) => setUsernameValue(e.target.value)} style={inputStyle} name="username" placeholder="Användarnamn" type="username" />
+            <input autoComplete="username" onChange={(e) => setUsernameValue(e.target.value)} style={inputStyle} name="username" placeholder="Användarnamn" type="username" required={true} />
           </Col>
         </Row>
 
         <Row>
           <Col>
-            <input autoComplete="current-password" onChange={(e) => setPasswordValue(e.target.value)} style={inputStyle} name="password" placeholder="Lösenord" type="password" />
+            <input autoComplete="current-password" onChange={(e) => setPasswordValue(e.target.value)} style={inputStyle} name="password" placeholder="Lösenord" type="password" required={true} />
           </Col>
         </Row>
 
