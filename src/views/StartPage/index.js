@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap'
 import { Plus, DollarSign } from 'react-feather'
 
@@ -27,7 +28,7 @@ const StartPage = () => {
         </h2>
         <Row className="buttons">
           <Col xs={{ size: "5", offset: 1 }}>
-            <button className="pay-btn"><DollarSign size="22" /></button>
+          <Link to="/ny-betalning"><button className="pay-btn"><DollarSign size="22" /></button></Link>
             <p>Betala</p>
           </Col>
           <Col xs="5">

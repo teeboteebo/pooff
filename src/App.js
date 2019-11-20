@@ -1,31 +1,35 @@
-import React, { useState } from "react"
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { Spinner } from 'reactstrap'
 
-import Header from "./components/Header"
-import StartPage from "./views/StartPage"
-import TransHistoryPage from "./views/TransHistoryPage"
-import CreateNewUserPage from "./views/CreateNewUserPage"
+import Header from './components/Header'
+import StartPage from './views/StartPage'
+import TransHistoryPage from './views/TransHistoryPage'
+import CreateNewUserPage from './views/CreateNewUserPage'
+import TransactionForm from './views/TransactionForm'
 import createUserAsChild from "./views/CreateUserAsChild"
 import PaymentConfirmation from "./views/PaymentConfirmation"
 import LoginPage from './views/Login-temp';
+import DesktopPage from './views/DesktopPage'
 // import ResetPassword from "./views/ResetPassword"
 // import NewPassword from "./views/NewPassword"
 import TransactionPage from './views/TransactionPage'
 
-const App = (props) => {
-  // console.log('App rendering');
+import { usePooff } from './context'
 
-  let vh = window.innerHeight * 0.01
-  document.documentElement.style.setProperty("--vh", `${vh}px`)
-  const [darkmode, setDarkmode] = useState(false)
+const App = () => {
+  const state = usePooff()
+
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`)
+
   const [loggedIn, setLoggedIn] = useState(false)
   const [loginFetched, setLoginFetched] = useState(false)
 
-  document.querySelector("body").addEventListener("keyup", e => {
-    if (e.keyCode === 192 || e.keyCode === 220) setDarkmode(!darkmode)
+  document.querySelector('body').addEventListener("keyup", (e) => {
+    if (e.keyCode === 192 || e.keyCode === 220) state.setDarkMode(!state.darkMode)
   })
-  const toggleDarkmode = () => setDarkmode(!darkmode)
+
   const checkIfLoggedIn = async () => {
     // console.log('running');
     let loggedInRaw = await fetch('/api/login')
@@ -44,11 +48,13 @@ const App = (props) => {
 
   }
   checkIfLoggedIn()
-  return (
+
+  if (window.innerWidth > 699) return <DesktopPage />
+  else return (
 
     <Router>
-      <div className={darkmode ? "App dark-mode" : "App"}>
-        {loggedIn ? <Header loginHandler={checkIfLoggedIn} toggleDarkmode={toggleDarkmode} /> : null}
+      <div className={state.darkMode ? 'App dark-mode' : 'App'}>
+        {loggedIn ? <Header /> : null}
         {loginFetched ?
           <main>
             {loggedIn ? <Switch> {/* LOGGED IN */}
@@ -60,6 +66,7 @@ const App = (props) => {
               />
               <Route exact path="/registrera" component={CreateNewUserPage} />
               <Route exact path="/registrera-barn" component={createUserAsChild} />
+              <Route exact path="/ny-betalning" component={TransactionForm} />
               <Route
                 exact
                 path="/lyckad-betalning"

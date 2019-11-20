@@ -3,14 +3,16 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 import { Row, Col, CustomInput } from 'reactstrap'
 import { Home, Users, ChevronDown, Eye, User, Plus, Heart, Settings, HelpCircle, LogOut } from 'react-feather'
 
-const Menu = props => {
-  const { open, toggleMenu, toggleDarkmode, loginHandler } = props
+import { usePooff } from '../../context'
 
+const Menu = () => {
   const [childrenListOpen, setChildrenListOpen] = useState(false)
+
+  const state = usePooff()
 
   return (
     <Router>
-      <nav className={open ? 'menu open' : 'menu'}>
+      <nav className={state.menuOpen ? 'menu open' : 'menu'}>
         <ul>
           <li><h5><u>Lasse Skida</u></h5></li>
           <li>
@@ -71,7 +73,13 @@ const Menu = props => {
                 <p className="cozy-text">För ökad mysfaktor i tillvaron</p>
               </Col>
               <Col xs="auto">
-                <CustomInput type="switch" id="dark-mode" name="dark-mode" onChange={toggleDarkmode} />
+                <CustomInput 
+                  type="switch"
+                  id="dark-mode"
+                  name="dark-mode"
+                  onChange={() => state.setDarkMode(!state.darkMode)}
+                  checked={state.darkMode}
+                />
               </Col>
             </Row>
           </li>
@@ -79,8 +87,7 @@ const Menu = props => {
             <LogOut />
             <span className="side-margin" onClick={async () => {
               await fetch('/api/login', { method: 'DELETE' })
-              toggleMenu()
-              loginHandler()
+              state.setMenuOpen(false)
             }}>Logga ut</span>
           </li>
         </ul>
