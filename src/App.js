@@ -13,6 +13,7 @@ import LoginPage from './views/Login-temp';
 import DesktopPage from './views/DesktopPage'
 // import ResetPassword from "./views/ResetPassword"
 // import NewPassword from "./views/NewPassword"
+import TransactionPage from './views/TransactionPage'
 
 import { usePooff } from './context'
 
@@ -30,20 +31,20 @@ const App = () => {
   })
 
   const checkIfLoggedIn = async () => {
-    console.log('running');
+    // console.log('running');
     let loggedInRaw = await fetch('/api/login')
     let message = await loggedInRaw.json()
     if (message.status) {
       setLoggedIn(false)
-      console.log('you just logged out');
+      // console.log('you just logged out');
     } else if (!message.status) {
       setLoggedIn(true)
-      console.log('you just logged in');
+      // console.log('you just logged in');
 
     }
     setLoginFetched(true)
 
-    console.log(loggedIn);
+    // console.log(loggedIn);
 
   }
   checkIfLoggedIn()
@@ -79,15 +80,20 @@ const App = () => {
                   />
                 )}
               />
+              <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
+              <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
             </Switch>
               : <Switch> {/* NOT LOGGED IN */}
                 <Route exact path="/" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
                 <Route exact path="/registrera" component={CreateNewUserPage} />
                 <Route exact path="/login-test" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
+                <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
+                <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
               </Switch>
             }
           </main>
           : <Spinner />}
+
       </div>
     </Router>
   )
