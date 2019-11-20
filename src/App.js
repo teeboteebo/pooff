@@ -13,6 +13,7 @@ import LoginPage from './views/Login-temp'
 import KidsList from './views/KidsList'
 import ResetPassword from "./views/ResetPassword"
 import NewPassword from "./views/NewPassword"
+import Kid from './views/Kid'
 
 import { usePooff } from './context'
 
@@ -65,6 +66,7 @@ const App = () => {
               <Route exact path="/registrera-barn" component={createUserAsChild} />
               <Route exact path="/ny-betalning" component={TransactionForm} />
               <Route exact path="/mina-barn" component={KidsList} />
+              <Route path="/mina-barn/:id" component={Kid} />
               <Route
                 exact
                 path="/lyckad-betalning"
