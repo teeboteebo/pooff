@@ -14,6 +14,7 @@ import DesktopPage from './views/DesktopPage'
 // import ResetPassword from "./views/ResetPassword"
 // import NewPassword from "./views/NewPassword"
 import TransactionPage from './views/TransactionPage'
+import MyAccount from './views/MyAccount'
 
 import { usePooff } from './context'
 
@@ -67,6 +68,7 @@ const App = () => {
               <Route exact path="/registrera" component={CreateNewUserPage} />
               <Route exact path="/registrera-barn" component={createUserAsChild} />
               <Route exact path="/ny-betalning" component={TransactionForm} />
+              <Route exact path="/mitt-konto" component={MyAccount} />
               <Route
                 exact
                 path="/lyckad-betalning"

@@ -55,7 +55,7 @@ const Menu = () => {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/mitt-konto">
               <Settings />
               <span className="side-margin">Mitt konto</span>
             </Link>
