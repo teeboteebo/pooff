@@ -10,6 +10,10 @@
   --transactionBackgroundShadow: #666;
   --transactionIncoming: #003b46;
   --transactionOutgoing: #f02727;
+  --inputBackground: #fff;
+  --inputBorder: #ced4da;
+  --inputIcon: #757575;
+  --buttonText: #eee;
   --mainHeight: calc(calc(var(--vh, 1vh) * 100) - 44px);
 
   &.dark-mode {
@@ -24,6 +28,10 @@
     --transactionBackgroundShadow: #333;
     --transactionIncoming: #4ecca3;
     --transactionOutgoing: #f02727;
+    --inputBackground: #393e46;
+    --inputBorder: #4ecca3;
+    --inputIcon: #4ecca3;
+    --buttonText: #393e46;
   }
 }
 
