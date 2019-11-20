@@ -16,6 +16,7 @@ html {
       flex: 1;
       & > div {
         padding-top: 60px;
+        padding-bottom: 60px;
         height: calc(calc(var(--vh, 1vh) * 100) - 44px);
         overflow-y: scroll;
       }
