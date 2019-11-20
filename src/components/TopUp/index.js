@@ -7,15 +7,19 @@ const TopUp = (props) => {
   const [source, setSource] = useState(undefined)
   const postTopUp = async (e) => {
     e.preventDefault()
-    console.log(source, amount);
-    
-    // await fetch('/api/my', {
-    //   method: 'post',
-    //   body: {
-    //     amount,
-    //     source
-    //   }
-    // })
+    let messageRaw = await fetch('/api/mytransactions/topup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount,
+        sender: source
+      })
+    })
+    let message = await messageRaw.json()
+    console.log(message);
+    props.clickHandler()    
   }
   return (
     <Container
@@ -23,7 +27,7 @@ const TopUp = (props) => {
       className={props.toggle ? "top-up-container open" : "top-up-container"}
     >
       <h2 className="page-title">Fyll på pengar</h2>
-      <button className="close-btn" onClick={props.clickHandler}><X size="28" /></button>
+      <button className="close-btn" onClick={props.clickHandler}><X size="18" /></button>
       <form onSubmit={postTopUp}>
         <input
           name="amount"
@@ -37,7 +41,7 @@ const TopUp = (props) => {
           onChange={(e) => setSource(e.target.value)}
           required>
           <option>Välj konto...</option>
-          <option>Pooff Bank</option>
+          <option value="0739999999">Pooff Bank</option>
         </select>
         <input type="submit" value="Bekräfta" className="submit-btn" />
       </form>

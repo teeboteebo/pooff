@@ -14,9 +14,7 @@
     height: 20px;
     width: 20px;
   }
-  .matcher {
-    
-  }
+
   .input-field {
     text-indent: 35px;
     width: 100%;
@@ -36,11 +34,10 @@
   }
   .checkmark {
     display: none;
-    
   }
   .checked {
     display: initial;
-    color: red;   
+    color: red;
     position: absolute;
     right: 8px;
     top: 10px;
