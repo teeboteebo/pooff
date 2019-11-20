@@ -34,7 +34,10 @@ const TransactionPage = () => {
                 <p className="date mb-4">{date}</p>
                 <p className="phone mb-4">{transaction.receiver.phone}</p>
                 <p className={transaction.amount > 0 ? "mb-3 incoming" : "mb-3 outgoing"}>{transaction.amount}kr</p>
-                <p className="message mb-4">{transaction.message}</p>
+                <div className="frame">
+
+                <p className="message">{transaction.message}</p>
+                </div>
               </div>
             </div>
           </Col>
