@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap'
 import { User, Info, ChevronRight } from 'react-feather'
 
 const KidsList = () => {
   const [children, setChildren] = useState([])
+  const history = useHistory()
 
   useEffect(() => {
     const transactionsThisMonth = transactions => {
@@ -40,7 +42,7 @@ const KidsList = () => {
       {children.map((child, i) => {
         const { firstName, lastName, balance, transThisMonth } = child
         return (
-          <Row key={i} className="no-gutters align-items-center mb-4 p-3 child-box">
+          <Row key={i} className="no-gutters align-items-center mb-4 p-3 child-box" onClick={() => history.push(`/mina-barn/${child._id}`)} >
             <Col>
               <h6 className="mb-3">
                 <User />
