@@ -14,6 +14,7 @@ import DesktopPage from './views/DesktopPage'
 // import ResetPassword from "./views/ResetPassword"
 // import NewPassword from "./views/NewPassword"
 import TransactionPage from './views/TransactionPage'
+import QnA from './views/QnA'
 
 import { usePooff } from './context'
 
@@ -67,6 +68,8 @@ const App = () => {
               <Route exact path="/registrera" component={CreateNewUserPage} />
               <Route exact path="/registrera-barn" component={createUserAsChild} />
               <Route exact path="/ny-betalning" component={TransactionForm} />
+              <Route exact path="/vanliga-fragor" component={QnA} />
+
               <Route
                 exact
                 path="/lyckad-betalning"
@@ -89,10 +92,13 @@ const App = () => {
                 <Route exact path="/login-test" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
                 <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
                 <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
+                <Route exact path="/registrera-barn" component={createUserAsChild} />
+                <Route exact path="/vanliga-fragor" component={QnA} />
               </Switch>
             }
           </main>
           : <Spinner />}
+
 
       </div>
     </Router>
