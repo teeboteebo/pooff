@@ -48,7 +48,7 @@ const App = () => {
   }
   checkIfLoggedIn()
 
-  if (window.innerWidth > 699) return <DesktopPage />
+  if (window.innerWidth > 767) return <DesktopPage />
   else return (
 
     <Router>
