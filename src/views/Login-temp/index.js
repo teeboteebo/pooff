@@ -25,17 +25,9 @@ const LoginPage = (props) => {
       setStatusMessage('Användarnamn eller lösenord är fel')
     } else {
       setStatusMessage(`Inloggad som ${message.username} - (${message.role})`)
-      setTimeout(() => props.history.push('/'), 2000)
+      props.history.push('/')
     }
-    
-  }
-  const inputStyle = {
-    width: '100%',
-    padding: '10px 20px',
-    marginBottom: '20px',
-    border: 'none',
-    borderBottom: '2px solid black',
-    backgroundColor: 'transparent'
+    props.loginHandler()
   }
   const [usernameValue, setUsernameValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
@@ -47,13 +39,13 @@ const LoginPage = (props) => {
 
         <Row>
           <Col>
-            <input autoComplete="username" onChange={(e) => setUsernameValue(e.target.value)} style={inputStyle} name="username" placeholder="Användarnamn" type="username" />
+            <input autoComplete="username" onChange={(e) => setUsernameValue(e.target.value)} style={inputStyle} name="username" placeholder="Användarnamn" type="username" required={true} />
           </Col>
         </Row>
 
         <Row>
           <Col>
-            <input autoComplete="current-password" onChange={(e) => setPasswordValue(e.target.value)} style={inputStyle} name="password" placeholder="Lösenord" type="password" />
+            <input autoComplete="current-password" onChange={(e) => setPasswordValue(e.target.value)} style={inputStyle} name="password" placeholder="Lösenord" type="password" required={true} />
           </Col>
         </Row>
 

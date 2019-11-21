@@ -10,6 +10,10 @@
   --transactionBackgroundShadow: #666;
   --transactionIncoming: #003b46;
   --transactionOutgoing: #f02727;
+  --inputBackground: #fff;
+  --inputBorder: #ced4da;
+  --inputIcon: #757575;
+  --buttonText: #eee;
   --mainHeight: calc(calc(var(--vh, 1vh) * 100) - 44px);
   --buttonprimary: #003b46;
   --buttontext: #c4dfe6;
@@ -31,6 +35,7 @@
     --transactionBackgroundShadow: #333;
     --transactionIncoming: #4ecca3;
     --transactionOutgoing: #f02727;
+    --inputIcon: #4ecca3;
     --buttonprimary: #4ecca3;
     --buttontext: #232931;
     --inputborder: #4ecca3;
