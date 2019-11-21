@@ -68,7 +68,7 @@ const App = () => {
               <Route exact path="/registrera" component={CreateNewUserPage} />
               <Route exact path="/registrera-barn" component={createUserAsChild} />
               <Route exact path="/ny-betalning" component={TransactionForm} />
-              <Route exact path="/mitt-konto" component={MyAccount} />
+             
               <Route
                 exact
                 path="/lyckad-betalning"
@@ -84,13 +84,14 @@ const App = () => {
               />
               <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
               <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
+              <Route exact path="/mitt-konto" component={MyAccount} />
             </Switch>
               : <Switch> {/* NOT LOGGED IN */}
                 <Route exact path="/" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
                 <Route exact path="/registrera" component={CreateNewUserPage} />
                 <Route exact path="/login-test" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
-                <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
-                <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
+                {/* <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
+                <Route exact path="/enskild-transaktion/:id" component={TransactionPage} /> */}
               </Switch>
             }
           </main>

@@ -1,0 +1,18 @@
+.my-account {
+  .icon {
+    height: 30px;
+    width: 30px;
+  }
+  .update {
+    background-color: var(--primary);
+    border: none;
+    border-radius: 4px;
+    color: var(--background);
+    padding: 8px 64px;
+    text-align: center;
+    width: 172px;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+}
