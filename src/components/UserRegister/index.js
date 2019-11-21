@@ -17,6 +17,7 @@ const UserRegister = props => {
         <div className="input-group" key={'input_' + i} onChange={input.class === 'repeat-password' ? checkIfMatch : null}>
           {input.icon}
           <input
+            ref={input.ref}
             className={"input-field " + input.class}
             placeholder={input.name}
             type={input.class === 'new-password' ? (peek ? 'text' : 'password') : input.type} />
