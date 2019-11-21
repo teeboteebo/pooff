@@ -20,9 +20,9 @@ const MyAcccount = () => {
   return (
     <Container className="my-account" fluid={true}>
       <h2 className="page-title">Mitt Konto</h2>
-      <Row className="">
+      <Row className="no-gutters wrap-list">
         <Col xs="12">
-          <div className="">
+          <div className="wrap-list">
             <ul className="list-item">
               <li>
                 <User className="icon"></User>
@@ -45,8 +45,8 @@ const MyAcccount = () => {
         </Col>
       </Row>
       <Row className="mt-4 no-gutters">
-        <Col>
-          <div>
+        <Col xs="12">
+          <div className="button-section">
             <Link to="/">
             <Button className="edit">Uppdatera konto<Lock className="btn-icon"></Lock></Button>
             </Link>
