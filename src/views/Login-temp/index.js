@@ -29,14 +29,6 @@ const LoginPage = (props) => {
     }
     props.loginHandler()
   }
-  const inputStyle = {
-    width: '100%',
-    padding: '10px 20px',
-    marginBottom: '20px',
-    border: 'none',
-    borderBottom: '2px solid black',
-    backgroundColor: 'transparent'
-  }
   const [usernameValue, setUsernameValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
   const [statusMessage, setStatusMessage] = useState('')
