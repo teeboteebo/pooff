@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { User, Mail, Phone, Gift, Lock, Edit3, UserX } from "react-feather";
+import { User, Mail, Phone, Gift, Lock, Edit3, UserX } from "react-feather"
+import { Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap'
 
 const MyAcccount = () => {
@@ -46,9 +47,15 @@ const MyAcccount = () => {
       <Row className="mt-4 no-gutters">
         <Col>
           <div>
+            <Link to="/">
             <Button className="edit">Uppdatera konto<Lock className="btn-icon"></Lock></Button>
+            </Link>
+            <Link to="/">
             <Button className="edit">Ändra lösenord<Edit3 className="btn-icon"></Edit3></Button>
+            </Link>
+            <Link to="/">
             <Button className="edit">Inaktivera konto<UserX className="btn-icon"></UserX></Button>
+            </Link>
           </div>
         </Col>
       </Row>
