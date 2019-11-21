@@ -9,12 +9,12 @@ import CreateNewUserPage from './views/CreateNewUserPage'
 import TransactionForm from './views/TransactionForm'
 import createUserAsChild from "./views/CreateUserAsChild"
 import PaymentConfirmation from "./views/PaymentConfirmation"
-import LoginPage from './views/Login-temp';
 import DesktopPage from './views/DesktopPage'
 // import ResetPassword from "./views/ResetPassword"
 // import NewPassword from "./views/NewPassword"
 import TransactionPage from './views/TransactionPage'
 import QnA from './views/QnA'
+import LoginPage from "./views/LoginPage";
 
 import { usePooff } from './context'
 
