@@ -1,9 +1,11 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap';
-import { ChevronRight } from 'react-feather'
+import { ChevronRight } from 'react-feather';
+import {Link} from 'react-router-dom';
 
 
 const TransactionLister = (props) => {
+
   let transactions = props.transactions.map((transaction, i) => {
     // format date and remove punctuation
     let date = new Date(transaction.date).toLocaleString('sv-SE', { day: "numeric", month: "short" })
@@ -15,7 +17,7 @@ const TransactionLister = (props) => {
           <p className="trans-name">{transaction.amount > 0 ? `${transaction.sender.firstName} ${transaction.sender.lastName}` : `${transaction.receiver.firstName} ${transaction.receiver.lastName}`}</p>
         </Col>
         <Col xs="4" className="trans-amount">{transaction.amount.toLocaleString('sv-SE')}</Col>
-        <Col xs="1" className="trans-arrow"><ChevronRight /></Col>
+        <Link to={'/enskild-transaktion/' + transaction._id} className="trans-arrow col-1"><ChevronRight /></Link>
       </Row>
     )
   })
