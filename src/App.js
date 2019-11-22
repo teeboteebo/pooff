@@ -15,6 +15,7 @@ import DesktopPage from './views/DesktopPage'
 import TransactionPage from './views/TransactionPage'
 import QnA from './views/QnA'
 import LoginPage from "./views/LoginPage";
+import MyAccount from './views/MyAccount'
 
 import { usePooff } from './context'
 
@@ -92,13 +93,12 @@ const App = () => {
               />
               <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
               <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
+              <Route exact path="/mitt-konto" component={MyAccount} />
             </Switch>
               : <Switch> {/* NOT LOGGED IN */}
                 <Route exact path="/" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
                 <Route exact path="/registrera" component={CreateNewUserPage} />
                 <Route exact path="/login-test" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
-                <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
-                <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
                 <Route exact path="/registrera-barn" component={createUserAsChild} />
                 <Route exact path="/vanliga-fragor" component={QnA} />
               </Switch>
