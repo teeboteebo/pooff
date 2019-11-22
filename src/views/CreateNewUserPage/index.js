@@ -87,16 +87,15 @@ const CreateNewUserPage = () => {
     let response = await responseRaw.json()
     console.log(response);
   }
-
   return (
-    <Container fluid={true}>
+    <Container fluid={true} className="new-user-container">
       <h2 className="page-title">Registrera användare</h2>
       <p className="page-info">Ange personuppgifter</p>
       <form onSubmit={(e) => submitNewUser(e)}>
         <UserRegister inputs={inputData} />
+        <input className="save-button mt-4" type="submit" value="Registrera" />
       </form>
       <div className="text-center">
-        <input className="save-button mt-4" type="submit" value="Registrera" />
         <p className="mt-4">Har du redan ett konto?<Link className="login-link" to="/logga-in">Logga in</Link></p>
       </div>
     </Container>
