@@ -51,7 +51,10 @@ const App = () => {
   }
   checkIfLoggedIn()
 
-  if (window.innerWidth > 767) return <DesktopPage />
+  if (window.matchMedia("(orientation: landscape)").matches) {
+    // you're in LANDSCAPE mode
+    return <DesktopPage />
+  } 
   else return (
 
     <Router>
