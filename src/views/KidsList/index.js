@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col, Spinner } from 'reactstrap'
 import { User, Info, ChevronRight } from 'react-feather'
 
 const KidsList = () => {
-  const [children, setChildren] = useState([])
+  const [children, setChildren] = useState()
   const history = useHistory()
 
   useEffect(() => {
@@ -36,30 +36,38 @@ const KidsList = () => {
     getChildren()
   }, [])
 
+  if (children) {
+    return (
+      <Container className="kids-list">
+        <h2 className="page-title">Mina barn</h2>
+        {children.map((child, i) => {
+          const { firstName, lastName, balance, transThisMonth } = child
+          return (
+            <Row key={i} className="no-gutters align-items-center mb-4 p-3 child-box" onClick={() => history.push(`/mina-barn/${child._id}`)} >
+              <Col>
+                <h6 className="mb-3">
+                  <User />
+                  <span className="ml-2">{firstName + ' ' + lastName}</span>
+                </h6>
+                <p className="mb-2">Saldo: <span className="balance">{balance}</span> SEK</p>
+                <p className="info-text">
+                  <Info />
+                  <span className="ml-2">
+                    {firstName} har totalt <strong>{transThisMonth}</strong> {transThisMonth === 1 ? 'transaktion' : 'transaktioner'} den här månaden.
+                  </span>
+                </p>
+              </Col>
+              <Col xs="auto"><ChevronRight /></Col>
+            </Row>
+          )
+        })}
+      </Container>
+    )
+  }
+
   return (
-    <Container className="kids-list">
-      <h2 className="page-title">Mina barn</h2>
-      {children.map((child, i) => {
-        const { firstName, lastName, balance, transThisMonth } = child
-        return (
-          <Row key={i} className="no-gutters align-items-center mb-4 p-3 child-box" onClick={() => history.push(`/mina-barn/${child._id}`)} >
-            <Col>
-              <h6 className="mb-3">
-                <User />
-                <span className="ml-2">{firstName + ' ' + lastName}</span>
-              </h6>
-              <p className="mb-2">Saldo: <span className="balance">{balance}</span> SEK</p>
-              <p className="info-text">
-                <Info />
-                <span className="ml-2">
-                  {firstName} har totalt <strong>{transThisMonth}</strong> {transThisMonth === 1 ? 'transaktion' : 'transaktioner'} den här månaden.
-                </span>
-              </p>
-            </Col>
-            <Col xs="auto"><ChevronRight /></Col>
-          </Row>
-        )
-      })}
+    <Container className="kids-list spinner">
+      <Spinner />
     </Container>
   )
 }
