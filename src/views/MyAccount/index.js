@@ -10,7 +10,6 @@ const MyAcccount = () => {
     const getUser = async () => {
       const data = await fetch('/api/myuser')
       const user = await data.json()
-      console.log(user)
       setUser(user)
     }
     getUser()
