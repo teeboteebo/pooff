@@ -1,13 +1,10 @@
 import React, {useState } from "react";
 import { Container, Form, Row, Col, Input, Button, Label } from "reactstrap";
+import {Link} from "react-router-dom"
 
 const LoginPage = (props) => {
   const login = async (e, username, password) => {
-    e.preventDefault()
-    console.log(
-      username,
-      password
-    )
+    e.preventDefault()  
     let jsonRaw = await fetch('/api/login', {
       method: 'POST',
       headers: {
@@ -39,7 +36,7 @@ return (
     <Form onSubmit={(e) => login(e, usernameValue, passwordValue)}>
       <Row>
         <Col sm="12"  md={{ size: 6, offset: 3 }}>
-        <h1 className="text-center">Login</h1>
+        <h1 className="text-center">Logga in</h1>
         </Col>
       </Row>
       <Row className="input-field">
@@ -57,7 +54,7 @@ return (
            <p> {statusMessage} </p>
         </Col>
         <Col sm="3" md={{ size: 6, offset: 3 }} >
-      <a  className="float-right" href="/">glömt lösenord?</a>
+      <Link  className="float-right" to="/">glömt lösenord?</Link>
       </Col>
       </Row>
 
@@ -70,13 +67,13 @@ return (
 
     <Row className="link-field">
       <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-      <p  className="no-account" href="/">Har ej ett konto?</p>
+      <p  className="no-account" to="/">Har ej ett konto?</p>
       </Col>
       <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-      <a  className="register" href="/registrera">Registrera</a>
+      <Link  className="register" to="/registrera">Registrera</Link>
       </Col>
       <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-      <a  className="" href="/vanliga-fragor">Frågor och svar</a>
+      <Link  className="" to="/vanliga-fragor">Frågor och svar</Link>
       </Col>
     </Row>
     </Container>
