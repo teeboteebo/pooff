@@ -20,12 +20,16 @@ import { usePooff } from './context'
 
 const App = () => {
   const state = usePooff()
-
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`)
-
   const [loggedIn, setLoggedIn] = useState(false)
   const [loginFetched, setLoginFetched] = useState(false)
+  let headerHeight = 44
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`)
+  if (!loggedIn) {
+    headerHeight = 0
+  }
+  document.documentElement.style.setProperty('--headerHeight', `${headerHeight}px`)
+
 
   document.querySelector('body').addEventListener("keyup", (e) => {
     if (e.keyCode === 192 || e.keyCode === 220) state.setDarkMode(!state.darkMode)
@@ -53,7 +57,7 @@ const App = () => {
   if (window.matchMedia("(orientation: landscape)").matches) {
     // you're in LANDSCAPE mode
     return <DesktopPage />
-  } 
+  }
   else return (
 
     <Router>
