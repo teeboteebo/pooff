@@ -18,7 +18,7 @@ const UserRegister = props => {
           {input.icon}
           <input
             ref={input.ref}
-            className={"input-field " + input.class}
+            className={"input-register " + input.class}
             placeholder={input.name}
             type={input.class === 'new-password' ? (peek ? 'text' : 'password') : input.type} />
           {input.class === 'new-password' ? (peek ? <EyeOff className="peeker" onClick={() => setPeek(!peek)} /> : <Eye className="peeker" onClick={() => setPeek(!peek)} />) : null}

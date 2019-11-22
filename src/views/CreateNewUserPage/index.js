@@ -86,7 +86,6 @@ const CreateNewUserPage = () => {
     })
     let response = await responseRaw.json()
     console.log(response);
-
   }
 
   return (
@@ -95,11 +94,11 @@ const CreateNewUserPage = () => {
       <p className="page-info">Ange personuppgifter</p>
       <form onSubmit={(e) => submitNewUser(e)}>
         <UserRegister inputs={inputData} />
-        <div className="text-center">
-          <input className="save-button mt-4" type="submit" value="Registrera" />
-          <p className="mt-4">Har du redan ett konto?<Link className="login" to="/logga-in">Logga in</Link></p>
-        </div>
       </form>
+      <div className="text-center">
+        <input className="save-button mt-4" type="submit" value="Registrera" />
+        <p className="mt-4">Har du redan ett konto?<Link className="login-link" to="/logga-in">Logga in</Link></p>
+      </div>
     </Container>
   )
 }
