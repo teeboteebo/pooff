@@ -13,7 +13,6 @@
   }
   .trans-name {
     font-size: 22px;
-    font-weight: bold;
     color: var(--textColorContrast);
   }
   .trans-amount {
@@ -21,7 +20,7 @@
     text-align: right;
     color: var(--transactionIncoming);
     line-height: 60px;
-    font-size: 18px;
+    font-size: 15px;
   }
   .trans-arrow {
     text-align: right;

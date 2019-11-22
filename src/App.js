@@ -9,10 +9,13 @@ import CreateNewUserPage from './views/CreateNewUserPage'
 import TransactionForm from './views/TransactionForm'
 import createUserAsChild from "./views/CreateUserAsChild"
 import PaymentConfirmation from "./views/PaymentConfirmation"
-import LoginPage from './views/Login-temp'
+import DesktopPage from './views/DesktopPage'
+// import ResetPassword from "./views/ResetPassword"
+// import NewPassword from "./views/NewPassword"
+import TransactionPage from './views/TransactionPage'
+import QnA from './views/QnA'
+import LoginPage from "./views/LoginPage";
 import KidsList from './views/KidsList'
-import ResetPassword from "./views/ResetPassword"
-import NewPassword from "./views/NewPassword"
 import Kid from './views/Kid'
 
 import { usePooff } from './context'
@@ -49,7 +52,9 @@ const App = () => {
   }
   checkIfLoggedIn()
 
-  return (
+  if (window.innerWidth > 767) return <DesktopPage />
+  else return (
+
     <Router>
       <div className={state.darkMode ? 'App dark-mode' : 'App'}>
         {loggedIn ? <Header /> : null}
@@ -65,6 +70,7 @@ const App = () => {
               <Route exact path="/registrera" component={CreateNewUserPage} />
               <Route exact path="/registrera-barn" component={createUserAsChild} />
               <Route exact path="/ny-betalning" component={TransactionForm} />
+              <Route exact path="/vanliga-fragor" component={QnA} />
               <Route exact path="/mina-barn" component={KidsList} />
               <Route path="/mina-barn/:id" component={Kid} />
               <Route
@@ -80,15 +86,23 @@ const App = () => {
                   />
                 )}
               />
+              <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
+              <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
             </Switch>
               : <Switch> {/* NOT LOGGED IN */}
                 <Route exact path="/" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
                 <Route exact path="/registrera" component={CreateNewUserPage} />
                 <Route exact path="/login-test" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
+                <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
+                <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
+                <Route exact path="/registrera-barn" component={createUserAsChild} />
+                <Route exact path="/vanliga-fragor" component={QnA} />
               </Switch>
             }
           </main>
           : <Spinner />}
+
+
       </div>
     </Router>
   )

@@ -15,6 +15,7 @@
 @import "../components/UserRegister/styles";
 @import "../components/Header/styles";
 @import "../components/Menu/styles";
+@import "../components/FAQ/styles";
 
 // Views Styling
 @import "../views/StartPage/styles";
@@ -24,5 +25,7 @@
 @import "../views/PaymentConfirmation/styles";
 @import "../views/ResetPassword/styles";
 @import "../views/NewPassword/styles";
+@import '../views/TransactionPage/styles';
+@import "../views/LoginPage/styles";
 @import "../views/KidsList/styles";
 @import "../views/Kid/styles";
