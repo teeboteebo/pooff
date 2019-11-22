@@ -1,21 +1,25 @@
-import React, { useState } from "react"
-import { Container, Row, Col } from "reactstrap"
-import { Plus, DollarSign } from "react-feather"
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Container, Row, Col } from 'reactstrap'
+import { Plus, DollarSign } from 'react-feather'
 import ReCAPTCHA from "react-google-recaptcha"
 
 import TopUp from "../../components/TopUp"
 import TransactionHistoryPreview from "../../components/TransactionHistoryPreview"
 
 const StartPage = () => {
-  let integer, decimal
+  const [integer, setInteger] = useState('0')
+  const [decimal, setDecimal] = useState('00')
+  const [topUpToggle, setTopUpToggle] = useState(false)
+
   const getBalanceAndSplit = async () => {
-    let balance = 522000.69 // axios get mytrans/balance
-    balance = balance.toLocaleString("sv-SE").split(",")
-    integer = balance[0]
-    decimal = balance[1]
+    let balanceRaw = await fetch('/api/mytransactions/balance') // axios get mytrans/balance
+    let balance = (await balanceRaw.json()).balance    
+    balance = balance.toLocaleString('sv-SE').split(',')
+    setInteger(balance[0])
+    if (balance[1]) setDecimal(balance[1])
   }
   getBalanceAndSplit()
-  const [topUpToggle, setTopUpToggle] = useState(false)
   return (
     <Container className="startpage">
       <div className="page-content">
@@ -25,9 +29,7 @@ const StartPage = () => {
         </h2>
         <Row className="buttons">
           <Col xs={{ size: "5", offset: 1 }}>
-            <button className="pay-btn">
-              <DollarSign size="22" />
-            </button>
+          <Link to="/ny-betalning"><button className="pay-btn"><DollarSign size="22" /></button></Link>
             <p>Betala</p>
           </Col>
           <Col xs="5">
