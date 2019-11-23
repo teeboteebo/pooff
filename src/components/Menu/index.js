@@ -10,7 +10,22 @@ const Menu = () => {
 
   const state = usePooff()
 
-  const { firstName, lastName } = state.loggedIn
+  const { firstName, lastName, darkMode } = state.loggedIn
+
+  const toggleDarkMode = async () => {
+    const putUser = await fetch('/api/myuser', {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        darkMode: !state.loggedIn.darkMode
+      })
+    })
+
+    const user = await putUser.json()
+    state.setLoggedIn({ ...state.loggedIn, darkMode: user.darkMode })
+  }
 
   return (
     <nav className={state.menuOpen ? 'menu open' : 'menu'}>
@@ -82,8 +97,8 @@ const Menu = () => {
                 type="switch"
                 id="dark-mode"
                 name="dark-mode"
-                onChange={() => state.setDarkMode(!state.darkMode)}
-                checked={state.darkMode}
+                onChange={toggleDarkMode}
+                checked={state.loggedIn.darkMode}
               />
             </Col>
           </Row>

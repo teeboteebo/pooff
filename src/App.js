@@ -34,9 +34,9 @@ const App = () => {
   document.documentElement.style.setProperty('--headerHeight', `${headerHeight}px`)
 
 
-  document.querySelector('body').addEventListener("keyup", (e) => {
+  /* document.querySelector('body').addEventListener("keyup", (e) => {
     if (e.keyCode === 192 || e.keyCode === 220) state.setDarkMode(!state.darkMode)
-  })
+  }) */
 
   useEffect(() => {
     const checkIfLoggedIn = async () => {
@@ -75,7 +75,7 @@ const App = () => {
   else return (
 
     <Router>
-      <div className={state.darkMode ? 'App dark-mode' : 'App'}>
+      <div className={state.loggedIn && state.loggedIn.darkMode ? 'App dark-mode' : 'App'}>
         {state.loggedIn ? <Header /> : null}
           <main>
             {state.loggedIn ? <Switch> {/* LOGGED IN */}
