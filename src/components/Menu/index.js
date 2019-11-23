@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Row, Col, CustomInput } from 'reactstrap'
 import { Home, Users, ChevronDown, Eye, User, Plus, Heart, Settings, HelpCircle, LogOut } from 'react-feather'
 
@@ -7,6 +7,8 @@ import { usePooff } from '../../context'
 
 const Menu = () => {
   const [childrenListOpen, setChildrenListOpen] = useState(false)
+
+  const history = useHistory()
 
   const state = usePooff()
 
@@ -108,6 +110,8 @@ const Menu = () => {
           <span className="side-margin" onClick={async () => {
             await fetch('/api/login', { method: 'DELETE' })
             state.setMenuOpen(false)
+            state.setLoggedIn(false)
+            history.push('/')
           }}>Logga ut</span>
         </li>
       </ul>
