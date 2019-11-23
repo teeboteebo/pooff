@@ -10,45 +10,49 @@ const Menu = () => {
 
   const state = usePooff()
 
+  const { firstName, lastName } = state.loggedIn
+
   return (
     <nav className={state.menuOpen ? 'menu open' : 'menu'}>
       <ul>
-        <li><h5><u>Lasse Skida</u></h5></li>
+        <li><h5><u>{firstName + ' ' + lastName}</u></h5></li>
         <li>
           <Link to="/" onClick={() => state.setMenuOpen(!state.menuOpen)}>
             <Home />
             <span className="side-margin">Startsida</span>
           </Link>
         </li>
-        <li>
-          <span onClick={() => setChildrenListOpen(!childrenListOpen)}>
-            <Users />
-            <span className="side-margin">Mina barn</span>
-            <ChevronDown className={childrenListOpen ? 'chevron chevron-up' : 'chevron'} />
-          </span>
-          {childrenListOpen ?
-            <ul>
-              <li>
-                <Link to="/mina-barn" onClick={() => state.setMenuOpen(!state.menuOpen)}>
-                  <Eye />
-                  <span className="side-margin">Översikt</span>
-                </Link>
-              </li>
-              <li>
-                <User />
-                <span className="side-margin">Larry Skida</span>
-              </li>
-              <li>
-                <User />
-                <span className="side-margin">Ragnar Skida</span>
-              </li>
-              <li>
-                <Plus />
-                <span className="side-margin">Lägg till barn</span>
-              </li>
-            </ul>
-            : ''}
-        </li>
+        {state.children ?
+          <li>
+            <span onClick={() => setChildrenListOpen(!childrenListOpen)}>
+              <Users />
+              <span className="side-margin">Mina barn</span>
+              <ChevronDown className={childrenListOpen ? 'chevron chevron-up' : 'chevron'} />
+            </span>
+            {childrenListOpen ?
+              <ul>
+                <li>
+                  <Link to="/mina-barn" onClick={() => state.setMenuOpen(!state.menuOpen)}>
+                    <Eye />
+                    <span className="side-margin">Översikt</span>
+                  </Link>
+                </li>
+                <li>
+                  <User />
+                  <span className="side-margin">Larry Skida</span>
+                </li>
+                <li>
+                  <User />
+                  <span className="side-margin">Ragnar Skida</span>
+                </li>
+                <li>
+                  <Plus />
+                  <span className="side-margin">Lägg till barn</span>
+                </li>
+              </ul>
+              : ''}
+          </li>
+          : ''}
         <li>
           <Link to="/">
             <Heart />
