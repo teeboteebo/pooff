@@ -21,7 +21,7 @@ const Menu = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        darkMode: !state.loggedIn.darkMode
+        darkMode: !darkMode
       })
     })
 
@@ -100,7 +100,7 @@ const Menu = () => {
                 id="dark-mode"
                 name="dark-mode"
                 onChange={toggleDarkMode}
-                checked={state.loggedIn.darkMode}
+                checked={darkMode}
               />
             </Col>
           </Row>
@@ -109,8 +109,8 @@ const Menu = () => {
           <LogOut />
           <span className="side-margin" onClick={async () => {
             await fetch('/api/login', { method: 'DELETE' })
+            await state.setLoggedIn(false)
             state.setMenuOpen(false)
-            state.setLoggedIn(false)
             history.push('/')
           }}>Logga ut</span>
         </li>
