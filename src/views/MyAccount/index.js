@@ -44,7 +44,7 @@ const MyAcccount = () => {
       <Row className="mt-4 no-gutters text-center">
         <Col xs="12">
           <div className="button-section">
-            <Link to="/">
+            <Link to="/uppdatera-konto">
             <Button className="edit">Uppdatera konto<Lock className="btn-icon"></Lock></Button>
             </Link>
             <Link to="/">

@@ -16,6 +16,7 @@ import TransactionPage from './views/TransactionPage'
 import QnA from './views/QnA'
 import LoginPage from "./views/LoginPage";
 import MyAccount from './views/MyAccount'
+import UpdateAccountPage from './views/UpdateAccountPage';
 
 import { usePooff } from './context'
 
@@ -94,6 +95,7 @@ const App = () => {
               <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
               <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
               <Route exact path="/mitt-konto" component={MyAccount} />
+              <Route exact path="/uppdatera-konto" component={UpdateAccountPage} />
             </Switch>
               : <Switch> {/* NOT LOGGED IN */}
                 <Route exact path="/" render={(props) => <LoginPage {...props} loginHandler={checkIfLoggedIn} />} />
