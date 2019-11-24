@@ -108,7 +108,7 @@ const CreateNewUserPage = () => {
       <p className="page-info">Ange personuppgifter</p>
       <form onSubmit={e => submitNewUser(e)}>
         <UserRegister inputs={inputData} />
-        <input className="save-button mt-4" type="submit" value="Registrera" />
+        <input className="primary-btn save-button mt-4" type="submit" value="Registrera" />
       </form>
       <div className="text-center">
         <p className="mt-4">

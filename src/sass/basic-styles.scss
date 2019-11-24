@@ -16,12 +16,13 @@ html {
       flex: 1;
       & > div {
         padding-top: 60px;
-        height: calc(calc(var(--vh, 1vh) * 100) - 44px);
+        padding-bottom: 60px;
+        height: calc(calc(var(--vh, 1vh) * 100) - var(--headerHeight));
         overflow-y: scroll;
       }
       h2.page-title {
         color: var(--textColor);
-        margin-bottom: 80px;
+        margin-bottom: 60px;
         font-weight: bold;
         text-align: center;
       }
@@ -43,20 +44,23 @@ html {
     h6 {
       font-family: "Montserrat", sans-serif;
     }
-    .primary-btn, .secondary-btn {
+    .primary-btn,
+    .secondary-btn {
       margin: 0 auto;
       width: 100%;
       padding: 10px;
       border-radius: 4px;
       &:active {
-        opacity: .8;
+        opacity: 0.8;
+      }
+      &:focus {
+        outline: none;
       }
     }
     .primary-btn {
       border: none;
       background-color: var(--primary);
       color: var(--background);
-      
     }
     .secondary-btn {
       background-color: transparent;

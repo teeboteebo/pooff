@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Container, Form, Row, Col, Input, Button, Label } from "reactstrap"
+import {Link} from "react-router-dom"
 import ReCAPTCHA from "react-google-recaptcha"
 import sitekey from "../../settings.js"
 
@@ -38,7 +39,7 @@ const LoginPage = props => {
       <Form onSubmit={e => login(e, usernameValue, passwordValue)}>
         <Row>
           <Col sm="12" md={{ size: 6, offset: 3 }}>
-            <h1 className="text-center">Login</h1>
+            <h1 className="text-center">Logga in</h1>
           </Col>
         </Row>
         <Row className="input-field">
@@ -70,9 +71,9 @@ const LoginPage = props => {
             <p> {statusMessage} </p>
           </Col>
           <Col sm="3" md={{ size: 6, offset: 3 }}>
-            <a className="float-right" href="/">
+            <Link className="float-right" to="/">
               glömt lösenord?
-            </a>
+            </Link>
           </Col>
         </Row>
         <Row className="mt-3">
@@ -100,19 +101,19 @@ const LoginPage = props => {
 
       <Row className="link-field">
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-          <p className="no-account" href="/">
+          <Link className="no-account" to="/">
             Har ej ett konto?
-          </p>
+          </Link>
         </Col>
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-          <a className="register" href="/registrera">
+          <Link className="register" to="/registrera">
             Registrera
-          </a>
+          </Link>
         </Col>
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-          <a className="" href="/vanliga-fragor">
+          <Link className="" to="/vanliga-fragor">
             Frågor och svar
-          </a>
+          </Link>
         </Col>
       </Row>
     </Container>
