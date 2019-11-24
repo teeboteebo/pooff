@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react'
 
 export const useContextValues = () => {
   const [loggedIn, setLoggedIn] = useState()
-  const [children, setChildren] = useState()
+  const [children, setChildren] = useState([])
   const [menuOpen, setMenuOpen] = useState(false)
 
   return {

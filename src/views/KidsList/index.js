@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { Container, Row, Col, Spinner } from 'reactstrap'
 import { User, Info, ChevronRight } from 'react-feather'
 
+import { usePooff } from '../../context'
+
 const KidsList = () => {
-  const [children, setChildren] = useState()
+  const state = usePooff()
+
   const history = useHistory()
 
-  useEffect(() => {
-    const transactionsThisMonth = transactions => {
+  if (state.children.length) {
+    const transThisMonth = transactions => {
       let result = 0
       const year = new Date().getFullYear()
       const month = new Date().getMonth()
@@ -24,23 +27,12 @@ const KidsList = () => {
       return result
     }
 
-    const getChildren = async () => {
-      const response = await fetch('api/mychildren')
-      const fetchedChildren = await response.json()
-      fetchedChildren.forEach(child => {
-        child.transThisMonth = transactionsThisMonth(child.transactions)
-      })
-      setChildren(fetchedChildren)
-    }
+    state.children.forEach(child => child.transThisMonth = transThisMonth(child.transactions))
 
-    getChildren()
-  }, [])
-
-  if (children) {
     return (
       <Container className="kids-list">
         <h2 className="page-title">Mina barn</h2>
-        {children.map((child, i) => {
+        {state.children.map((child, i) => {
           const { firstName, lastName, balance, transThisMonth } = child
           return (
             <Row key={i} className="no-gutters align-items-center mb-4 p-3 child-box" onClick={() => history.push(`/mina-barn/${child._id}`)} >
@@ -66,9 +58,9 @@ const KidsList = () => {
   }
 
   return (
-    <Container className="kids-list spinner">
+    <div className="kids-list spinner">
       <Spinner />
-    </Container>
+    </div>
   )
 }
 
