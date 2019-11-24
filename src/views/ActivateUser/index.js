@@ -31,7 +31,6 @@ const ActivateUser = () => {
   }
 
   const run = async () => {
-    console.log("running")
     const path = window.location.pathname.split("/")[2]
     const fetchLink = async () => {
       let fetchedLink = await fetch("/api/links/" + path)
