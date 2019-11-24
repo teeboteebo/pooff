@@ -39,7 +39,7 @@ const Menu = () => {
             <span className="side-margin">Startsida</span>
           </Link>
         </li>
-        {state.children ?
+        {state.children.length ?
           <li>
             <span onClick={() => setChildrenListOpen(!childrenListOpen)}>
               <Users />
@@ -69,7 +69,14 @@ const Menu = () => {
               </ul>
               : ''}
           </li>
-          : ''}
+          :
+          <li>
+            <Link to="/" onClick={() => state.setMenuOpen(!state.menuOpen)}>
+              <Plus />
+              <span className="side-margin">Lägg till barn</span>
+            </Link>
+          </li>
+        }
         <li>
           <Link to="/">
             <Heart />
@@ -110,6 +117,7 @@ const Menu = () => {
           <span className="side-margin" onClick={async () => {
             await fetch('/api/login', { method: 'DELETE' })
             await state.setLoggedIn(false)
+            await state.setChildren([])
             state.setMenuOpen(false)
             history.push('/')
           }}>Logga ut</span>
