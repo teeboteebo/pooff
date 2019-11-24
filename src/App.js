@@ -53,7 +53,7 @@ const App = () => {
         state.setLoggedIn(user)
 
         if (user.role === 'parent') {
-          const fetchedChildren = await fetch('api/mychildren')
+          const fetchedChildren = await fetch('/api/mychildren')
           const children = await fetchedChildren.json()
           state.setChildren(children)
         }
@@ -90,7 +90,7 @@ const App = () => {
               <Route exact path="/ny-betalning" component={TransactionForm} />
               <Route exact path="/vanliga-fragor" component={QnA} />
               <Route exact path="/mina-barn" component={KidsList} />
-              <Route path="/mina-barn/:id" component={Kid} />
+              <Route exact path="/mina-barn/:id" component={Kid} />
               <Route
                 exact
                 path="/lyckad-betalning"
