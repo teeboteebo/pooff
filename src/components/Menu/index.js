@@ -54,14 +54,14 @@ const Menu = () => {
                     <span className="side-margin">Översikt</span>
                   </Link>
                 </li>
-                <li>
-                  <User />
-                  <span className="side-margin">Larry Skida</span>
-                </li>
-                <li>
-                  <User />
-                  <span className="side-margin">Ragnar Skida</span>
-                </li>
+                {state.children.map((child, i) => (
+                  <li key={i}>
+                    <Link to={'/mina-barn/' + child._id} onClick={() => state.setMenuOpen(!state.menuOpen)}>
+                      <User />
+                      <span className="side-margin">{child.firstName + ' ' + child.lastName}</span>
+                    </Link>
+                  </li>
+                ))}
                 <li>
                   <Plus />
                   <span className="side-margin">Lägg till barn</span>
