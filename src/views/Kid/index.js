@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { Container, Spinner } from 'reactstrap'
 import { Plus } from 'react-feather'
 
@@ -17,7 +17,7 @@ const Kid = () => {
   if (state.children.length) {
     const child = state.children.find(child => child._id === id)
 
-    let { firstName, lastName, balance, transactions } = child
+    let { firstName, lastName, balance, transactions, phone } = child
 
     balance = (balance.toFixed(2) + '').split('.')
 
@@ -41,7 +41,15 @@ const Kid = () => {
           <span className="amount-decimal">,{balance[1]} kr</span>
         </div>
         <div className="transfer">
-          <button><Plus size="22" /></button>
+          <Link to={{
+            pathname: '/ny-betalning',
+            state: {
+              name: firstName + ' ' + lastName,
+              phone
+            }
+          }}>
+            <button><Plus size="22" /></button>
+          </Link>
           <p>För över pengar</p>
         </div>
         <div className="sort-section mb-4">
@@ -53,7 +61,7 @@ const Kid = () => {
       </Container>
     )
   }
-  
+
   return (
     <Container className="kid">
       <Spinner />
