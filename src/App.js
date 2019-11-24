@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import { Spinner } from 'reactstrap'
 
 import Header from './components/Header'
 import StartPage from './views/StartPage'
@@ -65,8 +64,6 @@ const App = () => {
     }
     checkIfLoggedIn()
   }, [])
-
-  console.log(state)
 
   if (window.matchMedia("(orientation: landscape)").matches) {
     // you're in LANDSCAPE mode
