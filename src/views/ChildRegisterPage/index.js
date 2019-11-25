@@ -3,6 +3,7 @@ import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
 
 const ChildRegisterPage = () => {
+  const [statusMessage, setStatusMessage] = useState('')
   const [firstNameValue, setFirstNameValue] = useState('')
   const [emailValue, setEmailValue] = useState('')
   const [personIdValue, setPersonIdValue] = useState('')
@@ -10,20 +11,24 @@ const ChildRegisterPage = () => {
     e.preventDefault()
     console.log('firstName: ', firstName, 'email: ', email, 'personId: ', personId);
 
-    // let responseRaw = await fetch('/api/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     firstName,
-    //     email,
-    //     personId
-    //   })
-    // })
+    let responseRaw = await fetch('/api/godaddy', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName,
+        email,
+        personId
+      })
+    })
 
-    // let response = await responseRaw.json()
-    // console.log(response)
+    let response = await responseRaw.json()
+    if(response.success) {
+      // user created - send an email to the newly created user
+    } else {
+      setStatusMessage(JSON.stringify(response.error))
+    }
   }
   return (
     <Container fluid={true} className="register-child-container">
@@ -33,9 +38,10 @@ const ChildRegisterPage = () => {
         <input className="input-field" type="text" placeholder="Förnamn" onChange={(e) => setFirstNameValue(e.target.value)} required={true} />
         <input className="input-field" type="email" placeholder="Epost" onChange={(e) => setEmailValue(e.target.value)} required={true} />
         <input className="input-field" type="number" placeholder="Personnummer ÅÅMMDDNNNN" onChange={(e) => setPersonIdValue(e.target.value)} value={personIdValue} required={true} />
-        <input className="submit-btn" type="submit" value="Lägg till barn" />
+        <p style={{fontStyle: 'italic', opacity: '0.7', color: 'var(--primary)'}}>{statusMessage}</p>
+        <input className="primary-btn submit-btn" type="submit" value="Lägg till barn" />
       </form>
-      <Link to="mina-barn"><button className="back-btn">Tillbaka till översikten</button></Link>
+      <Link to="/mina-barn"><button className="secondary-btn back-btn">Tillbaka till översikten</button></Link>
     </Container>
   )
 }
