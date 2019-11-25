@@ -71,6 +71,9 @@ const TransactionForm = props => {
 
       const fetchedUser = await fetch('/api/myuser')
       const user = await fetchedUser.json()
+      const fetchedBalance = await fetch('/api/mytransactions/balance')
+      const balanceObj = await fetchedBalance.json()
+      user.balance = balanceObj.balance
       state.setLoggedIn(user)
 
       if (user.role === 'parent') {
