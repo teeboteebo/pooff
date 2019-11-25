@@ -9,8 +9,8 @@ import TransactionForm from "./views/TransactionForm"
 import createUserAsChild from "./views/CreateUserAsChild"
 import PaymentConfirmation from "./views/PaymentConfirmation"
 import DesktopPage from "./views/DesktopPage"
-// import ResetPassword from "./views/ResetPassword"
-// import NewPassword from "./views/NewPassword"
+import ResetPassword from "./views/ResetPassword"
+import NewPassword from "./views/NewPassword"
 import TransactionPage from "./views/TransactionPage"
 import QnA from "./views/QnA"
 import LoginPage from "./views/LoginPage"
@@ -129,7 +129,8 @@ const App = () => {
                   component={createUserAsChild}
                 />
                 <Route exact path="/vanliga-fragor" component={QnA} />
-                <Route path="/aktivera-konto" component={ActivateUser} />
+                <Route path="/aterstall-losenord" component={ResetPassword} />
+                <Route path="/nytt-losenord" component={NewPassword} />
               </Switch>
             )}
           </main>
