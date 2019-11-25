@@ -16,7 +16,6 @@ const UpdateAccount = props => {
             // value={input.placeholder} 
             />
             {console.log(input.placeholder)}
-            
         </div>
       )
     })
