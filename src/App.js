@@ -19,6 +19,7 @@ import Kid from './views/Kid'
 import MyAccount from './views/MyAccount'
 import ActivateUser from "./views/ActivateUser"
 import UpdateAccountPage from './views/UpdateAccountPage';
+import ConfirmAccUpdate from './views/ConfirmAccUpdate';
 
 import { usePooff } from "./context"
 
@@ -107,6 +108,7 @@ const App = () => {
               <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
               <Route exact path="/mitt-konto" component={MyAccount} />
               <Route exact path="/uppdatera-konto" component={UpdateAccountPage} />
+              <Route exact path="/uppdaterat-konto" component={ConfirmAccUpdate} />
             </Switch>
               : <Switch> {/* NOT LOGGED IN */}
                 <Route exact path="/" render={(props) => <LoginPage {...props} />} />
