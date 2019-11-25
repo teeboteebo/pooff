@@ -1,19 +1,28 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Container, Row, Col, Button } from 'reactstrap'
-import { Phone, Heart, DollarSign, MessageCircle, Send } from 'react-feather'
+import { Phone, DollarSign, MessageCircle, Send } from 'react-feather'
+import { Link } from 'react-router-dom'
 
 const TransactionForm = () => {
-  const [favorite, setFavorite] = useState(false)
   const [receiverName, setReceiverName] = useState('')
   const [validInputs, setValidInputs] = useState({
     receiver: true,
     amount: true
   })
+  const [favorites, setFavorites] = useState([])
 
   const receiver = useRef()
   const amount = useRef()
   const message = useRef()
 
+  useEffect(() => {
+    const getFavorites = async () => {
+      let allFavoritesRaw = await fetch('/api/myuser/favorites')
+      let allFavorites = await allFavoritesRaw.json()
+      setFavorites(allFavorites)
+    }
+    getFavorites()
+  }, [])
   const validate = () => {
     const valid = { ...validInputs }
 
@@ -63,20 +72,35 @@ const TransactionForm = () => {
       console.log(await response.json())
     }
   }
+  const setFavoriteAsReceiver = (phone) => {
+    //sorry
+    let phoneField = document.querySelector('.phone-input')
+    phoneField.target = phoneField
+    phoneField.target.value = phone
+    checkNumber(phoneField)
+  }
 
   return (
     <Container className="transaction-form" fluid={true}>
-      <h2 className="page-title">Ny överföring</h2>
+      <h2 className="page-title">Ny betalning</h2>
       <Row className="no-gutters align-items-center mt-4">
         <Col>
           <p className="number-msg">{receiverName}</p>
           <div className="input-component">
             <Phone />
-            <input type="telephone" ref={receiver} placeholder="Telefonnummer" onChange={checkNumber} className={!validInputs.receiver ? 'error-input' : ''} />
+            <input type="telephone" ref={receiver} placeholder="Telefonnummer" onChange={checkNumber} className={!validInputs.receiver ? 'error-input phone-input' : 'phone-input'} />
           </div>
+
         </Col>
+      </Row>
+      <Row>
         <Col xs="auto">
-          <Heart className={favorite ? 'add-to-favorites ml-4 checked' : 'add-to-favorites ml-4'} onClick={() => setFavorite(!favorite)} />
+          <div className="favorites">
+            {favorites.map((favorite, i) => {
+              return <button className="favorite-btn" onClick={() => setFavoriteAsReceiver(favorite.phone)} key={"fav-btn_" + i}>{favorite.nickname}</button>
+            })}
+            {favorites[0] ? '' : <p>Du har ännu inga favoriter, <Link to="/favoriter">klicka här</Link> för att lägga till.</p>}
+          </div>
         </Col>
       </Row>
       {!validInputs.receiver ? <p className="error-text mt-1">Vänligen ange ett telefonnummer</p> : ''}
@@ -90,7 +114,7 @@ const TransactionForm = () => {
         <textarea rows="4" ref={message} placeholder="Meddelande..." />
       </div>
       <div className="button-div mt-4">
-        <Button onClick={onSubmit}><Send /><span>Skicka</span></Button>
+        <Button className="primary-btn" onClick={onSubmit}><Send /><span>Skicka</span></Button>
       </div>
     </Container>
   )
