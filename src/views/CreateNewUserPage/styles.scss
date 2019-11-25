@@ -1,14 +1,6 @@
-.save-button {
-  background-color: var(--primary);
-  border: none;
-  border-radius: 4px;
-  color: var(--background);
-  padding: 8px 64px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 30px 0 15px 0;
-}
-.login {
-  padding-left: 20px;
+.new-user-container {
+  .login-link {
+    padding-left: 20px;
+    color: var(--linkcolor);
+  }
 }
