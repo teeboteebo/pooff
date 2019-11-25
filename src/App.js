@@ -129,6 +129,7 @@ const App = () => {
                   component={createUserAsChild}
                 />
                 <Route exact path="/vanliga-fragor" component={QnA} />
+                <Route path="/aktivera-konto" component={ActivateUser} />
                 <Route path="/aterstall-losenord" component={ResetPassword} />
                 <Route path="/nytt-losenord" component={NewPassword} />
               </Switch>
