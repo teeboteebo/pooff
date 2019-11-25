@@ -2,15 +2,24 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container } from 'reactstrap'
 import { User, Mail, Phone, Lock } from 'react-feather'
-import {useState, useEffect} from "react"
+import {useState, useEffect, useRef} from "react"
 
 import UserRegister from "../../components/UserRegister";
 
 const CreateUserAsChild = () => {
 
+  const firstName = useRef()
+  const lastName = useRef()
+  const personId = useRef()
+  const username = useRef()
+  const email = useRef()
+  const phone = useRef()
+  const password = useRef()
+
   const [link, setLink] = useState("")
   const [fetched, setFetched] = useState(false) 
-  const [user, setUser] = useState({}) 
+  const [user, setUser] = useState({})
+  const [updated, setUpdated] = useState(false) 
 
   let childInputData = [
     {
@@ -21,6 +30,7 @@ const CreateUserAsChild = () => {
     {
       name: 'Efternamn',
       type: 'text',
+      ref: lastName,
       icon: <User className="main-icon" />
     },
     { // We wait for createChild component to pre-write Id number
@@ -31,6 +41,7 @@ const CreateUserAsChild = () => {
     {
       name: 'Användarnamn',
       type: 'text',
+      ref: username,
       icon: <User className="main-icon" />
     },
     { // We wait for createChild component to pre-write E-mail
@@ -42,12 +53,14 @@ const CreateUserAsChild = () => {
       name: 'Telefonnummer',
       type: 'text',
       class: 'phonenumber',
+      ref: phone,
       icon: <Phone className="main-icon" />
     },
     {
       name: 'Lösenord',
       type: 'password',
       class: 'new-password',
+      ref: password,
       icon: <Lock className="main-icon" />
     },
     {
@@ -81,15 +94,37 @@ const CreateUserAsChild = () => {
     run()
   }
 
+  const updateChild = async() => {
+    const putUser = await fetch(`/api/child/${user[0]._id}`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        lastName: lastName.current.value,
+        username: username.current.value,
+        phone: phone.current.value,
+        password: password.current.value,
+        active: true
+      })
+    })
+    console.log(lastName.current.value)
+    await setUpdated(true)
+  }
+
   return (
+    updated ?
+      <Container fluid={true}>
+      <h2 className="page-title">Din profil har updaterats</h2>
+      <Link to="/logga-in">Klicka här för att logga in</Link></Container> :
     <Container fluid={true}>
-      <h2 className="page-title">Komplettera din profil</h2>
-      <p className="page-info">Ange personuppgifter</p>
-      <UserRegister inputs={childInputData} />
-      <div className="text-center">
-        <button className="save-button">Registrera</button>
-        <p>Har du redan ett konto?<Link className="login" to="/logga-in">Logga in</Link></p>
-      </div>
+        <h2 className="page-title">Komplettera din profil</h2>
+        <p className="page-info">Ange personuppgifter</p>
+        <UserRegister inputs={childInputData} />
+        <div className="text-center">
+          <button className="save-button" onClick={updateChild}>Registrera</button>
+          <p>Har du redan ett konto?<Link className="login" to="/logga-in">Logga in</Link></p>
+        </div>
     </Container>
   )
 }
