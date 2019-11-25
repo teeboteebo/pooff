@@ -1,8 +1,6 @@
 import React, { useState } from "react"
 import { Container, Form, Row, Col, Input, Button, Label } from "reactstrap"
 import {Link} from "react-router-dom"
-import ReCAPTCHA from "react-google-recaptcha"
-import sitekey from "../../settings.js"
 
 const LoginPage = props => {
   const login = async (e, username, password) => {
@@ -32,7 +30,6 @@ const LoginPage = props => {
   const [usernameValue, setUsernameValue] = useState("")
   const [passwordValue, setPasswordValue] = useState("")
   const [statusMessage, setStatusMessage] = useState("")
-  const [captchaValue, setCaptchaValue] = useState(false)
 
   return (
     <Container fluid={true} className="login-container">
@@ -76,14 +73,7 @@ const LoginPage = props => {
             </Link>
           </Col>
         </Row>
-        <Row className="mt-3">
-          <Col align="center">
-            <ReCAPTCHA
-              sitekey={sitekey}
-              onChange={() => setCaptchaValue(true)}
-            />
-          </Col>
-        </Row>
+        
         <Row className="button-field">
           <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
             <Button
@@ -91,7 +81,6 @@ const LoginPage = props => {
               name="submit"
               value="Logga in"
               type="submit"
-              disabled={!captchaValue}
             >
               Logga in
             </Button>
