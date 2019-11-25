@@ -35,6 +35,7 @@ const ActivateUser = () => {
     const fetchLink = async () => {
       let fetchedLink = await fetch("/api/links/" + path)
       fetchedLink = await fetchedLink.json()
+      console.log(fetchedLink)
       fetchedLink.link ? await setLink(fetchedLink) : await setLink("")
     }
     await fetchLink()
@@ -48,7 +49,10 @@ const ActivateUser = () => {
   return (
     <div>
       {activated ? (
-        <h2>Ditt konto har nu aktiverats</h2>
+        <div>
+          <h2>Ditt konto har nu aktiverats</h2>
+          <button className=".to-login-button">Till inlogg</button>
+        </div>
       ) : (
         <div>
           <h2>
