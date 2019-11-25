@@ -36,7 +36,7 @@ const NewFavorite = (props) => {
   const toggle = () => setModal(!modal);
 
   return (
-    <Container>
+    <Container fluid={true} >
       <Button className="primary-btn" onClick={toggle}>Ny Favorit</Button>
       <Modal isOpen={modal} toggle={toggle} className="add-favorite-container">
         <ModalHeader toggle={toggle}>

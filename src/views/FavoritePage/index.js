@@ -39,7 +39,7 @@ const FavoritePage = () => {
       </Row>
 
 
-      <Row className="button-field">
+      <Row className="button-field no-gutters">
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
           <NewFavorite updateFavorites={getAllUserFavorites} />
         </Col>

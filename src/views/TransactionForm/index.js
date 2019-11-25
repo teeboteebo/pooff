@@ -2,7 +2,8 @@ import PaymentConfirmation from "../PaymentConfirmation"
 import { usePooff } from '../../context'
 import React, { useState, useEffect, useRef } from "react"
 import { Container, Row, Col, Button } from "reactstrap"
-import { Phone, Heart, DollarSign, MessageCircle, Send } from "react-feather"
+import { Phone, DollarSign, MessageCircle, Send } from "react-feather"
+import { Link } from 'react-router-dom'
 
 const TransactionForm = props => {
   const state = usePooff()
