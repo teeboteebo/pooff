@@ -1,5 +1,6 @@
 import React from 'react'
-import { Menu as MenuIcon } from 'react-feather'
+import { Menu as MenuIcon, X } from 'react-feather'
+import { Link } from 'react-router-dom'
 
 import { usePooff } from '../../context'
 
@@ -7,12 +8,17 @@ import Menu from '../Menu'
 
 const Header = () => {
   const state = usePooff()
-  
+
   return (
     <div>
       <header>
-        <MenuIcon onClick={() => state.setMenuOpen(!state.menuOpen)} style={{color: '#fff'}} />
-        <img src="/images/logos/pooff-white.png" alt="pooff-logo" />
+        {state.menuOpen
+          ? <X onClick={() => state.setMenuOpen(!state.menuOpen)} style={{ color: '#fff' }} />
+          : <MenuIcon onClick={() => state.setMenuOpen(!state.menuOpen)} style={{ color: '#fff' }} />
+        }
+        <Link to="/" >
+          <img src="/images/logos/pooff-white.png" alt="pooff-logo" />
+        </Link>
       </header>
       <Menu />
     </div>

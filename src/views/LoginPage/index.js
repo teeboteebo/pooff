@@ -1,13 +1,14 @@
 import React, { useState } from "react"
 import { Container, Form, Row, Col, Input, Button, Label } from "reactstrap"
-import {Link} from "react-router-dom"
-import ReCAPTCHA from "react-google-recaptcha"
-import sitekey from "../../settings.js"
+import { Link } from "react-router-dom"
 
-const LoginPage = props => {
+import { usePooff } from '../../context'
+
+const LoginPage = () => {
+  const state = usePooff()
+
   const login = async (e, username, password) => {
     e.preventDefault()
-    console.log(username, password)
     let jsonRaw = await fetch("/api/login", {
       method: "POST",
       headers: {
@@ -24,15 +25,22 @@ const LoginPage = props => {
     if (message.error) {
       setStatusMessage("Användarnamn eller lösenord är fel")
     } else {
-      setStatusMessage(`Inloggad som ${message.username} - (${message.role})`)
-      props.history.push("/")
+      /* setStatusMessage(`Inloggad som ${message.username} - (${message.role})`)
+      props.history.push("/") */
+      const fetchedUser = await fetch('/api/myuser')
+      const user = await fetchedUser.json()
+      state.setLoggedIn(user)
+
+      if (user.role === 'parent') {
+        const fetchedChildren = await fetch('api/mychildren')
+        const children = await fetchedChildren.json()
+        state.setChildren(children)
+      }
     }
-    props.loginHandler()
   }
   const [usernameValue, setUsernameValue] = useState("")
   const [passwordValue, setPasswordValue] = useState("")
   const [statusMessage, setStatusMessage] = useState("")
-  const [captchaValue, setCaptchaValue] = useState(false)
 
   return (
     <Container fluid={true} className="login-container">
@@ -76,14 +84,6 @@ const LoginPage = props => {
             </Link>
           </Col>
         </Row>
-        <Row className="mt-3">
-          <Col align="center">
-            <ReCAPTCHA
-              sitekey={sitekey}
-              onChange={() => setCaptchaValue(true)}
-            />
-          </Col>
-        </Row>
         <Row className="button-field">
           <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
             <Button
@@ -91,7 +91,6 @@ const LoginPage = props => {
               name="submit"
               value="Logga in"
               type="submit"
-              disabled={!captchaValue}
             >
               Logga in
             </Button>
