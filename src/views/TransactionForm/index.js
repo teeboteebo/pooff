@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from "react"
 import { Container, Row, Col, Button } from "reactstrap"
 import { Phone, Heart, DollarSign, MessageCircle, Send } from "react-feather"
 import PaymentConfirmation from "../PaymentConfirmation"
+import { usePooff } from '../../context'
 
 const TransactionForm = props => {
+  const state = usePooff()  
   const [favorite, setFavorite] = useState(false)
   const [receiverName, setReceiverName] = useState("")
   const [validInputs, setValidInputs] = useState({
@@ -45,8 +47,9 @@ const TransactionForm = props => {
     if (e.target.value.length > 9) {
       let response = await fetch(`/api/mytransactions/number/${e.target.value}`)
       let foundUser = await response.json()
-      // console.log(foundUser)
-      if (foundUser !== null) {
+      if (receiver.current.value === state.loggedIn.phone){
+        setReceiverName("Du kan ej skicka pengar till dig själv")
+      } else if (foundUser !== null) {
         foundUser = `${foundUser.firstName} ${foundUser.lastName}`
         setReceiverName(foundUser)
       } else setReceiverName("")
@@ -139,7 +142,7 @@ const TransactionForm = props => {
           <textarea rows="4" ref={message} placeholder="Meddelande..." />
         </div>
         <div className="button-div mt-4">
-          <Button onClick={onSubmit}>
+          <Button disabled={receiverName === 'Du kan ej skicka pengar till dig själv' ? true : false} onClick={onSubmit} className="primary-btn">
             <Send />
             <span>Skicka</span>
           </Button>
