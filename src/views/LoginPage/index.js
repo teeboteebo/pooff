@@ -1,11 +1,14 @@
 import React, { useState } from "react"
 import { Container, Form, Row, Col, Input, Button, Label } from "reactstrap"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 import { usePooff } from "../../context"
 
 const LoginPage = () => {
   const state = usePooff()
+  // Force login route to go through to / route when
+  // you push the login button 
+  const history = useHistory()
 
   const checkIfActive = async username => {
     let user = await fetch(`/api/users/username/${username}`)
@@ -47,6 +50,8 @@ const LoginPage = () => {
           const children = await fetchedChildren.json()
           state.setChildren(children)
         }
+
+        history.push('/')
       }
     } else {
       setStatusMessage(
