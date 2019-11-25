@@ -14,7 +14,6 @@ const StartPage = () => {
   let { balance } = state.loggedIn
   balance = (balance.toFixed(2) + '').split('.')
   balance[0] = Number(balance[0]).toLocaleString('sv-SE')
-  console.log(balance)
   /* const [integer, setInteger] = useState("0")
   const [decimal, setDecimal] = useState("00") */
   const [topUpToggle, setTopUpToggle] = useState(false)
