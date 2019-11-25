@@ -1,13 +1,18 @@
 import React, { useEffect } from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
-import Header from "./components/Header"
-import StartPage from "./views/StartPage"
-import TransHistoryPage from "./views/TransHistoryPage"
-import CreateNewUserPage from "./views/CreateNewUserPage"
-import TransactionForm from "./views/TransactionForm"
-import createUserAsChild from "./views/CreateUserAsChild"
-import PaymentConfirmation from "./views/PaymentConfirmation"
+// Components
+import PooffHeader from './components/PooffHeader'
+import Header from './components/Header'
+
+// Views
+import PooffStartPage from './views/PooffStartPage'
+import StartPage from './views/StartPage'
+import TransHistoryPage from './views/TransHistoryPage'
+import CreateNewUserPage from './views/CreateNewUserPage'
+import TransactionForm from './views/TransactionForm'
+import ChildRegisterPage from './views/ChildRegisterPage'
+import CreateUserAsChild from "./views/CreateUserAsChild"
 import DesktopPage from "./views/DesktopPage"
 import ResetPassword from "./views/ResetPassword"
 import NewPassword from "./views/NewPassword"
@@ -26,15 +31,9 @@ const App = () => {
   /* const [loggedIn, setLoggedIn] = useState(false)
   const [loginFetched, setLoginFetched] = useState(false) */
   let headerHeight = 44
-  let vh = window.innerHeight * 0.01
-  document.documentElement.style.setProperty("--vh", `${vh}px`)
-  if (!state.loggedIn) {
-    headerHeight = 0
-  }
-  document.documentElement.style.setProperty(
-    "--headerHeight",
-    `${headerHeight}px`,
-  )
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`)
+  document.documentElement.style.setProperty('--headerHeight', `${headerHeight}px`)
 
   /* document.querySelector('body').addEventListener("keyup", (e) => {
     if (e.keyCode === 192 || e.keyCode === 220) state.setDarkMode(!state.darkMode)
@@ -74,66 +73,38 @@ const App = () => {
     return (
       <Router>
         <div
-          className={
-            state.loggedIn && state.loggedIn.darkMode ? "App dark-mode" : "App"
-          }
-        >
-          {state.loggedIn ? <Header /> : null}
+          className={state.loggedIn && state.loggedIn.darkMode ? "App dark-mode" : "App"}>
+          {state.loggedIn ? <Header /> : <PooffHeader />}
           <main>
             {state.loggedIn ? (
               <Switch>
-                {" "}
                 {/* LOGGED IN */}
                 <Route exact path="/" component={StartPage} />
-                <Route
-                  exact
-                  path="/mina-transaktioner"
-                  component={TransHistoryPage}
-                />
+                <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
                 <Route exact path="/registrera" component={CreateNewUserPage} />
-                <Route
-                  exact
-                  path="/registrera-barn"
-                  component={createUserAsChild}
-                />
+                <Route exact path="/registrera-barn" component={CreateUserAsChild} />
                 <Route exact path="/ny-betalning" component={TransactionForm} />
+                <Route exact path="/lagg-till-barn" component={ChildRegisterPage} />
                 <Route exact path="/vanliga-fragor" component={QnA} />
                 <Route exact path="/mina-barn" component={KidsList} />
                 <Route exact path="/mina-barn/:id" component={Kid} />
-                <Route
-                  exact
-                  path="/mina-transaktioner"
-                  component={TransHistoryPage}
-                />
-                <Route
-                  exact
-                  path="/enskild-transaktion/:id"
-                  component={TransactionPage}
-                />
+                <Route exact path="/registrera-barn" component={CreateUserAsChild} />
+                <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
+                <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
                 <Route exact path="/mitt-konto" component={MyAccount} />
               </Switch>
             ) : (
-              <Switch>
-                {" "}
-                {/* NOT LOGGED IN */}
-                <Route
-                  exact
-                  path="/"
-                  render={props => <LoginPage {...props} />}
-                />
-                <Route exact path="/registrera" component={CreateNewUserPage} />{" "}
-                />
-                <Route
-                  exact
-                  path="/registrera-barn"
-                  component={createUserAsChild}
-                />
-                <Route exact path="/vanliga-fragor" component={QnA} />
-                <Route path="/aktivera-konto" component={ActivateUser} />
-                <Route path="/aterstall-losenord" component={ResetPassword} />
-                <Route path="/nytt-losenord" component={NewPassword} />
-              </Switch>
-            )}
+                <Switch>
+                  {/* NOT LOGGED IN */}
+                  <Route exact path="/" component={PooffStartPage} />
+                  <Route exact path="/logga-in" render={props => <LoginPage {...props} />} />
+                  <Route exact path="/registrera" component={CreateNewUserPage} />
+                  <Route exact path="/vanliga-fragor" component={QnA} />
+                  <Route path="/aktivera-konto" component={ActivateUser} />
+                  <Route path="/aterstall-losenord" component={ResetPassword} />
+                  <Route path="/nytt-losenord" component={NewPassword} />
+                </Switch>
+              )}
           </main>
         </div>
       </Router>

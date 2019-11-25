@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { Container, Row, Col } from "reactstrap"
 import { Plus, DollarSign } from "react-feather"
-import ReCAPTCHA from "react-google-recaptcha"
 
 import TopUp from "../../components/TopUp"
 import TransactionHistoryPreview from "../../components/TransactionHistoryPreview"

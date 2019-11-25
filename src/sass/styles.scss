@@ -14,10 +14,12 @@
 @import "../components/TransactionLister/styles";
 @import "../components/UserRegister/styles";
 @import "../components/Header/styles";
+@import "../components//PooffHeader//styles";
 @import "../components/Menu/styles";
 @import "../components/FAQ/styles";
 
 // Views Styling
+@import "../views/PooffStartPage/styles";
 @import "../views/StartPage/styles";
 @import "../views/TransHistoryPage/styles";
 @import "../views/CreateNewUserPage/styles";
@@ -26,7 +28,7 @@
 @import "../views/ResetPassword/styles";
 @import "../views/NewPassword/styles";
 @import "../views/DesktopPage/styles";
-@import '../views/TransactionPage/styles';
+@import "../views/TransactionPage/styles";
 @import "../views/LoginPage/styles";
 @import "../views/KidsList/styles";
 @import "../views/Kid/styles";
