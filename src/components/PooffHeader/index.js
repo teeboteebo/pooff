@@ -3,11 +3,9 @@ import React from 'react'
 const PooffHeader = () => {
 
   return (
-    <Container fluid={true}>
-      <div>
-        <header className="pooff-header">POOFF</header>
-      </div>
-    </Container>
+    <div className="pooff-wrapper">
+      <header className="pooff-header">POOFF</header>
+    </div>
   )
 }
 export default PooffHeader

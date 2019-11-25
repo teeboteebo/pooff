@@ -1,0 +1,12 @@
+.pooff-wrapper {
+  text-align: center;
+  vertical-align: middle;
+  .pooff-header {
+    background-color: var(--headerBackground);
+    color: var(--secondary);
+    font-family: "Sniglet", cursive;
+    font-size: 28px;
+    line-height: 44px;
+    height: 44px;
+  }
+}
