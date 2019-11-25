@@ -91,19 +91,19 @@ const App = () => {
                 <Route exact path="/vanliga-fragor" component={QnA} />
                 <Route exact path="/mina-barn" component={KidsList} />
                 <Route exact path="/mina-barn/:id" component={Kid} />
-                <Route exact path="/registrera-barn" component={CreateUserAsChild} />
                 <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
                 <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
                 <Route exact path="/mitt-konto" component={MyAccount} />
               </Switch>
             ) : (
-                <Switch>
+              <Switch>
                   {/* NOT LOGGED IN */}
                   <Route exact path="/" component={PooffStartPage} />
                   <Route exact path="/logga-in" render={props => <LoginPage {...props} />} />
                   <Route exact path="/registrera" component={CreateNewUserPage} />
                   <Route exact path="/vanliga-fragor" component={QnA} />
                   <Route path="/aktivera-konto" component={ActivateUser} />
+                  <Route path="/registrera-barn" component={CreateUserAsChild} />
                   <Route path="/aterstall-losenord" component={ResetPassword} />
                   <Route path="/nytt-losenord" component={NewPassword} />
                 </Switch>

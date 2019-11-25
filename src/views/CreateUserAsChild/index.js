@@ -2,16 +2,21 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container } from 'reactstrap'
 import { User, Mail, Phone, Lock } from 'react-feather'
+import {useState, useEffect} from "react"
 
 import UserRegister from "../../components/UserRegister";
 
-
 const CreateUserAsChild = () => {
+
+  const [link, setLink] = useState("")
+  const [fetched, setFetched] = useState(false) 
+  const [user, setUser] = useState({}) 
+
   let childInputData = [
     {
-      name: 'Förnamn',
+      name: user[0] ? user[0].firstName : 'Förnamn',
       type: 'text',
-      icon: <User className="main-icon" />
+      icon: <User className="main-icon" disabled/>
     },
     {
       name: 'Efternamn',
@@ -19,7 +24,7 @@ const CreateUserAsChild = () => {
       icon: <User className="main-icon" />
     },
     { // We wait for createChild component to pre-write Id number
-      name: 'Personnummer',
+      name: user[0] ? user[0].personId : 'Personnummer',
       type: 'text',
       icon: <User className="main-icon" />
     },
@@ -29,9 +34,9 @@ const CreateUserAsChild = () => {
       icon: <User className="main-icon" />
     },
     { // We wait for createChild component to pre-write E-mail
-      name: 'E-post',
+      name: user[0] ? user[0].email : 'E-post',
       type: 'email',
-      icon: <Mail className="main-icon" />
+      icon: <Mail className="main-icon" disabled/>
     },
     {
       name: 'Telefonnummer',
@@ -52,6 +57,30 @@ const CreateUserAsChild = () => {
       icon: <Lock className="main-icon" />
     }
   ]
+
+  const run = async () => {
+    const path = window.location.pathname.split("/")[2]
+    const fetchLink = async () => {
+      let fetchedLink = await fetch("/api/links/" + path)
+      fetchedLink = await fetchedLink.json()
+      fetchedLink.link ? await setLink(fetchedLink) : await setLink("")
+    }
+    await fetchLink()
+    await (link ? findUser() : null)
+  }
+
+  const findUser = async () => {
+    let user = await fetch("/api/email/" + link.email)
+    user = await user.json()
+    setFetched(true)
+    setUser(user)
+    console.log(user)
+  }
+
+  if (!fetched) {
+    run()
+  }
+
   return (
     <Container fluid={true}>
       <h2 className="page-title">Komplettera din profil</h2>
