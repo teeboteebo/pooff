@@ -8,7 +8,8 @@ import CreateNewUserPage from "./views/CreateNewUserPage"
 import TransactionForm from "./views/TransactionForm"
 import createUserAsChild from "./views/CreateUserAsChild"
 import PaymentConfirmation from "./views/PaymentConfirmation"
-import DesktopPage from "./views/DesktopPage"
+import DesktopPage from './views/DesktopPage'
+import ChildRegisterPage from './views/ChildRegisterPage'
 // import ResetPassword from "./views/ResetPassword"
 // import NewPassword from "./views/NewPassword"
 import TransactionPage from './views/TransactionPage'
@@ -85,6 +86,7 @@ const App = () => {
               />
               <Route exact path="/registrera" component={CreateNewUserPage} />
               <Route exact path="/registrera-barn" component={createUserAsChild} />
+              <Route exact path="/lagg-till-barn" component={ChildRegisterPage} />
               <Route exact path="/ny-betalning" component={TransactionForm} />
               <Route exact path="/vanliga-fragor" component={QnA} />
               <Route exact path="/mina-barn" component={KidsList} />
