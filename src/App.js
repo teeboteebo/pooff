@@ -11,6 +11,7 @@ import StartPage from './views/StartPage'
 import TransHistoryPage from './views/TransHistoryPage'
 import CreateNewUserPage from './views/CreateNewUserPage'
 import TransactionForm from './views/TransactionForm'
+import FavoritePage from "./views/FavoritePage"
 import ChildRegisterPage from './views/ChildRegisterPage'
 import CreateUserAsChild from "./views/CreateUserAsChild"
 import DesktopPage from "./views/DesktopPage"
@@ -84,6 +85,7 @@ const App = () => {
                 {/* LOGGED IN */}
                 <Route exact path="/" component={StartPage} />
                 <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
+              <Route exact path="/favoriter" component={FavoritePage} />
                 <Route exact path="/registrera" component={CreateNewUserPage} />
                 <Route exact path="/registrera-barn" component={CreateUserAsChild} />
                 <Route exact path="/ny-betalning" component={TransactionForm} />
