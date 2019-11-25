@@ -8,8 +8,7 @@ import CreateNewUserPage from "./views/CreateNewUserPage"
 import TransactionForm from "./views/TransactionForm"
 import createUserAsChild from "./views/CreateUserAsChild"
 import PaymentConfirmation from "./views/PaymentConfirmation"
-import DesktopPage from './views/DesktopPage'
-import ChildRegisterPage from './views/ChildRegisterPage'
+import DesktopPage from "./views/DesktopPage"
 // import ResetPassword from "./views/ResetPassword"
 // import NewPassword from "./views/NewPassword"
 import TransactionPage from "./views/TransactionPage"
@@ -81,57 +80,26 @@ const App = () => {
         >
           {state.loggedIn ? <Header /> : null}
           <main>
-            {state.loggedIn ? <Switch> {/* LOGGED IN */}
-              <Route exact path="/" component={StartPage} />
-              <Route
-                exact
-                path="/mina-transaktioner"
-                component={TransHistoryPage}
-              />
-              <Route exact path="/registrera" component={CreateNewUserPage} />
-              <Route exact path="/registrera-barn" component={createUserAsChild} />
-              <Route exact path="/lagg-till-barn" component={ChildRegisterPage} />
-              <Route exact path="/ny-betalning" component={TransactionForm} />
-              <Route exact path="/vanliga-fragor" component={QnA} />
-              <Route exact path="/mina-barn" component={KidsList} />
-              <Route exact path="/mina-barn/:id" component={Kid} />
-              <Route
-                exact
-                path="/lyckad-betalning"
-                render={(props) => (
-                  <PaymentConfirmation
-                    {...props}
-                    name="Sture Stoppmur"
-                    number="070123123"
-                    amount="100 kr"
-                    message="Du blocka mig"
-                  />
-                )}
-              />
-              <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
-              <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
-              <Route exact path="/mitt-konto" component={MyAccount} />
-            </Switch>
-              : <Switch> {/* NOT LOGGED IN */}
-                <Route exact path="/" render={(props) => <LoginPage {...props} />} />
-                <Route exact path="/registrera" component={CreateNewUserPage} /> />
-                <Route exact path="/registrera-barn" component={createUserAsChild} />
+            {state.loggedIn ? (
+              <Switch>
+                {" "}
+                {/* LOGGED IN */}
+                <Route exact path="/" component={StartPage} />
+                <Route
+                  exact
+                  path="/mina-transaktioner"
+                  component={TransHistoryPage}
+                />
+                <Route exact path="/registrera" component={CreateNewUserPage} />
+                <Route
+                  exact
+                  path="/registrera-barn"
+                  component={createUserAsChild}
+                />
+                <Route exact path="/ny-betalning" component={TransactionForm} />
                 <Route exact path="/vanliga-fragor" component={QnA} />
                 <Route exact path="/mina-barn" component={KidsList} />
                 <Route exact path="/mina-barn/:id" component={Kid} />
-                <Route
-                  exact
-                  path="/lyckad-betalning"
-                  render={props => (
-                    <PaymentConfirmation
-                      {...props}
-                      name="Sture Stoppmur"
-                      number="070123123"
-                      amount="100 kr"
-                      message="Du blocka mig"
-                    />
-                  )}
-                />
                 <Route
                   exact
                   path="/mina-transaktioner"
