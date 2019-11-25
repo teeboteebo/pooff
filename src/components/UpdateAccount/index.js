@@ -13,9 +13,7 @@ const UpdateAccount = props => {
             className="input"
             placeholder={input.placeholder}
             type="text"
-            // value={input.placeholder} 
             />
-            {console.log(input.placeholder)}
         </div>
       )
     })

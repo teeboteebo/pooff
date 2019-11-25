@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { Container } from 'reactstrap'
 import { User, Mail, Phone } from "react-feather";
 import UpdateAccount from '../../components/UpdateAccount';
@@ -17,7 +17,7 @@ const UpdateAccountPage = () => {
 
   const updateUser = async (e) => {
     e.preventDefault()
-    let responseRaw = await fetch('/api/myuser', {
+    await fetch('/api/myuser', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -30,10 +30,8 @@ const UpdateAccountPage = () => {
         phone: phone.current.value || user.phone,
       })
     })
-    let response = await responseRaw.json()
     setUpdate(true)
   }
-  
   let inputData = [
     {
       placeholder: user.firstName,
