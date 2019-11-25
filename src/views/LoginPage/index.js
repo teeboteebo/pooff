@@ -11,7 +11,7 @@ const LoginPage = () => {
   const history = useHistory()
 
   const checkIfActive = async username => {
-    let user = await fetch(`/api/users/username/${username}`)
+    let user = await fetch(`/api/active/${username}`)
     user = await user.json()
     console.log(user)
     return user
@@ -43,6 +43,9 @@ const LoginPage = () => {
         props.history.push("/") */
         const fetchedUser = await fetch("/api/myuser")
         const user = await fetchedUser.json()
+        const fetchedBalance = await fetch('/api/mytransactions/balance')
+        const balanceObj = await fetchedBalance.json()
+        user.balance = balanceObj.balance
         state.setLoggedIn(user)
 
         if (user.role === "parent") {

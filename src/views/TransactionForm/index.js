@@ -5,7 +5,7 @@ import PaymentConfirmation from "../PaymentConfirmation"
 import { usePooff } from '../../context'
 
 const TransactionForm = props => {
-  const state = usePooff()  
+  const state = usePooff()
   const [favorite, setFavorite] = useState(false)
   const [receiverName, setReceiverName] = useState("")
   const [validInputs, setValidInputs] = useState({
@@ -47,7 +47,7 @@ const TransactionForm = props => {
     if (e.target.value.length > 9) {
       let response = await fetch(`/api/mytransactions/number/${e.target.value}`)
       let foundUser = await response.json()
-      if (receiver.current.value === state.loggedIn.phone){
+      if (receiver.current.value === state.loggedIn.phone) {
         setReceiverName("Du kan ej skicka pengar till dig själv")
       } else if (foundUser !== null) {
         foundUser = `${foundUser.firstName} ${foundUser.lastName}`
@@ -68,6 +68,19 @@ const TransactionForm = props => {
           message: message.current.value,
         }),
       })
+
+      const fetchedUser = await fetch('/api/myuser')
+      const user = await fetchedUser.json()
+      const fetchedBalance = await fetch('/api/mytransactions/balance')
+      const balanceObj = await fetchedBalance.json()
+      user.balance = balanceObj.balance
+      state.setLoggedIn(user)
+
+      if (user.role === 'parent') {
+        const fetchedChildren = await fetch('/api/mychildren')
+        const children = await fetchedChildren.json()
+        state.setChildren(children)
+      }
       // console.log(await response.json())
       setPaymentSent({
         sent: true,
