@@ -1,44 +1,72 @@
 import React, { useState } from "react"
 import { Container, Form, Row, Col, Input, Button, Label } from "reactstrap"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
-import { usePooff } from '../../context'
+import { usePooff } from "../../context"
 
 const LoginPage = () => {
   const state = usePooff()
+  // Force login route to go through to / route when
+  // you push the login button 
+  const history = useHistory()
+
+  const checkIfActive = async username => {
+    let user = await fetch(`/api/users/username/${username}`)
+    user = await user.json()
+    console.log(user)
+    return user
+  }
 
   const login = async (e, username, password) => {
     e.preventDefault()
-    let jsonRaw = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    })
 
-    let message = await jsonRaw.json()
+    const user = await checkIfActive(username)
 
-    if (message.error) {
-      setStatusMessage("Användarnamn eller lösenord är fel")
-    } else {
-      /* setStatusMessage(`Inloggad som ${message.username} - (${message.role})`)
-      props.history.push("/") */
-      const fetchedUser = await fetch('/api/myuser')
-      const user = await fetchedUser.json()
-      const fetchedBalance = await fetch('/api/mytransactions/balance')
-      const balanceObj = await fetchedBalance.json()
-      user.balance = balanceObj.balance
-      state.setLoggedIn(user)
+    if (user.active) {
+      let jsonRaw = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      })
 
-      if (user.role === 'parent') {
-        const fetchedChildren = await fetch('api/mychildren')
-        const children = await fetchedChildren.json()
-        state.setChildren(children)
+      let message = await jsonRaw.json()
+
+      if (message.error) {
+        setStatusMessage("Användarnamn eller lösenord är fel")
+      } else {
+        /* setStatusMessage(`Inloggad som ${message.username} - (${message.role})`)
+        props.history.push("/") */
+        const fetchedUser = await fetch("/api/myuser")
+        const user = await fetchedUser.json()
+        state.setLoggedIn(user)
+
+        if (user.role === "parent") {
+          const fetchedChildren = await fetch("api/mychildren")
+          const children = await fetchedChildren.json()
+          state.setChildren(children)
+        }
+
+        history.push('/')
       }
+    } else {
+      setStatusMessage(
+        "Ditt konto är inte aktiverat. Ett mail har skickats till dig ifall du vill aktivera det",
+      )
+      await fetch("api/send", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          type: "activate",
+          email: user.email,
+        }),
+      })
     }
   }
   const [usernameValue, setUsernameValue] = useState("")
