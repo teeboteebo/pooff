@@ -1,13 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import {ChevronRight} from 'react-feather';
 import NewFavorite from "../../components/NewFavorite";
-
+    
 
 
 const FavoritePage = ()  =>{
-    const [showText, setShowText] = useState(false);
-    
         return (
            <Container>
                <Row>
@@ -24,10 +22,11 @@ const FavoritePage = ()  =>{
                    </Button>
                </Col>
                </Row>
+               
+
                <Row className="button-field">
                     <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-                    <Button onClick={() => setShowText(!showText)}  type="submit" value="Submit" >Ny Favorit</Button>
-                    {showText && <NewFavorite/>}
+                    <NewFavorite/>
                     </Col>
                 </Row>  
            </Container>
