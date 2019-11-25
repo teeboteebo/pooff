@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Row, Col, CustomInput } from 'reactstrap'
-import { Home, Users, ChevronDown, Eye, User, Plus, Heart, Settings, HelpCircle, LogOut } from 'react-feather'
+import { Home, List, Users, ChevronDown, Eye, User, Plus, Heart, Settings, HelpCircle, LogOut } from 'react-feather'
 
 import { usePooff } from '../../context'
 
@@ -37,6 +37,12 @@ const Menu = () => {
           <Link to="/" onClick={() => state.setMenuOpen(!state.menuOpen)}>
             <Home />
             <span className="side-margin">Startsida</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/mina-transaktioner" onClick={() => state.setMenuOpen(!state.menuOpen)}>
+            <List />
+            <span className="side-margin">Transaktioner</span>
           </Link>
         </li>
         {state.children.length ?
