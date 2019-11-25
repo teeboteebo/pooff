@@ -1,12 +1,15 @@
 import { createContext, useContext, useState } from 'react'
 
 export const useContextValues = () => {
-  const [darkMode, setDarkMode] = useState(false)
+  const [loggedIn, setLoggedIn] = useState()
+  const [children, setChildren] = useState([])
   const [menuOpen, setMenuOpen] = useState(false)
 
   return {
-    darkMode,
-    setDarkMode,
+    loggedIn,
+    setLoggedIn,
+    children,
+    setChildren,
     menuOpen,
     setMenuOpen
   }
