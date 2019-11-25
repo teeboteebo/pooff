@@ -1,3 +1,10 @@
-.form-control{
-    border: 1px solid black!important;
+.add-favorite-container {
+  .form-control {
+    border: 1px solid black !important;
+  }
+  .primary-btn {
+      width: 100% !important;
+      background-color: #07575b;
+      color: #eee;
+  }
 }
