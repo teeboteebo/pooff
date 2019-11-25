@@ -2,20 +2,25 @@ import React from "react"
 import "./styles.scss"
 import { Link } from "react-router-dom"
 
+import { usePooff } from "../../context"
+
 const PaymentConfirmation = props => {
+  const { darkMode } = usePooff()
   return (
     <div className="payment-confirmation-container">
       <h3 className="title-field">Betalning skickad</h3>
       <img
         className="check-mark"
-        src="/images/checkmarkLM.png"
+        src={darkMode ? "/images/checkmarkDM.png" : "/images/checkmarkLM.png"}
         alt="checkmark"
       ></img>
       <h4 className="name-field">{props.name}</h4>
       <h6 className="number-field">{props.number}</h6>
-      <h4 className="amount-field">{props.amount}</h4>
+      <h4 className="amount-field">{props.amount + " kr"}</h4>
       <h6 className="message-field">{props.message}</h6>
-      <Link className="link-button">Till transaktionshistorik</Link>
+      <Link to="/mina-transaktioner" className="link-button">
+        Till transaktionshistorik
+      </Link>
       <Link to="/" className="link-button">
         Till startsida
       </Link>

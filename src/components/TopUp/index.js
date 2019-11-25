@@ -18,8 +18,11 @@ const TopUp = (props) => {
       })
     })
     let message = await messageRaw.json()
-    console.log(message);
-    props.clickHandler()    
+    if (message === 'Success') {
+      props.clickHandler()
+      setAmount('0')
+      setSource(undefined)
+    }
   }
   return (
     <Container

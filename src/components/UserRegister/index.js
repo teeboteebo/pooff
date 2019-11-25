@@ -17,7 +17,8 @@ const UserRegister = props => {
         <div className="input-group" key={'input_' + i} onChange={input.class === 'repeat-password' ? checkIfMatch : null}>
           {input.icon}
           <input
-            className={"input-field " + input.class}
+            ref={input.ref}
+            className={"input-register " + input.class}
             placeholder={input.name}
             type={input.class === 'new-password' ? (peek ? 'text' : 'password') : input.type} />
           {input.class === 'new-password' ? (peek ? <EyeOff className="peeker" onClick={() => setPeek(!peek)} /> : <Eye className="peeker" onClick={() => setPeek(!peek)} />) : null}
