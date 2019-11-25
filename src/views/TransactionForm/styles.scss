@@ -17,12 +17,12 @@
       border-radius: 4px;
       color: var(--textColor);
       text-indent: 40px;
-      background-color: var(--inputBackground);
+      background-color: var(--inputbackground);
 
       &:focus {
         border-radius: .3rem;
-        border-color: var(--inputBorder);
-        outline-color: var(--inputBorder);
+        border-color: var(--inputborder);
+        outline-color: var(--inputborder);
         box-shadow: var(--primary);
       }
     }
@@ -38,6 +38,10 @@
         top: 9px;
         transform: none;
       }
+    }
+
+    p {
+      margin-left: 48.5px;
     }
 
   }
@@ -58,7 +62,7 @@
       min-width: 50%;
       background-color: var(--primary);
       border: 1px solid var(--primary);
-      color: var(--buttonText);
+      color: var(--buttontext);
 
       span {
         margin-left: 10px;

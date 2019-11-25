@@ -17,8 +17,6 @@ const TransactionPage = () => {
     //comment below removes varning to include or exclude idToGet
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(transaction)
-
 
   // format date and remove punctuation
   if (transaction) {
@@ -35,7 +33,6 @@ const TransactionPage = () => {
                 <p className="phone mb-4">{transaction.receiver.phone}</p>
                 <p className={transaction.amount > 0 ? "mb-3 incoming" : "mb-3 outgoing"}>{transaction.amount}kr</p>
                 <div className="frame">
-
                 <p className="message">{transaction.message}</p>
                 </div>
               </div>

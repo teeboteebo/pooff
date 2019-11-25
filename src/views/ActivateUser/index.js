@@ -1,21 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import { Spinner } from "reactstrap"
 
 const ActivateUser = () => {
   const [link, setLink] = useState("")
   const [activated, setActivated] = useState(false)
 
-  useEffect(() => {
-    const path = window.location.pathname.split("/")[2]
-    const fetchLink = async () => {
-      let fetchedLink = await fetch("/api/links/" + path)
-      fetchedLink = await fetchedLink.json()
-      fetchedLink.link ? setLink(fetchedLink) : setLink("")
-    }
-    fetchLink()
-    findUserAndActivate()
-  }, [])
-
   const findUserAndActivate = async () => {
+    console.log()
     const user = await findUser()
     await activateUser(user)
     setActivated(true)
@@ -23,7 +14,7 @@ const ActivateUser = () => {
 
   const findUser = async () => {
     let user = await fetch("/api/users/email/" + link.email)
-    user = user.json()
+    user = await user.json()
     return user
   }
 
@@ -39,12 +30,35 @@ const ActivateUser = () => {
     })
   }
 
+  const run = async () => {
+    const path = window.location.pathname.split("/")[2]
+    const fetchLink = async () => {
+      let fetchedLink = await fetch("/api/links/" + path)
+      fetchedLink = await fetchedLink.json()
+      console.log(fetchedLink)
+      fetchedLink.link ? await setLink(fetchedLink) : await setLink("")
+    }
+    await fetchLink()
+    await (link ? findUserAndActivate() : null)
+  }
+
+  if (!activated) {
+    run()
+  }
+
   return (
     <div>
       {activated ? (
-        <h2>Ditt konto har nu aktiverats</h2>
+        <div>
+          <h2>Ditt konto har nu aktiverats</h2>
+          <button className=".to-login-button">Till inlogg</button>
+        </div>
       ) : (
-        <h2>Kunde inte hitta länk</h2>
+        <div>
+          <h2>
+            <Spinner />
+          </h2>
+        </div>
       )}
     </div>
   )

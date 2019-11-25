@@ -7,6 +7,10 @@
   left: 0;
   transition: 0.3s top;
 
+  .transaction-card {
+    background-color: rgb(27, 27, 27);
+  }
+
   background-color: var(--transactionPreviewBackground);
   box-shadow: 0 0 5px 2px var(--transactionBackgroundShadow);
   &.open {
