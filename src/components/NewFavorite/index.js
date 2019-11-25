@@ -1,27 +1,25 @@
 import React, {useState } from "react";
 import { Form, Row, Col, Input, Button, Label, Container } from "reactstrap";
 
+
+
 const NewFavorite = () => {
 
   //skapa values för namn och telefonnr när en användare skapas
   const [nameFavorite, setNameFavorite] = useState("");
   const [phoneFavorite, setPhoneFavorite] = useState("");
 
-
-
 //skapa en column där både namn och telefon nr skrivs ut
-  const [createFavorite, setCreateFavorite] = useState (false);
+  const [createFavorite, setCreateFavorite] = useState (false
+  );
 
-
-  const onSubmit = (evt) => {
+  const sendFavorite = (evt) => {
     evt.preventDefault();
-    alert(
-      `Name: ${nameFavorite} \nPhone: ${phoneFavorite}`
-    )
+    console.log({nameFavorite}, {phoneFavorite})
 }
 return (
   <Container>
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={sendFavorite}>
       <Row className="input-field">
         <Col sm="12" md={{ size: 6, offset: 3 }}>
         <Label  className="floating-label" for="exampleEmail">Användarnamn</Label>
@@ -48,13 +46,18 @@ return (
 
       <Row className="button-field">
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-        <Button onSubmit={() => setCreateFavorite(!createFavorite)}  className="login" type="submit" value="Submit" >Skapa Favorit</Button> 
+        <Button onClick={() => setCreateFavorite(!createFavorite)}  className="login" type="submit" value="Submit" >Skapa Favorit</Button> 
        </Col>
       </Row>
-      {createFavorite && <h1>test</h1>}
-
+      {createFavorite === true  && <Row>
+    <Col className="text-center" sm="12"  md={{ size: 6, offset: 3 }}>
+        <Button className="Favorite-user">
+          <h3>{nameFavorite}</h3>
+          <p>{phoneFavorite}</p>
+        </Button>
+    </Col>
+    </Row>}
     </Form>
-
     </Container>
   );
 };

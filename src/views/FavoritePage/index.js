@@ -7,7 +7,7 @@ import NewFavorite from "../../components/NewFavorite";
 
 const FavoritePage = ()  =>{
     const [showText, setShowText] = useState(false);
-
+    
         return (
            <Container>
                <Row>
@@ -29,7 +29,7 @@ const FavoritePage = ()  =>{
                     <Button onClick={() => setShowText(!showText)}  type="submit" value="Submit" >Ny Favorit</Button>
                     {showText && <NewFavorite/>}
                     </Col>
-                 </Row>  
+                </Row>  
            </Container>
         );
 }
