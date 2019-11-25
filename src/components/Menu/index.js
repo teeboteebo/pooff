@@ -78,13 +78,13 @@ const Menu = () => {
           </li>
         }
         <li>
-          <Link to="/">
+          <Link to="/favoriter">
             <Heart />
             <span className="side-margin">Favoriter</span>
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link to="/mitt-konto" onClick={() => state.setMenuOpen(!state.menuOpen)}>
             <Settings />
             <span className="side-margin">Mitt konto</span>
           </Link>
