@@ -34,6 +34,7 @@ const TransactionForm = props => {
       setFavorites(allFavorites)
     }
     getFavorites()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const validate = () => {
     const valid = { ...validInputs }
@@ -68,7 +69,7 @@ const TransactionForm = props => {
   }
   const onSubmit = async () => {
     if (validate()) {
-      const response = await fetch("/api/transactions", {
+      await fetch("/api/transactions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
