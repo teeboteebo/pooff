@@ -11,7 +11,7 @@ const PooffStartPage = () => {
         <Link to="/logga-in">
           <input className="primary-btn save-button mt-4" type="submit" value="Logga in" />
         </Link>
-        <Link to="registrera">
+        <Link to="/registrera">
           <input className="secondary-btn save-button mt-4" type="submit" value="Skapa konto" />
         </Link>
         <div className="pooff-start-page-link mt-4">

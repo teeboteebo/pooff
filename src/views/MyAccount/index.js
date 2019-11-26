@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { User, Mail, Phone, Gift, Lock, Edit3, UserX } from "react-feather"
+import { User, Mail, Phone, Gift } from "react-feather"
 import { Link } from 'react-router-dom'
-import { Container, Row, Col, Button } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 
 const MyAcccount = () => {
   const [user, setUser] = useState({});
@@ -21,37 +21,37 @@ const MyAcccount = () => {
       <h2 className="page-title">Mitt Konto</h2>
       <Row className="no-gutters">
         <Col xs="12" className="">
-            <ul className="list-item">
-              <li>
-                <User className="icon"></User>
-                <span className="header mb-2">Namn: <p className="info">{user.firstName + ' ' + user.lastName}</p></span>
-              </li>
-              <li>
-                <Mail className="icon"></Mail>
-                <span className="header mb-4">E-post: <p className="info">{user.email}</p></span>
-              </li>
-              <li>
-                <Phone className="icon"></Phone>
-                <span className="header mb-4">Telefon: <p className="info">{user.phone}</p></span>
-              </li>
-              <li>
-                <Gift className="icon"></Gift>
-                <span className="header">Personnummer: <p className="info">{user.personId}</p></span>
-              </li>
-            </ul>
+          <ul className="list-item">
+            <li>
+              <User className="icon"></User>
+              <span className="header">Namn: <p className="info">{user.firstName + ' ' + user.lastName}</p></span>
+            </li>
+            <li>
+              <Mail className="icon"></Mail>
+              <span className="header">E-post: <p className="info">{user.email}</p></span>
+            </li>
+            <li>
+              <Phone className="icon"></Phone>
+              <span className="header">Telefon: <p className="info">{user.phone}</p></span>
+            </li>
+            <li>
+              <Gift className="icon"></Gift>
+              <span className="header">Personnummer: <p className="info">{user.personId}</p></span>
+            </li>
+          </ul>
         </Col>
       </Row>
       <Row className="mt-4 no-gutters text-center">
         <Col xs="12">
           <div className="button-section">
-            <Link to="/">
-            <Button className="edit">Uppdatera konto<Lock className="btn-icon"></Lock></Button>
+            <Link to="/uppdatera-konto">
+              <input className="primary-btn mt-4" type="submit" value="Uppdatera konto" />
             </Link>
-            <Link to="/">
-            <Button className="edit">Ändra lösenord<Edit3 className="btn-icon"></Edit3></Button>
+            <Link to="/andra-losenord">
+              <input className="primary-btn mt-4" type="submit" value="Ändra lösenord" />
             </Link>
-            <Link to="/">
-            <Button className="edit">Inaktivera konto<UserX className="btn-icon"></UserX></Button>
+            <Link to="/inaktivera-konto">
+              <input className="primary-btn mt-4" type="submit" value="Inaktivera konto" />
             </Link>
           </div>
         </Col>

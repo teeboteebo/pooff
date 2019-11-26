@@ -21,7 +21,7 @@ const QuestionAndAnswers = () => {
       {qnas.map((qna, i) => {
         return <FAQ data={qna} key={"qna_" + i} />
       })}
-      <Link to="/logga-in">
+      <Link to="/">
         <input className="primary-btn save-button mt-4" type="submit" value="Tillbaka" />
       </Link>
     </Container>
