@@ -64,7 +64,7 @@ const TransactionForm = props => {
       } else if (foundUser !== null) {
         foundUser = `${foundUser.firstName} ${foundUser.lastName}`
         setReceiverName(foundUser)
-      } else setReceiverName("")
+      } else setReceiverName("Ingen mottagare med detta nummer finns")
     }
   }
   const onSubmit = async () => {
@@ -151,7 +151,7 @@ const TransactionForm = props => {
           <textarea rows="4" ref={message} placeholder="Meddelande..." />
         </div>
         <div className="button-div mt-4">
-          <Button className="primary-btn" onClick={onSubmit}><Send /><span>Skicka</span></Button>
+          <Button className="primary-btn" disabled={receiverName === 'Ingen mottagare med detta nummer finns' || receiverName ===  'Du kan ej skicka pengar till dig själv' || !receiverName ? true : false} onClick={onSubmit}><Send /><span>Skicka</span></Button>
         </div>
       </Container>
     )

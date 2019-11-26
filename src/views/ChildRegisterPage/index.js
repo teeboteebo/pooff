@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import { usePooff } from '../../context'
 
 const ChildRegisterPage = () => {
+  const state = usePooff()
   const [statusMessage, setStatusMessage] = useState('')
   const [firstNameValue, setFirstNameValue] = useState('')
   const [emailValue, setEmailValue] = useState('')
@@ -49,7 +51,7 @@ const ChildRegisterPage = () => {
         <p style={{fontStyle: 'italic', opacity: '0.7', color: 'var(--primary)'}}>{statusMessage}</p>
         <input className="primary-btn submit-btn mb-3" type="submit" value="Lägg till barn" />
       </form>
-      <Link to="/mina-barn"><button className="secondary-btn back-btn">Tillbaka till översikten</button></Link>
+      {state.children[0] ? <Link to="/mina-barn"><button className="secondary-btn back-btn">Tillbaka till översikten</button></Link> : ''}
     </Container>
   )
 }
