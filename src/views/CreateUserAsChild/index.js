@@ -2,30 +2,27 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container } from 'reactstrap'
 import { User, Mail, Phone, Lock } from 'react-feather'
-import {useState, useEffect, useRef} from "react"
+import { useState, useRef } from "react"
 
 import UserRegister from "../../components/UserRegister";
 
 const CreateUserAsChild = () => {
 
-  const firstName = useRef()
   const lastName = useRef()
-  const personId = useRef()
   const username = useRef()
-  const email = useRef()
   const phone = useRef()
   const password = useRef()
 
   const [link, setLink] = useState("")
-  const [fetched, setFetched] = useState(false) 
+  const [fetched, setFetched] = useState(false)
   const [user, setUser] = useState({})
-  const [updated, setUpdated] = useState(false) 
+  const [updated, setUpdated] = useState(false)
 
   let childInputData = [
     {
       name: user[0] ? user[0].firstName : 'Förnamn',
       type: 'text',
-      icon: <User className="main-icon" disabled/>
+      icon: <User className="main-icon" disabled />
     },
     {
       name: 'Efternamn',
@@ -33,7 +30,7 @@ const CreateUserAsChild = () => {
       ref: lastName,
       icon: <User className="main-icon" />
     },
-    { // We wait for createChild component to pre-write Id number
+    {
       name: user[0] ? user[0].personId : 'Personnummer',
       type: 'text',
       icon: <User className="main-icon" />
@@ -44,10 +41,10 @@ const CreateUserAsChild = () => {
       ref: username,
       icon: <User className="main-icon" />
     },
-    { // We wait for createChild component to pre-write E-mail
+    {
       name: user[0] ? user[0].email : 'E-post',
       type: 'email',
-      icon: <Mail className="main-icon" disabled/>
+      icon: <Mail className="main-icon" disabled />
     },
     {
       name: 'Telefonnummer',
@@ -94,8 +91,8 @@ const CreateUserAsChild = () => {
     run()
   }
 
-  const updateChild = async() => {
-    const putUser = await fetch(`/api/child/${user[0]._id}`, {
+  const updateChild = async () => {
+    await fetch(`/api/child/${user[0]._id}`, {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json",
@@ -115,9 +112,9 @@ const CreateUserAsChild = () => {
   return (
     updated ?
       <Container fluid={true}>
-      <h2 className="page-title">Din profil har updaterats</h2>
-      <Link to="/logga-in">Klicka här för att logga in</Link></Container> :
-    <Container fluid={true}>
+        <h2 className="page-title">Din profil har updaterats</h2>
+        <Link to="/logga-in">Klicka här för att logga in</Link></Container> :
+      <Container fluid={true}>
         <h2 className="page-title">Komplettera din profil</h2>
         <p className="page-info">Ange personuppgifter</p>
         <UserRegister inputs={childInputData} />
@@ -125,7 +122,7 @@ const CreateUserAsChild = () => {
           <button className="save-button" onClick={updateChild}>Registrera</button>
           <p>Har du redan ett konto?<Link className="login" to="/logga-in">Logga in</Link></p>
         </div>
-    </Container>
+      </Container>
   )
 }
 export default CreateUserAsChild
