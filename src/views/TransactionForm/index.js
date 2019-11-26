@@ -92,7 +92,6 @@ const TransactionForm = props => {
         const children = await fetchedChildren.json()
         state.setChildren(children)
       }
-      // console.log(await response.json())
       setPaymentSent({
         sent: true,
         name: receiverName,

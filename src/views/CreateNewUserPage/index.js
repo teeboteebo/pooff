@@ -88,7 +88,6 @@ const CreateNewUserPage = () => {
       }),
     })
     let response = await responseRaw.json()
-    console.log(response)
 
     sendActivationMail()
     setCreated(true)

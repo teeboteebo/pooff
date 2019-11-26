@@ -84,7 +84,6 @@ const CreateUserAsChild = () => {
     user = await user.json()
     setFetched(true)
     setUser(user)
-    console.log(user)
   }
 
   if (!fetched) {
@@ -105,7 +104,6 @@ const CreateUserAsChild = () => {
         active: true
       })
     })
-    console.log(lastName.current.value)
     await setUpdated(true)
   }
 
