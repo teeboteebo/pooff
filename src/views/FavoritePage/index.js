@@ -26,7 +26,7 @@ const FavoritePage = () => {
   }, [])
 
   return (
-    <Container>
+    <Container className="favorites-container">
       <h2 className="page-title">Favoriter</h2>
       <Row className="no-gutters">
         {userFavorites
