@@ -12,7 +12,6 @@ const NewFavorite = (props) => {
 
   const sendFavorite = async (evt) => {
     evt.preventDefault();
-    console.log({ nameFavorite }, { phoneFavorite })
     const responseRaw = await fetch('/api/myuser/favorites', {
       method: 'PUT',
       headers: {
@@ -23,10 +22,8 @@ const NewFavorite = (props) => {
         phone: phoneFavorite
       })
     })
-    let message = await responseRaw.json()
-    console.log('fetch sent');
+    await responseRaw.json()
     
-    console.log(message);
     setModal(false)
     props.updateFavorites()
   }

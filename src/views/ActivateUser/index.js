@@ -7,7 +7,6 @@ const ActivateUser = () => {
   const [activated, setActivated] = useState(false)
 
   const findUserAndActivate = async () => {
-    console.log()
     const user = await findUser()
     await activateUser(user)
     setActivated(true)
@@ -36,7 +35,6 @@ const ActivateUser = () => {
     const fetchLink = async () => {
       let fetchedLink = await fetch("/api/links/" + path)
       fetchedLink = await fetchedLink.json()
-      console.log(fetchedLink)
       fetchedLink.link ? await setLink(fetchedLink) : await setLink("")
     }
     await fetchLink()

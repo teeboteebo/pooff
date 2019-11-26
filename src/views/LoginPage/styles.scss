@@ -1,4 +1,5 @@
-.form-control{
+.login-container {
+  .form-control {
     display: block;
     height: calc(1.5em + 0.75rem + 2px);
     padding: 0.375rem 0.75rem;
@@ -11,53 +12,54 @@
     border: 1px solid var(--inputborder);
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
+  }
 
-.form-control:focus{
+  .form-control:focus {
     background-color: var(--inputbackground);
     color: var(--inputtext);
-}
+  }
 
-a, a:hover{
+  a,
+  a:hover {
     color: var(--linkcolor);
-}
+  }
 
-input.form-control.form-control::placeholder{
+  input.form-control.form-control::placeholder {
     color: var(--inputplaceholder);
-}
+  }
 
-.input-field{
+  .input-field {
     margin-top: 2rem;
-}
+  }
 
-.text-center{
+  .text-center {
     text-align: center;
-}
-  
+  }
 
   .floating-label {
     pointer-events: none;
     left: 20px;
     margin: 0.5rem 0rem;
     transition: 0.2s ease all;
-    display:none;
+    display: none;
   }
 
-  .no-account{
-      color: gray;
+  .no-account {
+    color: gray;
   }
 
-  .login{
-      background-color: var(--buttonprimary);
-      color: var(--buttontext);
-      padding: 0.25rem 3rem;
-      border: none;
+  .login {
+    background-color: var(--buttonprimary);
+    color: var(--buttontext);
+    padding: 0.25rem 3rem;
+    border: none;
   }
 
-  .button-field{
+  .button-field {
     margin-top: 2rem;
   }
 
-  .link-field{
+  .link-field {
     margin-top: 1.5rem;
   }
+}

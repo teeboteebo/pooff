@@ -6,8 +6,6 @@ const ResetPassword = () => {
   const [sent, setSent] = useState(false)
 
   const sendMail = async () => {
-    console.log(document.querySelector(".email-input").value)
-
     setSent(true)
 
     await fetch("api/send", {
