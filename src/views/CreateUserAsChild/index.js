@@ -92,7 +92,7 @@ const CreateUserAsChild = () => {
   }
 
   const updateChild = async () => {
-    const putUser = await fetch(`/api/child/${user[0]._id}`, {
+    await fetch(`/api/child/${user[0]._id}`, {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json",

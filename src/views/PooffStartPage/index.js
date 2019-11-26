@@ -6,7 +6,7 @@ const PooffStartPage = () => {
 
   return (
     <Container>
-      <img className="img-fluid mb-4" src="/images/logos/pooff-dark.png" alt="a big and beautiful owl with big eyes" />
+      <img className="pooff-start-logo img-fluid mb-4" src="/images/logos/pooff-dark.png" alt="a big and beautiful owl with big eyes" />
       <div>
         <Link to="/logga-in">
           <input className="primary-btn save-button mt-4" type="submit" value="Logga in" />
