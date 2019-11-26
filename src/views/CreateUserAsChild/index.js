@@ -30,7 +30,7 @@ const CreateUserAsChild = () => {
       ref: lastName,
       icon: <User className="main-icon" />
     },
-    { // We wait for createChild component to pre-write Id number
+    {
       name: user[0] ? user[0].personId : 'Personnummer',
       type: 'text',
       icon: <User className="main-icon" />
@@ -41,7 +41,7 @@ const CreateUserAsChild = () => {
       ref: username,
       icon: <User className="main-icon" />
     },
-    { // We wait for createChild component to pre-write E-mail
+    {
       name: user[0] ? user[0].email : 'E-post',
       type: 'email',
       icon: <Mail className="main-icon" disabled />
