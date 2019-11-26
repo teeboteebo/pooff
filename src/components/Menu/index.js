@@ -98,22 +98,27 @@ const Menu = () => {
                   </li>
                 ))}
                 <li>
-                  <Plus />
-                  <span className="side-margin">Lägg till barn</span>
+                  <Link
+                    to="/lagg-till-barn"
+                    onClick={() => state.setMenuOpen(!state.menuOpen)}
+                  >
+                    <Plus />
+                    <span className="side-margin">Lägg till barn</span>
+                  </Link>
                 </li>
               </ul>
             ) : (
-              ""
-            )}
+                ""
+              )}
           </li>
         ) : (
-          <li>
-            <Link to="/" onClick={() => state.setMenuOpen(!state.menuOpen)}>
-              <Plus />
-              <span className="side-margin">Lägg till barn</span>
-            </Link>
-          </li>
-        )}
+            <li>
+              <Link to="/" onClick={() => state.setMenuOpen(!state.menuOpen)}>
+                <Plus />
+                <span className="side-margin">Lägg till barn</span>
+              </Link>
+            </li>
+          )}
         <li>
           <Link to="/favoriter" onClick={() => state.setMenuOpen(!state.menuOpen)}>
             <Heart />
