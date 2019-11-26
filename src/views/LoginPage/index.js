@@ -12,7 +12,9 @@ const LoginPage = () => {
 
   const checkIfActive = async username => {
     let user = await fetch(`/api/active/${username}`)
+    console.log(user)
     user = await user.json()
+    console.log(user)
     return user
   }
 
@@ -55,7 +57,18 @@ const LoginPage = () => {
 
         history.push('/')
       }
-    } else {
+      
+      
+    }
+    else if (user.error === "error") {
+      setStatusMessage(
+        "Kunde inte hitta konto",
+      )
+    }
+    
+    
+    else {
+      console.log(user.error)
       setStatusMessage(
         "Ditt konto är inte aktiverat. Ett mail har skickats till dig ifall du vill aktivera det",
       )
@@ -133,13 +146,13 @@ const LoginPage = () => {
 
       <Row className="link-field">
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-          <Link className="no-account" to="/">
-            Har ej ett konto?
-          </Link>
+          {/* <Link className="no-account" to="/"> */}
+            <p>Har ej ett konto?</p>
+          {/* </Link> */}
         </Col>
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
           <Link className="register" to="/registrera">
-            Registrera
+            Skapa konto
           </Link>
         </Col>
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
