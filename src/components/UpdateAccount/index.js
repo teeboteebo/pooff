@@ -10,7 +10,7 @@ const UpdateAccount = props => {
           {input.icon}
           <input
             ref={input.ref}
-            className="input"
+            className="input-field"
             placeholder={input.placeholder}
             type="text"
             />
