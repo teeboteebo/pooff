@@ -70,6 +70,8 @@ const App = () => {
       // console.log(loggedIn);
     }
     checkIfLoggedIn()
+     //comment below removes varning to include or exclude idToGet
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   if (window.matchMedia("(orientation: landscape)").matches) {
