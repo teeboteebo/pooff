@@ -13,7 +13,6 @@ const LoginPage = () => {
   const checkIfActive = async username => {
     let user = await fetch(`/api/active/${username}`)
     user = await user.json()
-    console.log(user)
     return user
   }
 

@@ -72,7 +72,7 @@ const CreateNewUserPage = () => {
 
   const submitNewUser = async e => {
     e.preventDefault()
-    let responseRaw = await fetch("/api/users", {
+    await fetch("/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -87,8 +87,7 @@ const CreateNewUserPage = () => {
         phone: phone.current.value,
       }),
     })
-    let response = await responseRaw.json()
-    console.log(response)
+    // let response = await responseRaw.json()
 
     sendActivationMail()
     setCreated(true)

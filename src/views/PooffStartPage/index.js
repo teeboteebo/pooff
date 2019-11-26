@@ -5,7 +5,7 @@ import { Container } from 'reactstrap'
 const PooffStartPage = () => {
 
   return (
-    <Container>
+    <Container fluid={true} className="text-center">
       <img className="pooff-start-logo img-fluid mb-4" src="/images/logos/pooff-dark.png" alt="a big and beautiful owl with big eyes" />
       <div>
         <Link to="/logga-in">

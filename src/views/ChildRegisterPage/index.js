@@ -9,7 +9,6 @@ const ChildRegisterPage = () => {
   const [personIdValue, setPersonIdValue] = useState('')
   const submitChild = async (e, firstName, email, personId) => {
     e.preventDefault()
-    console.log('firstName: ', firstName, 'email: ', email, 'personId: ', personId);
 
     let responseRaw = await fetch('/api/godaddy', {
       method: 'PUT',
