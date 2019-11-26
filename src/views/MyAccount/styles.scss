@@ -7,6 +7,9 @@
       justify-content: center;
     }
     li {
+      svg{
+        color: var(--inputIcon);
+      }
       // margin-bottom: 20px;
       .header, .bottom-header {
         margin-left: 15px;
