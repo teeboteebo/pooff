@@ -1,11 +1,29 @@
-.Favorite-user{
-    padding: 1rem 5rem!important;
+.Favorite-user {
+  padding: 1rem 5rem !important;
 }
 
-.newFavorite{ 
-    background-color: var(--buttonprimary); 
-    color: var(--buttontext); 
-    padding: 0.25rem 3rem; 
-    border: none; 
-} 
+.newFavorite {
+  background-color: var(--buttonprimary);
+  color: var(--buttontext);
+  padding: 0.25rem 3rem;
+  border: none;
+}
 
+.bg-test {
+  padding: 1rem;
+  background-color: var(--transactionPreviewBackground);
+  box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
+  border: 2px solid var(--primary);
+  border-radius: 2px;
+}
+
+.nickname, .phonenr {
+  color: var(--textColor);
+  padding-left: 1rem;
+}
+
+.remove-btn{
+  background-color: red;
+  border-color: red;
+  color: #ffff;
+}
