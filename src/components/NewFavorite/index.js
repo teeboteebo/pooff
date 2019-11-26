@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Row, Col, Input, Button, Label, Container, ModalHeader, ModalBody, ModalFooter, Modal } from "reactstrap";
+import { Form, Row, Col, Input, Button, Label, Container, ModalHeader, ModalBody, Modal } from "reactstrap";
 
 
 

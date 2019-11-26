@@ -18,6 +18,7 @@
 @import "../components/Menu/styles";
 @import "../components/FAQ/styles";
 @import "../components/NewFavorite/styles";
+@import "../components/UpdateAccount/styles";
 
 // Views Styling
 @import "../views/PooffStartPage/styles";
@@ -34,5 +35,9 @@
 @import "../views/LoginPage/styles";
 @import "../views/KidsList/styles";
 @import "../views/Kid/styles";
-@import "../views/MyAccount/styles";
 @import "../views/ChildRegisterPage/styles";
+@import '../views/MyAccount/styles';
+@import "../views/UpdateAccountPage/styles";
+@import "../views/ConfirmAccUpdate/styles";
+@import "../views/ActivateUser/styles";
+
