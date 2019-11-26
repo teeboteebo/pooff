@@ -89,14 +89,11 @@ const LoginPage = () => {
   const [statusMessage, setStatusMessage] = useState("")
 
   return (
-    <Container fluid={true} className="login-container">
+    <Container fluid={true} className="login-container no-gutters">
+      <h2 className="page-title">Logga in</h2>
       <Form onSubmit={e => login(e, usernameValue, passwordValue)}>
-        <Row>
-          <Col sm="12" md={{ size: 6, offset: 3 }}>
-            <h1 className="text-center">Logga in</h1>
-          </Col>
-        </Row>
-        <Row className="input-field">
+        
+        <Row className="input-field no-gutters">
           <Col sm="12" md={{ size: 6, offset: 3 }}>
             <Label className="floating-label" for="exampleUsername">
               Användarnamn
@@ -130,10 +127,10 @@ const LoginPage = () => {
             </Link>
           </Col>
         </Row>
-        <Row className="button-field">
+        <Row className="button-field no-gutters">
           <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
             <Button
-              className="login"
+              className="login primary-btn"
               name="submit"
               value="Logga in"
               type="submit"
