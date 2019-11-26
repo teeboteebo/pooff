@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { User, Mail, Phone, Gift } from "react-feather"
 import { Link } from 'react-router-dom'
+import { usePooff } from '../../context';
 import { Container, Row, Col } from 'reactstrap'
 
 const MyAcccount = () => {
-  const [user, setUser] = useState({});
+  const state = usePooff()
+  const user = state.loggedIn
 
-  useEffect(() => {
-    const getUser = async () => {
-      const data = await fetch('/api/myuser')
-      const user = await data.json()
-      setUser(user)
-    }
-    getUser()
-
-  }, [])
 
   return (
     <Container className="my-account" fluid={true}>
@@ -36,7 +29,7 @@ const MyAcccount = () => {
             </li>
             <li>
               <Gift className="icon"></Gift>
-              <span className="header">Personnummer: <p className="info">{user.personId}</p></span>
+              <span className="bottom-header">Personnummer: <p className="info">{user.personId}</p></span>
             </li>
           </ul>
         </Col>
