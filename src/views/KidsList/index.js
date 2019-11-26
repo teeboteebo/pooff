@@ -33,15 +33,19 @@ const KidsList = () => {
       <Container className="kids-list">
         <h2 className="page-title">Mina barn</h2>
         {state.children.map((child, i) => {
-          const { firstName, lastName, balance, transThisMonth } = child
+          let { firstName, lastName, balance, transThisMonth } = child
+
+          balance = (balance.toFixed(2) + '').split('.')
+          balance[0] = Number(balance[0]).toLocaleString('sv-SE')
+
           return (
-            <Row key={i} className="no-gutters align-items-center mb-4 p-3 child-box" onClick={() => history.push(`/mina-barn/${child._id}`)} >
+            <Row key={i} className="no-gutters align-items-center mb-4 p-3 child-box" onClick={() => history.push(`/mina-barn/${child._id}`)}>
               <Col>
                 <h6 className="mb-3">
                   <User />
                   <span className="ml-2">{firstName + ' ' + lastName}</span>
                 </h6>
-                <p className="mb-2">Saldo: <span className="balance">{balance}</span> SEK</p>
+                <p className="mb-2"><span className="balance">{balance[0] + ',' + balance[1]}</span> SEK</p>
                 <p className="info-text">
                   <Info />
                   <span className="ml-2">

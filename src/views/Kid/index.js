@@ -20,6 +20,7 @@ const Kid = () => {
     let { firstName, lastName, balance, transactions, phone } = child
 
     balance = (balance.toFixed(2) + '').split('.')
+    balance[0] = Number(balance[0]).toLocaleString('sv-SE')
 
     let filteredTransactions
     switch (filter) {

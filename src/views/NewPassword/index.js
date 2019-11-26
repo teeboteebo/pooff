@@ -21,13 +21,13 @@ const NewPassword = () => {
   }
 
   const findUser = async () => {
-    let user = await fetch("/api/users/email/" + link.email)
+    let user = await fetch("/api/email/" + link.email)
     user = user.json()
     return user
   }
 
   const updatePassword = async user => {
-    await fetch(`/api/users/id/${user[0]._id}/edit`, {
+    await fetch(`/api/password/${user[0]._id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
