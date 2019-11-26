@@ -146,13 +146,13 @@ const LoginPage = () => {
 
       <Row className="link-field">
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-          <Link className="no-account" to="/">
-            Har ej ett konto?
-          </Link>
+          {/* <Link className="no-account" to="/"> */}
+            <p>Har ej ett konto?</p>
+          {/* </Link> */}
         </Col>
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
           <Link className="register" to="/registrera">
-            Registrera
+            Skapa konto
           </Link>
         </Col>
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>

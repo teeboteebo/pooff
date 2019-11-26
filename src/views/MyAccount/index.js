@@ -40,12 +40,12 @@ const MyAcccount = () => {
             <Link to="/uppdatera-konto">
               <input className="primary-btn mt-4" type="submit" value="Uppdatera konto" />
             </Link>
-            <Link to="/andra-losenord">
+            {/* <Link to="/andra-losenord">
               <input className="primary-btn mt-4" type="submit" value="Ändra lösenord" />
             </Link>
             <Link to="/inaktivera-konto">
               <input className="primary-btn mt-4" type="submit" value="Inaktivera konto" />
-            </Link>
+            </Link> */}
           </div>
         </Col>
       </Row>

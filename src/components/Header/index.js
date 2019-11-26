@@ -16,7 +16,7 @@ const Header = () => {
           ? <X onClick={() => state.setMenuOpen(!state.menuOpen)} style={{ color: '#fff' }} />
           : <MenuIcon onClick={() => state.setMenuOpen(!state.menuOpen)} style={{ color: '#fff' }} />
         }
-        <Link to="/" >
+        <Link to="/" onClick={() => state.setMenuOpen(false)}>
           <img src="/images/logos/pooff-white.png" alt="pooff-logo" />
         </Link>
       </header>
