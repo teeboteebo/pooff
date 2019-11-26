@@ -20,8 +20,10 @@ const FavoritePage = () => {
       setUserFavorites(allFavorites);
   };
   useEffect(() => {
-    getAllUserFavorites();
-  }, []);
+    getAllUserFavorites()
+     //comment below removes varning to include or exclude idToGet
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Container>

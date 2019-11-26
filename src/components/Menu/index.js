@@ -115,10 +115,7 @@ const Menu = () => {
           </li>
         )}
         <li>
-          <Link
-            to="/favoriter"
-            onClick={() => state.setMenuOpen(!state.menuOpen)}
-          >
+          <Link to="/favoriter" onClick={() => state.setMenuOpen(!state.menuOpen)}>
             <Heart />
             <span className="side-margin">Favoriter</span>
           </Link>

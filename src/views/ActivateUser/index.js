@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Spinner } from "reactstrap"
+import { Link } from "react-router-dom"
 
 const ActivateUser = () => {
   const [link, setLink] = useState("")
@@ -13,13 +14,13 @@ const ActivateUser = () => {
   }
 
   const findUser = async () => {
-    let user = await fetch("/api/users/email/" + link.email)
+    let user = await fetch("/api/email/" + link.email)
     user = await user.json()
     return user
   }
 
   const activateUser = async user => {
-    await fetch(`/api/users/activate/${user[0]._id}`, {
+    await fetch(`/api/activate/${user[0]._id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -51,7 +52,7 @@ const ActivateUser = () => {
       {activated ? (
         <div>
           <h2>Ditt konto har nu aktiverats</h2>
-          <button className=".to-login-button">Till inlogg</button>
+          <Link to="/logga-in" className="to-login-button">Till inlogg</Link>
         </div>
       ) : (
         <div>
