@@ -48,7 +48,7 @@ const ChildRegisterPage = () => {
         <input className="input-field" type="email" placeholder="Epost" onChange={(e) => setEmailValue(e.target.value)} required={true} />
         <input className="input-field" type="number" placeholder="Personnummer ÅÅMMDDNNNN" onChange={(e) => setPersonIdValue(e.target.value)} value={personIdValue} required={true} />
         <p style={{fontStyle: 'italic', opacity: '0.7', color: 'var(--primary)'}}>{statusMessage}</p>
-        <input className="primary-btn submit-btn" type="submit" value="Lägg till barn" />
+        <input className="primary-btn submit-btn mb-3" type="submit" value="Lägg till barn" />
       </form>
       <Link to="/mina-barn"><button className="secondary-btn back-btn">Tillbaka till översikten</button></Link>
     </Container>
