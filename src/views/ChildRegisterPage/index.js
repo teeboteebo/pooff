@@ -25,7 +25,16 @@ const ChildRegisterPage = () => {
 
     let response = await responseRaw.json()
     if(response.success) {
-      // user created - send an email to the newly created user
+      await fetch("api/send", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          type: "child",
+          email: emailValue,
+        }),
+      })
     } else {
       setStatusMessage(JSON.stringify(response.error))
     }

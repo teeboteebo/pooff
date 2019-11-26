@@ -113,7 +113,7 @@ const LoginPage = () => {
             <p> {statusMessage} </p>
           </Col>
           <Col sm="3" md={{ size: 6, offset: 3 }}>
-            <Link className="float-right" to="/">
+            <Link className="float-right" to="/aterstall-losenord">
               glömt lösenord?
             </Link>
           </Col>
