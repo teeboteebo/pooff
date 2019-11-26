@@ -113,7 +113,7 @@ const Menu = () => {
           </li>
         ) : (
             <li>
-              <Link to="/" onClick={() => state.setMenuOpen(!state.menuOpen)}>
+              <Link to="/lagg-till-barn" onClick={() => state.setMenuOpen(!state.menuOpen)}>
                 <Plus />
                 <span className="side-margin">Lägg till barn</span>
               </Link>
