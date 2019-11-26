@@ -44,12 +44,10 @@ const App = () => {
 
   useEffect(() => {
     const checkIfLoggedIn = async () => {
-      // console.log('running');
       let loggedInRaw = await fetch("/api/login")
       let message = await loggedInRaw.json()
       if (message.status) {
         // setLoggedIn(false)
-        // console.log('you just logged out');
       } else if (!message.status) {
         // setLoggedIn(true)
         const fetchedUser = await fetch("/api/myuser")
@@ -66,8 +64,6 @@ const App = () => {
         }
       }
       // setLoginFetched(true)
-
-      // console.log(loggedIn);
     }
     checkIfLoggedIn()
      //comment below removes varning to include or exclude idToGet
