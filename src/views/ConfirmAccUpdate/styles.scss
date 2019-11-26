@@ -1,0 +1,19 @@
+.confirm-update {
+  text-align: center;
+  .check-mark {
+    width: 130px;
+    height: 112px;
+    // animation: bounce 1s ease-in-out;
+  }
+  .back-btn {
+    float: right;
+    background-color: var(--transactionIncoming);
+    color: var(--background);
+    width: 56px;
+    height: 56px;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+}

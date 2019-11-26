@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 const NewPassword = () => {
   const [link, setLink] = useState("")
@@ -56,10 +57,16 @@ const NewPassword = () => {
             </button>
           </div>
         ) : (
-          <h1>Lösenord uppdaterat</h1>
+            <div className="new-password-container">
+              <h2>Lösenord uppdaterat</h2>
+              <Link className="password-button" to="/logga-in">Till inlogg</Link>
+            </div>
         )
       ) : (
-        <h2>Vi kunde inte hitta länken</h2>
+          <div className="new-password-container">
+            <h2>Vi kunde inte hitta länken</h2>
+            <Link className="password-button" to="/">Till startsidan</Link>
+          </div>
       )}
     </div>
   )

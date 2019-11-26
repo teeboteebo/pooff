@@ -7,8 +7,11 @@
       justify-content: center;
     }
     li {
-      margin-bottom: 20px;
-      .header {
+      svg{
+        color: var(--inputIcon);
+      }
+      // margin-bottom: 20px;
+      .header, .bottom-header {
         margin-left: 15px;
         margin-right: 5px;
         vertical-align: super;
@@ -25,6 +28,9 @@
             flex: content;
           }
         }
+      }
+      .bottom-header {
+        margin-bottom: 0;
       }
     }
   }

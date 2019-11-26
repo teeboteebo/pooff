@@ -24,6 +24,8 @@ import KidsList from "./views/KidsList"
 import Kid from "./views/Kid"
 import MyAccount from "./views/MyAccount"
 import ActivateUser from "./views/ActivateUser"
+import UpdateAccountPage from './views/UpdateAccountPage';
+import ConfirmAccUpdate from './views/ConfirmAccUpdate';
 
 import { usePooff } from "./context"
 
@@ -68,6 +70,8 @@ const App = () => {
       // console.log(loggedIn);
     }
     checkIfLoggedIn()
+     //comment below removes varning to include or exclude idToGet
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   if (window.matchMedia("(orientation: landscape)").matches) {
@@ -90,6 +94,8 @@ const App = () => {
                 <Route exact path="/registrera-barn" component={CreateUserAsChild} />
                 <Route exact path="/ny-betalning" component={TransactionForm} />
                 <Route exact path="/lagg-till-barn" component={ChildRegisterPage} />
+              <Route exact path="/uppdatera-konto" component={UpdateAccountPage} />
+              <Route exact path="/uppdaterat-konto" component={ConfirmAccUpdate} />
                 <Route exact path="/vanliga-fragor" component={QnA} />
                 <Route exact path="/mina-barn" component={KidsList} />
                 <Route exact path="/mina-barn/:id" component={Kid} />

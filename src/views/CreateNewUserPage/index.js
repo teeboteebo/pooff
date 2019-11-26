@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { Container } from "reactstrap"
 import UserRegister from "../../components/UserRegister"
 import { User, Mail, Phone, Lock } from "react-feather"
+import { useState } from "react"
 
 const CreateNewUserPage = () => {
   const firstName = useRef()
@@ -12,6 +13,8 @@ const CreateNewUserPage = () => {
   const email = useRef()
   const phone = useRef()
   const password = useRef()
+
+  const [created, setCreated] = useState(false)
 
   let inputData = [
     {
@@ -88,6 +91,7 @@ const CreateNewUserPage = () => {
     console.log(response)
 
     sendActivationMail()
+    setCreated(true)
   }
 
   const sendActivationMail = async () => {
@@ -103,6 +107,15 @@ const CreateNewUserPage = () => {
     })
   }
   return (
+    created ? 
+      <Container fluid={true} className="new-user-container">
+        <h2 className="page-title">Ditt konto har skapats!</h2>
+        <p className="page-info">Ett mail har skickats till dig med en aktiveringslänk.</p>
+        <Link to="/logga-in">
+        <input className="primary-btn mt-4" type="submit" value="Till inlogg" />
+        </Link>
+      </Container>
+        :
     <Container fluid={true} className="new-user-container">
       <h2 className="page-title">Registrera användare</h2>
       <p className="page-info">Ange personuppgifter</p>
