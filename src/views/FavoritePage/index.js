@@ -32,11 +32,11 @@ const FavoritePage = () => {
               return (
                 <Col xs="12" className="mb-3 bg-test" key={"favorite_" + i}>
                   <Row>
-                    <Col xs="7">
+                    <Col xs="7" md="10">
                       <p className="nickname">{favorite.nickname}</p>
                       <p className="phonenr">{favorite.phone}</p>
                     </Col>
-                    <Col xs="5">
+                    <Col xs="5" md="2">
                       <Button
                         className="remove-btn"
                         onClick={() => removeFavorite(favorite.phone)}

@@ -16,6 +16,7 @@
   border-radius: 1px;
 }
 
-.nickname {
-  color: var(--primary);
+.nickname, .phonenr {
+  color: var(--textColor);
+  padding-left: 1rem;
 }
