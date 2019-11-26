@@ -10,7 +10,6 @@ const TransactionHistoryPreview = () => {
   
   useEffect(() => {
     async function getLatestTransactions() {
-      console.log('transacitons get');
       
       const transactionsRaw = await fetch('/api/mytransactions')
       const transactions = await transactionsRaw.json()

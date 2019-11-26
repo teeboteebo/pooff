@@ -4,7 +4,6 @@ import { Link, useParams } from 'react-router-dom'
 import { Col, Row, Container, Button, Spinner } from 'reactstrap';
 
 const TransactionPage = () => {
-  console.log(useParams('id'))
   const [transaction, setTransaction] = useState(null);
   const idToGet = useParams('id');
   useEffect(() => {
