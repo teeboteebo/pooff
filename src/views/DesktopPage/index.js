@@ -11,10 +11,10 @@ const DesktopPage = () => {
         <Col md="1" className="triangle" />
         <Col md="6" className="text-side">
           <div className="text-content">
-            <h2 className="page-title">Welcome to Pooff</h2>
-            <p>Pooff is an online payment service available for all mobile and handheld devices.</p>
-            <p>Please continue on your phone in order to access the application.</p>
-            <p>Or press here to head over to our frequently asked questions section.</p>
+            <h2 className="page-title">Välkommen till Pooff</h2>
+            <p>Pooff är en onlinebaserad betalningstjänst gjord för mobila enheter.</p>
+            <p>Vänligen besök sidan på en mobil för att få åtkomst till applikationen.</p>
+            {/* <p>Or press here to head over to our frequently asked questions section.</p> */}
             <p>/ Pooff team</p>
           </div>
           <img className="logo" src="/images/logos/pooff-dark.png" alt="pooff logo" />

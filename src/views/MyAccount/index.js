@@ -11,7 +11,7 @@ const MyAcccount = () => {
 
   return (
     <Container className="my-account" fluid={true}>
-      <h2 className="page-title">Mitt Konto</h2>
+      <h2 className="page-title">Mitt konto</h2>
       <Row className="no-gutters">
         <Col xs="12" className="">
           <ul className="list-item">
