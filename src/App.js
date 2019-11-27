@@ -26,6 +26,7 @@ import MyAccount from "./views/MyAccount"
 import ActivateUser from "./views/ActivateUser"
 import UpdateAccountPage from './views/UpdateAccountPage';
 import ConfirmAccUpdate from './views/ConfirmAccUpdate';
+import UpdatePasswordLoggedIn from './views/UpdatePasswordLoggedIn'
 
 import { usePooff } from "./context"
 
@@ -98,6 +99,8 @@ const App = () => {
                 <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
                 <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
                 <Route exact path="/mitt-konto" component={MyAccount} />
+                <Route path="/nytt-losenord" component={NewPassword} />
+                <Route exact path="/uppdatera-losenord" component={UpdatePasswordLoggedIn} />
               </Switch>
             ) : (
               <Switch>
