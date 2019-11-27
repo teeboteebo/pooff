@@ -29,7 +29,7 @@ const UpdatePasswordLoggedIn = () => {
     <Container>
       <h2 className="page-title">Uppdatera lösenord</h2>
       <label className="email-label">
-        <p>Klicka på knappen så kommer en återställningslänk att skickas till dig.</p>
+        <p className="text-center ">Klicka på knappen så kommer en återställningslänk att skickas till dig.</p>
       </label>
       <input className="primary-btn" onClick={sendMail} type="submit" value="Skicka" />
     </Container> 

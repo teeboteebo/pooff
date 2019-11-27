@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Container } from "reactstrap"
 import { X, Check } from "react-feather";
+import { usePooff } from '../../context';
 
 const NewPassword = () => {
+  const state = usePooff();
+  const loggedIn = state.loggedIn
+
   const [link, setLink] = useState("")
   const [updated, setUpdated] = useState(false)
   const [match, setMatch] = useState(false)
@@ -60,21 +64,31 @@ const NewPassword = () => {
             <h2 className="page-title">Välj nytt lösenord</h2>
             <input type="password" className="input-field" placeholder="Nytt lösenord" onChange={checkIfMatch}></input>
             <input type="password" className="input-field" placeholder="Upprepa lösenord" onChange={checkIfMatch}></input>
-            {match ? <Check className="checked green" /> : <X className="checked" /> }
+            {match ? <Check className="checked green" /> : <X className="checked" />}
             <input className="primary-btn" onClick={findUserAndChangePassword} type="submit" value="Bekräfta" />
           </div>
         ) : (
             <div className="new-password-container">
-              <h2>Lösenord uppdaterat</h2>
-              <Link className="password-button" to="/logga-in">Till inlogg</Link>
+              <h2 className="page-title">Lösenord uppdaterat</h2>
+              {loggedIn ?
+                <Link className="password-button" to="/">
+                  <input className="primary-btn" type="submit" value="Till startsidan" />
+                </Link>
+                :
+                <Link className="password-button" to="/logga-in">
+                  <input className="primary-btn" type="submit" value="Till inloggning" />
+                </Link>}
+
             </div>
-        )
+          )
       ) : (
           <div className="new-password-container">
-            <h2>Vi kunde inte hitta länken</h2>
-            <Link className="password-button" to="/">Till startsidan</Link>
+            <h2 className="page-title">Vi kunde inte hitta länken</h2>
+            <Link className="password-button" to="/">
+              <input className="primary-btn" type="submit" value="Till startsidan" />
+            </Link>
           </div>
-      )}
+        )}
     </Container>
   )
 }
