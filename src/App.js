@@ -28,45 +28,20 @@ import UpdateAccountPage from './views/UpdateAccountPage';
 import ConfirmAccUpdate from './views/ConfirmAccUpdate';
 
 import { usePooff } from "./context"
+import useMagic from './actions/useMagic'
 
 const App = () => {
   const state = usePooff()
-  /* const [loggedIn, setLoggedIn] = useState(false)
-  const [loginFetched, setLoginFetched] = useState(false) */
+  const [getLoggedIn] = useMagic()
+
   let headerHeight = 44
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`)
   document.documentElement.style.setProperty('--headerHeight', `${headerHeight}px`)
 
-  /* document.querySelector('body').addEventListener("keyup", (e) => {
-    if (e.keyCode === 192 || e.keyCode === 220) state.setDarkMode(!state.darkMode)
-  }) */
-
   useEffect(() => {
-    const checkIfLoggedIn = async () => {
-      let loggedInRaw = await fetch("/api/login")
-      let message = await loggedInRaw.json()
-      if (message.status) {
-        // setLoggedIn(false)
-      } else if (!message.status) {
-        // setLoggedIn(true)
-        const fetchedUser = await fetch("/api/myuser")
-        const user = await fetchedUser.json()
-        const fetchedBalance = await fetch('/api/mytransactions/balance')
-        const balanceObj = await fetchedBalance.json()
-        user.balance = balanceObj.balance
-        state.setLoggedIn(user)
-
-        if (user.role === "parent") {
-          const fetchedChildren = await fetch("/api/mychildren")
-          const children = await fetchedChildren.json()
-          state.setChildren(children)
-        }
-      }
-      // setLoginFetched(true)
-    }
-    checkIfLoggedIn()
-     //comment below removes varning to include or exclude idToGet
+    getLoggedIn()
+    //comment below removes varning to include or exclude idToGet
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -85,13 +60,13 @@ const App = () => {
                 {/* LOGGED IN */}
                 <Route exact path="/" component={StartPage} />
                 <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
-              <Route exact path="/favoriter" component={FavoritePage} />
+                <Route exact path="/favoriter" component={FavoritePage} />
                 <Route exact path="/registrera" component={CreateNewUserPage} />
                 <Route exact path="/registrera-barn" component={CreateUserAsChild} />
                 <Route exact path="/ny-betalning" component={TransactionForm} />
                 <Route exact path="/lagg-till-barn" component={ChildRegisterPage} />
-              <Route exact path="/uppdatera-konto" component={UpdateAccountPage} />
-              <Route exact path="/uppdaterat-konto" component={ConfirmAccUpdate} />
+                <Route exact path="/uppdatera-konto" component={UpdateAccountPage} />
+                <Route exact path="/uppdaterat-konto" component={ConfirmAccUpdate} />
                 <Route exact path="/vanliga-fragor" component={QnA} />
                 <Route exact path="/mina-barn" component={KidsList} />
                 <Route exact path="/mina-barn/:id" component={Kid} />
@@ -100,7 +75,7 @@ const App = () => {
                 <Route exact path="/mitt-konto" component={MyAccount} />
               </Switch>
             ) : (
-              <Switch>
+                <Switch>
                   {/* NOT LOGGED IN */}
                   <Route exact path="/" component={PooffStartPage} />
                   <Route exact path="/logga-in" render={props => <LoginPage {...props} />} />
