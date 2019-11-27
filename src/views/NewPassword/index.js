@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { Container } from "reactstrap"
+import { X, Check } from "react-feather";
 
 const NewPassword = () => {
   const [link, setLink] = useState("")
   const [updated, setUpdated] = useState(false)
+  const [match, setMatch] = useState(false)
 
   useEffect(() => {
     const path = window.location.pathname.split("/")[2]
@@ -15,10 +18,20 @@ const NewPassword = () => {
     fetchLink()
   }, [])
 
+  const checkIfMatch = () => {
+    let inputValues = document.querySelectorAll(".input-field")
+    if (inputValues[0].value === inputValues[1].value) {
+      setMatch(true)
+    }
+    else { setMatch(false) }
+  }
+
   const findUserAndChangePassword = async () => {
-    const user = await findUser()
-    await updatePassword(user)
-    setUpdated(true)
+    if (match) {
+      const user = await findUser()
+      await updatePassword(user)
+      setUpdated(true)
+    }
   }
 
   const findUser = async () => {
@@ -34,27 +47,21 @@ const NewPassword = () => {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        password: document.querySelector(".password-input").value,
+        password: document.querySelector(".input-field").value,
       }), // We send data in JSON format
     })
   }
 
   return (
-    <div>
+    <Container>
       {link ? (
         link && !updated ? (
           <div className="new-password-container">
-            <h2>Välj nytt lösenord</h2>
-            <label className="new-password-item">Nytt lösenord</label>
-            <input className="password-input"></input>
-            <label className="new-password-item">Upprepa lösenord</label>
-            <input className="password-input"></input>
-            <button
-              className="password-button"
-              onClick={findUserAndChangePassword}
-            >
-              Bekräfta
-            </button>
+            <h2 className="page-title">Välj nytt lösenord</h2>
+            <input type="password" className="input-field" placeholder="Nytt lösenord" onChange={checkIfMatch}></input>
+            <input type="password" className="input-field" placeholder="Upprepa lösenord" onChange={checkIfMatch}></input>
+            {match ? <Check className="checked green" /> : <X className="checked" /> }
+            <input className="primary-btn" onClick={findUserAndChangePassword} type="submit" value="Bekräfta" />
           </div>
         ) : (
             <div className="new-password-container">
@@ -68,7 +75,7 @@ const NewPassword = () => {
             <Link className="password-button" to="/">Till startsidan</Link>
           </div>
       )}
-    </div>
+    </Container>
   )
 }
 
