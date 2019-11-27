@@ -14,6 +14,7 @@ const TransactionForm = props => {
   })
   const [paymentSent, setPaymentSent] = useState({ sent: false })
   const [favorites, setFavorites] = useState([])
+  const [statusMessage, setStatusMessage] = useState("")
 
   const receiver = useRef(props.location.state ? { current: { value: props.location.state.phone } } : null)
   const amount = useRef()
@@ -93,13 +94,19 @@ const TransactionForm = props => {
         const children = await fetchedChildren.json()
         state.setChildren(children)
       }
-      setPaymentSent({
-        sent: true,
-        name: receiverName,
-        number: receiver.current.value,
-        amount: amount.current.value,
-        message: message.current.value,
-      })
+      if (amount.current.value > state.loggedIn.balance) {
+        setStatusMessage("Ditt konto saknar täckning för att utföra överföringen")
+        
+      }
+      else {
+        setPaymentSent({
+          sent: true,
+          name: receiverName,
+          number: receiver.current.value,
+          amount: amount.current.value,
+          message: message.current.value,
+        })
+      }
     }
   }
   const setFavoriteAsReceiver = (phone) => {
@@ -149,6 +156,7 @@ const TransactionForm = props => {
         <div className="input-component textarea mt-4">
           <MessageCircle />
           <textarea rows="4" ref={message} placeholder="Meddelande..." />
+          <p className="no-funds">{statusMessage}</p>
         </div>
         <div className="button-div mt-4">
           <Button className="primary-btn" disabled={receiverName === 'Ingen mottagare med detta nummer finns' || receiverName ===  'Du kan ej skicka pengar till dig själv' || !receiverName ? true : false} onClick={onSubmit}><Send /><span>Skicka</span></Button>
