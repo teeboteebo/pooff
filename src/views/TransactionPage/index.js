@@ -3,13 +3,18 @@ import { ArrowLeft } from 'react-feather'
 import { Link, useParams } from 'react-router-dom'
 import { Col, Row, Container, Button, Spinner } from 'reactstrap';
 
+import { usePooff } from '../../context'
+
 const TransactionPage = () => {
+  const state = usePooff()
+
   const [transaction, setTransaction] = useState(null);
   const idToGet = useParams('id');
   useEffect(() => {
-    const getOneTransaction = async () => {
-      const t = await fetch(`/api/mytransactions/id/${idToGet.id}`)
-      const transaction = await t.json()
+    const getOneTransaction = () => {
+      /* const t = await fetch(`/api/mytransactions/id/${idToGet.id}`)
+      const transaction = await t.json() */
+      const transaction = state.loggedIn.transactions.find(transaction => transaction._id === idToGet.id)
       setTransaction(transaction);
     }
     getOneTransaction();
@@ -32,7 +37,9 @@ const TransactionPage = () => {
                 <p className="phone mb-4">{transaction.receiver.phone}</p>
                 <p className={transaction.amount > 0 ? "mb-3 incoming" : "mb-3 outgoing"}>{transaction.amount}kr</p>
                 <div className="frame">
-                <p className="message">{transaction.message}</p>
+                {transaction.message ?
+                  <p className="message">{transaction.message}</p>
+                : ''}
                 </div>
               </div>
             </div>
