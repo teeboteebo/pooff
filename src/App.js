@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 // Components
@@ -34,6 +34,7 @@ import useMagic from './actions/useMagic'
 const App = () => {
   const state = usePooff()
   const [getLoggedIn] = useMagic()
+  const [loading, setLoading] = useState(true)
 
   let headerHeight = 44
   let vh = window.innerHeight * 0.01;
@@ -41,7 +42,12 @@ const App = () => {
   document.documentElement.style.setProperty('--headerHeight', `${headerHeight}px`)
 
   useEffect(() => {
-    getLoggedIn()
+    const load = async () => {
+      await getLoggedIn()
+      setLoading(false)
+    } 
+    
+    load()
     //comment below removes varning to include or exclude idToGet
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -52,46 +58,48 @@ const App = () => {
   } else
     return (
       <Router>
-        <div
-          className={state.loggedIn && state.loggedIn.darkMode ? "App dark-mode" : "App"}>
-          {state.loggedIn ? <Header /> : <PooffHeader />}
-          <main>
-            {state.loggedIn ? (
-              <Switch>
-                {/* LOGGED IN */}
-                <Route exact path="/" component={StartPage} />
-                <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
-                <Route exact path="/favoriter" component={FavoritePage} />
-                <Route exact path="/registrera" component={CreateNewUserPage} />
-                <Route exact path="/registrera-barn" component={CreateUserAsChild} />
-                <Route exact path="/ny-betalning" component={TransactionForm} />
-                <Route exact path="/lagg-till-barn" component={ChildRegisterPage} />
-                <Route exact path="/uppdatera-konto" component={UpdateAccountPage} />
-                <Route exact path="/uppdaterat-konto" component={ConfirmAccUpdate} />
-                <Route exact path="/vanliga-fragor" component={QnA} />
-                <Route exact path="/mina-barn" component={KidsList} />
-                <Route exact path="/mina-barn/:id" component={Kid} />
-                <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
-                <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
-                <Route exact path="/mitt-konto" component={MyAccount} />
-                <Route path="/nytt-losenord" component={NewPassword} />
-                <Route exact path="/uppdatera-losenord" component={UpdatePasswordLoggedIn} />
-              </Switch>
-            ) : (
+        {!loading ?
+          <div
+            className={state.loggedIn && state.loggedIn.darkMode ? "App dark-mode" : "App"}>
+            {state.loggedIn ? <Header /> : <PooffHeader />}
+            <main>
+              {state.loggedIn ? (
                 <Switch>
-                  {/* NOT LOGGED IN */}
-                  <Route exact path="/" component={PooffStartPage} />
-                  <Route exact path="/logga-in" render={props => <LoginPage {...props} />} />
+                  {/* LOGGED IN */}
+                  <Route exact path="/" component={StartPage} />
+                  <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
+                  <Route exact path="/favoriter" component={FavoritePage} />
                   <Route exact path="/registrera" component={CreateNewUserPage} />
+                  <Route exact path="/registrera-barn" component={CreateUserAsChild} />
+                  <Route exact path="/ny-betalning" component={TransactionForm} />
+                  <Route exact path="/lagg-till-barn" component={ChildRegisterPage} />
+                  <Route exact path="/uppdatera-konto" component={UpdateAccountPage} />
+                  <Route exact path="/uppdaterat-konto" component={ConfirmAccUpdate} />
                   <Route exact path="/vanliga-fragor" component={QnA} />
-                  <Route path="/aktivera-konto" component={ActivateUser} />
-                  <Route path="/registrera-barn" component={CreateUserAsChild} />
-                  <Route path="/aterstall-losenord" component={ResetPassword} />
+                  <Route exact path="/mina-barn" component={KidsList} />
+                  <Route exact path="/mina-barn/:id" component={Kid} />
+                  <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
+                  <Route exact path="/enskild-transaktion/:id" component={TransactionPage} />
+                  <Route exact path="/mitt-konto" component={MyAccount} />
                   <Route path="/nytt-losenord" component={NewPassword} />
+                  <Route exact path="/uppdatera-losenord" component={UpdatePasswordLoggedIn} />
                 </Switch>
-              )}
-          </main>
-        </div>
+              ) : (
+                  <Switch>
+                    {/* NOT LOGGED IN */}
+                    <Route exact path="/" component={PooffStartPage} />
+                    <Route exact path="/logga-in" render={props => <LoginPage {...props} />} />
+                    <Route exact path="/registrera" component={CreateNewUserPage} />
+                    <Route exact path="/vanliga-fragor" component={QnA} />
+                    <Route path="/aktivera-konto" component={ActivateUser} />
+                    <Route path="/registrera-barn" component={CreateUserAsChild} />
+                    <Route path="/aterstall-losenord" component={ResetPassword} />
+                    <Route path="/nytt-losenord" component={NewPassword} />
+                  </Switch>
+                )}
+            </main>
+          </div>
+          : ''}
       </Router>
     )
 }

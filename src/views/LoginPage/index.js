@@ -38,7 +38,7 @@ const LoginPage = () => {
       if (message.error) {
         setStatusMessage("Användarnamn eller lösenord är fel")
       } else {
-        getLoggedIn()
+        await getLoggedIn()
         history.push('/')
       }
 
