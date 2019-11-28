@@ -90,7 +90,7 @@ const TransactionForm = props => {
 
       if (amount.current.value > state.loggedIn.balance) {
         setStatusMessage("Ditt konto saknar täckning för att utföra överföringen")
-        
+
       }
       else {
         setPaymentSent({
@@ -153,7 +153,16 @@ const TransactionForm = props => {
           <p className="no-funds">{statusMessage}</p>
         </div>
         <div className="button-div mt-4">
-          <Button className="primary-btn" disabled={receiverName === 'Ingen mottagare med detta nummer finns' || receiverName ===  'Du kan ej skicka pengar till dig själv' || !receiverName ? true : false} onClick={onSubmit}><Send /><span>Skicka</span></Button>
+          <Button
+            className="primary-btn"
+            disabled={
+              receiverName === 'Ingen mottagare med detta nummer finns' ||
+                receiverName === 'Du kan ej skicka pengar till dig själv' ||
+                !receiverName ? true : false}
+            onClick={onSubmit}
+          >
+            <Send /><span>Skicka</span>
+          </Button>
         </div>
       </Container>
     )

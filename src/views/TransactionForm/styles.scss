@@ -94,7 +94,12 @@
     margin: 10px 0;
     display: flex;
     flex-direction: row;
+    &::-webkit-scrollbar-track {
+      background: var(--background); 
+    }
     .favorite-btn {
+      padding: 5px 10px;
+      outline: none;
       margin: 0;
       white-space: nowrap;
       margin-right: 10px;
