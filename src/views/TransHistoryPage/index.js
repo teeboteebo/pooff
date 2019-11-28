@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Nav, NavItem, NavLink, Container } from 'reactstrap';
 import classnames from 'classnames';
 
+import { usePooff } from '../../context'
+
 import TransactionLister from '../../components/TransactionLister'
 
 const TransHistoryPage = () => {
+  const state = usePooff()
   const [activeTab, setActiveTab] = useState('1');
 
   const [transactions, setTransactions] = useState([]);
@@ -16,11 +19,12 @@ const TransHistoryPage = () => {
   }
 
   useEffect(() => {
-    async function getTransaction() {
+    function getTransaction() {
       let allSent = []
       let allReceived = []
-      const transactionsRaw = await fetch('/api/mytransactions')
-      const transactions = await transactionsRaw.json()
+      /* const transactionsRaw = await fetch('/api/mytransactions')
+      const transactions = await transactionsRaw.json() */
+      const { transactions } = state.loggedIn
       transactions.forEach(trans => {
         if (trans.amount > 0) {
           allReceived.push(trans)
