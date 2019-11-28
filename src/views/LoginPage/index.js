@@ -19,53 +19,24 @@ const LoginPage = () => {
   const login = async (e, username, password) => {
     e.preventDefault()
 
-    const user = await checkIfActive(username)
+    let jsonRaw = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    })
 
-    if (user.active) {
-      let jsonRaw = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      })
+    let message = await jsonRaw.json()
 
-      let message = await jsonRaw.json()
-
-      if (message.error) {
-        setStatusMessage("Användarnamn eller lösenord är fel")
-      } else {
-        /* setStatusMessage(`Inloggad som ${message.username} - (${message.role})`)
-        props.history.push("/") */
-        const fetchedUser = await fetch("/api/myuser")
-        const user = await fetchedUser.json()
-        const fetchedBalance = await fetch('/api/mytransactions/balance')
-        const balanceObj = await fetchedBalance.json()
-        user.balance = balanceObj.balance
-        state.setLoggedIn(user)
-
-        if (user.role === "parent") {
-          const fetchedChildren = await fetch("api/mychildren")
-          const children = await fetchedChildren.json()
-          state.setChildren(children)
-        }
-
-        history.push('/')
-      }
-      
-      
+    if (message.error === "not found") {
+      setStatusMessage("Användarnamn eller lösenord är fel")
     }
-    else if (user.error === "error") {
-      setStatusMessage(
-        "Kunde inte hitta konto",
-      )
-    }
-    
-    
-    else {
+      
+    else if (message.error === "not active") {
       setStatusMessage(
         "Ditt konto är inte aktiverat. Ett mail har skickats till dig ifall du vill aktivera det",
       )
@@ -76,11 +47,31 @@ const LoginPage = () => {
         method: "POST",
         body: JSON.stringify({
           type: "activate",
-          email: user.email,
+          email: message.email,
         }),
       })
     }
+      
+    else {
+      /* setStatusMessage(`Inloggad som ${message.username} - (${message.role})`)
+      props.history.push("/") */
+      const fetchedUser = await fetch("/api/myuser")
+      const user = await fetchedUser.json()
+      const fetchedBalance = await fetch('/api/mytransactions/balance')
+      const balanceObj = await fetchedBalance.json()
+      user.balance = balanceObj.balance
+      state.setLoggedIn(user)
+
+      if (user.role === "parent") {
+        const fetchedChildren = await fetch("api/mychildren")
+        const children = await fetchedChildren.json()
+        state.setChildren(children)
+      }
+
+      history.push('/')
+    }
   }
+  
   const [usernameValue, setUsernameValue] = useState("")
   const [passwordValue, setPasswordValue] = useState("")
   const [statusMessage, setStatusMessage] = useState("")
