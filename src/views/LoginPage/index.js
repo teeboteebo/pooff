@@ -10,11 +10,6 @@ const LoginPage = () => {
   // you push the login button 
   const history = useHistory()
 
-  const checkIfActive = async username => {
-    let user = await fetch(`/api/active/${username}`)
-    user = await user.json()
-    return user
-  }
 
   const login = async (e, username, password) => {
     e.preventDefault()
