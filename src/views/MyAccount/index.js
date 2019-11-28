@@ -35,8 +35,9 @@ const MyAcccount = () => {
       <Modal isOpen={modal} toggle={toggle} className="deactivate-container">
           <h2 className="deactivate-heading">Vill du inaktivera ditt konto?</h2>
         <ModalBody>
-          <Button className="deactivate-cancel" onClick={toggle}>Avbryt</Button>
           <Button className="deactivate-confirm" onClick={deactivateAccount}>Bekräfta</Button>
+          <Button className="deactivate-cancel" onClick={toggle}>Avbryt</Button>
+
         </ModalBody>       
       </Modal>
       <Row className="no-gutters">
