@@ -95,6 +95,8 @@
     display: flex;
     flex-direction: row;
     .favorite-btn {
+      padding: 5px 10px;
+      outline: none;
       margin: 0;
       white-space: nowrap;
       margin-right: 10px;
