@@ -68,18 +68,25 @@
 }
 
 .deactivate-container {
-  .deactivate-heading {
-  }
+  h2.deactivate-heading {
+    padding: 1rem;
+    text-align:center;
+    margin: 0;
+   }
+
+
+   .modal-body{
+     text-align: center;
+   }
 
   .deactivate-confirm {
-    background: var(--primary);
-    float: right;
+    background-color: #07575b;
+    margin-right: 1rem;
+    color: #eee;
   }
 
   .deactivate-cancel {
-    background: none;
-    border: none;
-    float: right;
-    color: var(--primary);
+    background: red;
+    color: #eee;
   }
 }
