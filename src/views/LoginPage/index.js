@@ -48,23 +48,9 @@ const LoginPage = () => {
     }
       
     else {
-      /* setStatusMessage(`Inloggad som ${message.username} - (${message.role})`)
-      props.history.push("/") */
-      const fetchedUser = await fetch("/api/myuser")
-      const user = await fetchedUser.json()
-      const fetchedBalance = await fetch('/api/mytransactions/balance')
-      const balanceObj = await fetchedBalance.json()
-      user.balance = balanceObj.balance
-      state.setLoggedIn(user)
-
-      if (user.role === "parent") {
-        const fetchedChildren = await fetch("api/mychildren")
-        const children = await fetchedChildren.json()
-        state.setChildren(children)
-      }
-
+      getLoggedIn()
       history.push('/')
-    }
+      }
   }
   
   const [usernameValue, setUsernameValue] = useState("")
