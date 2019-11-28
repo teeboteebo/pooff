@@ -2,10 +2,10 @@ import React, { useState } from "react"
 import { Container, Form, Row, Col, Input, Button, Label } from "reactstrap"
 import { Link, useHistory } from "react-router-dom"
 
-import { usePooff } from "../../context"
+import useMagic from '../../actions/useMagic'
 
 const LoginPage = () => {
-  const state = usePooff()
+  const [getLoggedIn] = useMagic()
   // Force login route to go through to / route when
   // you push the login button 
   const history = useHistory()
@@ -75,7 +75,7 @@ const LoginPage = () => {
     <Container fluid={true} className="login-container no-gutters">
       <h2 className="page-title">Logga in</h2>
       <Form onSubmit={e => login(e, usernameValue, passwordValue)}>
-        
+
         <Row className="input-field no-gutters">
           <Col sm="12" md={{ size: 6, offset: 3 }}>
             <Label className="floating-label" for="exampleUsername">
@@ -126,9 +126,7 @@ const LoginPage = () => {
 
       <Row className="link-field">
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-          {/* <Link className="no-account" to="/"> */}
-            <p>Har ej ett konto?</p>
-          {/* </Link> */}
+          <p>Har du ej ett konto?</p>
         </Col>
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
           <Link className="register" to="/registrera">

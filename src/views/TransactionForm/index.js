@@ -1,12 +1,16 @@
 import PaymentConfirmation from "../PaymentConfirmation"
-import { usePooff } from '../../context'
 import React, { useState, useEffect, useRef } from "react"
 import { Container, Row, Col, Button } from "reactstrap"
 import { Phone, DollarSign, MessageCircle, Send } from "react-feather"
 import { Link } from 'react-router-dom'
 
+import { usePooff } from '../../context'
+import useMagic from '../../actions/useMagic'
+
 const TransactionForm = props => {
   const state = usePooff()
+  const [getLoggedIn] = useMagic()
+
   const [receiverName, setReceiverName] = useState("")
   const [validInputs, setValidInputs] = useState({
     receiver: true,
@@ -82,18 +86,8 @@ const TransactionForm = props => {
         }),
       })
 
-      const fetchedUser = await fetch('/api/myuser')
-      const user = await fetchedUser.json()
-      const fetchedBalance = await fetch('/api/mytransactions/balance')
-      const balanceObj = await fetchedBalance.json()
-      user.balance = balanceObj.balance
-      state.setLoggedIn(user)
+      getLoggedIn()
 
-      if (user.role === 'parent') {
-        const fetchedChildren = await fetch('/api/mychildren')
-        const children = await fetchedChildren.json()
-        state.setChildren(children)
-      }
       if (amount.current.value > state.loggedIn.balance) {
         setStatusMessage("Ditt konto saknar täckning för att utföra överföringen")
         
