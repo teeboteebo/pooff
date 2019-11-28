@@ -7,11 +7,12 @@
       justify-content: center;
     }
     li {
-      svg{
+      svg {
         color: var(--inputIcon);
       }
       // margin-bottom: 20px;
-      .header, .bottom-header {
+      .header,
+      .bottom-header {
         margin-left: 15px;
         margin-right: 5px;
         vertical-align: super;
@@ -63,5 +64,22 @@
     margin-left: 15px;
     margin-right: 15px;
     display: inline-block;
+  }
+}
+
+.deactivate-container {
+  .deactivate-heading {
+  }
+
+  .deactivate-confirm {
+    background: var(--primary);
+    float: right;
+  }
+
+  .deactivate-cancel {
+    background: none;
+    border: none;
+    float: right;
+    color: var(--primary);
   }
 }
