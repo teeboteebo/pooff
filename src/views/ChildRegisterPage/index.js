@@ -9,6 +9,7 @@ const ChildRegisterPage = () => {
   const [firstNameValue, setFirstNameValue] = useState('')
   const [emailValue, setEmailValue] = useState('')
   const [personIdValue, setPersonIdValue] = useState('')
+  const [sent, setSent] = useState(false)
   const submitChild = async (e, firstName, email, personId) => {
     e.preventDefault()
 
@@ -36,11 +37,18 @@ const ChildRegisterPage = () => {
           email: emailValue,
         }),
       })
+      setSent(true)
     } else {
       setStatusMessage(JSON.stringify(response.error))
     }
   }
   return (
+    sent ? <Container fluid={true} className="register-child-container">
+      <h2 className="page-title">Ett mail har skickats till ditt barns e-postadress</h2>
+      <Link to="/">
+          <input className="primary-btn" type="submit" value="Till startsida" />
+      </Link>
+    </Container> :
     <Container fluid={true} className="register-child-container">
       <h2 className="page-title">Lägg till barnanvändare</h2>
       <p className="info-text">Ett email kommer att skickas till den angivna epostadressen där barnet sedan uppmanas till att komplettera med resterande nödvändig information</p>
