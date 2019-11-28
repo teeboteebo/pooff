@@ -9,6 +9,9 @@ const useMagic = () => {
     if (!message.status) {
       const fetchedUser = await fetch("/api/myuser")
       const user = await fetchedUser.json()
+      const fetchedTransactions = await fetch('/api/mytransactions')
+      const transactions = await fetchedTransactions.json()
+      user.transactions = transactions
       const fetchedBalance = await fetch('/api/mytransactions/balance')
       const balanceObj = await fetchedBalance.json()
       user.balance = balanceObj.balance
