@@ -19,6 +19,7 @@
       text-align: center;
       border-left: 3px solid var(--primary);
       transition: 0.3s background-color, 0.3s color;
+      
       .nav-link {
         padding: 0.5rem 0rem;
         color: var(--textColor);
@@ -35,11 +36,6 @@
         border: 2px solid var(--primary);
         background-color: var(--primary);
         transition: 0.3s background-color, 0.3s color;
-
-        :hover {
-          background-color: var(--primary)§;
-          color: var(--textColor);
-        }
       }
     }
   }
