@@ -37,11 +37,17 @@ const UpdateAccountPage = () => {
       placeholder: user.firstName,
       type: 'text',
       ref: firstName,
+      // validator: '[A-ZÅÄÖ][a-zåäö]+[a-zA-ZåäöÅÄÖ-]*', // börja på stor bokstav Minst 2 bokstäver.
+      validator: '[A-ZÅÄÖa-zåäö]{2,}[a-zA-ZåäöÅÄÖ-]*', // börja med vad som helst bokstav. Minst 2 bokstäver.
+      id: "firstname",
+      title: '',
       icon: <User className="main-icon" />
     },
     {
       placeholder: user.lastName,
       type: 'text',
+      validator: '[A-ZÅÄÖa-zåäö]{2,}[a-zA-ZåäöÅÄÖ-]*',
+      id: "lastname",
       ref: lastName,
       icon: <User className="main-icon" />
     },
@@ -49,12 +55,16 @@ const UpdateAccountPage = () => {
       placeholder: user.email,
       type: 'email',
       ref: email,
+      validator:'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$',
+      id: 'email',
       icon: <Mail className="main-icon" />
     },
     {
       placeholder: user.phone,
       type: 'text',
       class: 'phonenumber',
+      validator: '\\d{10}',
+      id: 'phone',
       ref: phone,
       icon: <Phone className="main-icon" />
     },
