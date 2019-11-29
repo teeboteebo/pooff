@@ -1,17 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { User, Mail, Phone, Gift } from "react-feather"
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { usePooff } from '../../context';
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col, ModalBody, Modal, Button  } from 'reactstrap'
 
 const MyAcccount = () => {
   const state = usePooff()
   const user = state.loggedIn
+  const [modal, setModal] = useState(false);
+  const history = useHistory();
 
+  const deactivateAccount = async() => {
+    await fetch("/api/myuser/", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        active: false
+      })
+    })
+    await fetch("/api/login", { method: "DELETE" });
+    await state.setLoggedIn(false);
+    await state.setChildren([]);
+    state.setMenuOpen(false);
+    history.push("/");
+  }
+
+  const toggle = () => setModal(!modal);
 
   return (
     <Container className="my-account" fluid={true}>
       <h2 className="page-title">Mitt konto</h2>
+      <Modal isOpen={modal} toggle={toggle} className="deactivate-container">
+          <h2 className="deactivate-heading">Vill du inaktivera ditt konto?</h2>
+        <ModalBody>
+          <Button className="deactivate-confirm" onClick={deactivateAccount}>Bekräfta</Button>
+          <Button className="deactivate-cancel" onClick={toggle}>Avbryt</Button>
+
+        </ModalBody>       
+      </Modal>
       <Row className="no-gutters">
         <Col xs="12" className="">
           <ul className="list-item">
@@ -43,9 +71,7 @@ const MyAcccount = () => {
             <Link to="/uppdatera-losenord">
               <input className="primary-btn mt-4" type="submit" value="Ändra lösenord" />
             </Link>
-            <Link to="/inaktivera-konto">
-              <input className="primary-btn mt-4" type="submit" value="Inaktivera konto" />
-            </Link>
+            <input className="primary-btn mt-4" onClick={toggle} type="submit" value="Inaktivera konto" />
           </div>
         </Col>
       </Row>

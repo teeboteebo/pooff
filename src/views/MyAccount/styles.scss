@@ -7,11 +7,12 @@
       justify-content: center;
     }
     li {
-      svg{
+      svg {
         color: var(--inputIcon);
       }
       // margin-bottom: 20px;
-      .header, .bottom-header {
+      .header,
+      .bottom-header {
         margin-left: 15px;
         margin-right: 5px;
         vertical-align: super;
@@ -63,5 +64,29 @@
     margin-left: 15px;
     margin-right: 15px;
     display: inline-block;
+  }
+}
+
+.deactivate-container {
+  h2.deactivate-heading {
+    padding: 1rem;
+    text-align:center;
+    margin: 0;
+   }
+
+
+   .modal-body{
+     text-align: center;
+   }
+
+  .deactivate-confirm {
+    background-color: #07575b;
+    margin-right: 1rem;
+    color: #eee;
+  }
+
+  .deactivate-cancel {
+    background: red;
+    color: #eee;
   }
 }

@@ -1,12 +1,16 @@
 import PaymentConfirmation from "../PaymentConfirmation"
-import { usePooff } from '../../context'
 import React, { useState, useEffect, useRef } from "react"
 import { Container, Row, Col, Button } from "reactstrap"
 import { Phone, DollarSign, MessageCircle, Send } from "react-feather"
 import { Link } from 'react-router-dom'
 
+import { usePooff } from '../../context'
+import useMagic from '../../actions/useMagic'
+
 const TransactionForm = props => {
   const state = usePooff()
+  const [getLoggedIn] = useMagic()
+
   const [receiverName, setReceiverName] = useState("")
   const [validInputs, setValidInputs] = useState({
     receiver: true,
@@ -82,21 +86,11 @@ const TransactionForm = props => {
         }),
       })
 
-      const fetchedUser = await fetch('/api/myuser')
-      const user = await fetchedUser.json()
-      const fetchedBalance = await fetch('/api/mytransactions/balance')
-      const balanceObj = await fetchedBalance.json()
-      user.balance = balanceObj.balance
-      state.setLoggedIn(user)
+      getLoggedIn()
 
-      if (user.role === 'parent') {
-        const fetchedChildren = await fetch('/api/mychildren')
-        const children = await fetchedChildren.json()
-        state.setChildren(children)
-      }
       if (amount.current.value > state.loggedIn.balance) {
         setStatusMessage("Ditt konto saknar täckning för att utföra överföringen")
-        
+
       }
       else {
         setPaymentSent({
@@ -127,7 +121,9 @@ const TransactionForm = props => {
   ) : (
       <Container className="transaction-form" fluid={true}>
         <h2 className="page-title">Ny betalning</h2>
-        <Row className="no-gutters align-items-center mt-4">
+        <p style={{opacity: '0.7', textAlign: 'center', marginTop:'-80px', fontSize: '16px'}}>Nuvarande saldo: <span style={{fontWeight: 700}}>{state.loggedIn.balance.toLocaleString('sv-SE')} kr</span></p>
+
+        <Row className="no-gutters align-items-center" style={{marginTop: '60px'}}>
           <Col>
             <p className="number-msg">{receiverName}</p>
             <div className="input-component">
@@ -159,7 +155,16 @@ const TransactionForm = props => {
           <p className="no-funds">{statusMessage}</p>
         </div>
         <div className="button-div mt-4">
-          <Button className="primary-btn" disabled={receiverName === 'Ingen mottagare med detta nummer finns' || receiverName ===  'Du kan ej skicka pengar till dig själv' || !receiverName ? true : false} onClick={onSubmit}><Send /><span>Skicka</span></Button>
+          <Button
+            className="primary-btn"
+            disabled={
+              receiverName === 'Ingen mottagare med detta nummer finns' ||
+                receiverName === 'Du kan ej skicka pengar till dig själv' ||
+                !receiverName ? true : false}
+            onClick={onSubmit}
+          >
+            <Send /><span>Skicka</span>
+          </Button>
         </div>
       </Container>
     )

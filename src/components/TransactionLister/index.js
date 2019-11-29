@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 const TransactionLister = (props) => {
   const history = useHistory()
-
+  
   let transactions = props.transactions.map((transaction, i) => {
     // format date and remove punctuation
     let date = new Date(transaction.date).toLocaleString('sv-SE', { day: "numeric", month: "short" })
@@ -30,7 +30,15 @@ const TransactionLister = (props) => {
       </Row>
     )
   })
-  return transactions
+  if (!props.transactions[0]) {
+    return (
+      <Row className="mb-2 no-gutters transaction-card align-items-center"      >
+        <Col xs="12">
+          <p className="trans-date text-center m-0">Inga transaktioner finns att visa här</p>
+        </Col>
+      </Row>
+    )
+  } else return transactions
 }
 
 export default TransactionLister
