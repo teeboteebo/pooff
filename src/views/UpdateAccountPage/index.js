@@ -3,6 +3,7 @@ import { Container } from 'reactstrap'
 import { User, Mail, Phone } from "react-feather";
 import UpdateAccount from '../../components/UpdateAccount';
 import { usePooff } from '../../context';
+import useMagic from '../../actions/useMagic';
 import ConfirmAccUpdate from '../ConfirmAccUpdate';
 
 const UpdateAccountPage = () => {
@@ -11,6 +12,7 @@ const UpdateAccountPage = () => {
   const email = useRef()
   const phone = useRef()
   const [update, setUpdate] = useState(false)
+  const [setLoggedIn] = useMagic()
   const state = usePooff()
 
   const user = state.loggedIn
@@ -31,6 +33,7 @@ const UpdateAccountPage = () => {
       })
     })
     setUpdate(true)
+    setLoggedIn()
   }
   let inputData = [
     {
