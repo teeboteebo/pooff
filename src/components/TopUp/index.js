@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { X } from 'react-feather'
 import { Container } from 'reactstrap'
+import useMagic from '../../actions/useMagic'
 
 const TopUp = (props) => {
+  const [getLoggedIn] = useMagic()
   const [amount, setAmount] = useState(0)
   const [source, setSource] = useState(undefined)
   const postTopUp = async (e) => {
@@ -22,6 +24,7 @@ const TopUp = (props) => {
       props.clickHandler()
       setAmount('0')
       setSource(undefined)
+      getLoggedIn()
     }
   }
   return (
