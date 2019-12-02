@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import Fade from 'react-reveal/Fade'
+
 import { Row, Col, CustomInput } from "reactstrap";
 import {
   Home,
@@ -73,9 +75,10 @@ const Menu = () => {
                 className={childrenListOpen ? "chevron chevron-up" : "chevron"}
               />
             </span>
-            {childrenListOpen ? (
-              <ul>
-                <li>
+
+            <ul className="mt-0">
+              <Fade top collapse duration={300} when={childrenListOpen}>
+                <li className={childrenListOpen ? 'mt-2' : ''}>
                   <Link
                     to="/mina-barn"
                     onClick={() => state.setMenuOpen(!state.menuOpen)}
@@ -114,10 +117,9 @@ const Menu = () => {
                     <span className="side-margin">Lägg till barn</span>
                   </Link>
                 </li>
-              </ul>
-            ) : (
-                ""
-              )}
+              </Fade>
+            </ul>
+
           </li>
         ) : (
             <li>
