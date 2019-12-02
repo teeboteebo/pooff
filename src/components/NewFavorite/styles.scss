@@ -4,7 +4,7 @@
   }
   .primary-btn {
       width: 100% !important;
-      background-color: #07575b;
-      color: #eee;
+      background-color: var(--testbutton);
+      color: var(--testbuttontext);
   }
 }

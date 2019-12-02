@@ -40,7 +40,7 @@ const FavoritePage = () => {
                         className="remove-btn"
                         onClick={() => removeFavorite(favorite.phone)}
                       >
-                        Ta bort <X />
+                        Ta bort <X/>
                       </Button>
                     </Col>
                   </Row>

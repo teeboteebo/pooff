@@ -51,4 +51,10 @@
   }
 }
 
+.modal-open{
+  --testbutton: #07575b;
+  --testbuttontext: #c4dfe6;
+
+}
+
 $vh: calc(var(--vh, 1vh) * 100);
