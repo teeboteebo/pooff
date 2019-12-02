@@ -51,11 +51,22 @@
 }
 
 .modal-open{
-  --testbutton: #07575b;
-  --testbuttontext: #c4dfe6;
+  --modalbackground: #eee;
+  --modalbutton: #07575b;
+  --modalbuttontext: #c4dfe6;
+  --modalheader: #333;
+  --modalinputborder: #393e46;
+  --modalinputbk: #fff;
   .dark-mode{
-    --testbutton: #000000;
-    --testbuttontext: #fff;
+    //Modal
+    --modalbackground: #393e46;
+    --modalbutton: #4ecca3;
+    --modalbuttontext: #232931;
+    --modalheader: #fff;
+    //Input
+    --modalinputborder: #4ecca3;
+    --modalinputbk: #393e46;
+
   }
 }
 
