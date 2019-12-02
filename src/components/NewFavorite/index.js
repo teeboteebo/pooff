@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Form, Row, Col, Input, Button, Label, Container, ModalHeader, ModalBody, Modal } from "reactstrap";
+import { Form, Row, Col, Input, Button, Container, ModalHeader, ModalBody, Modal } from "reactstrap";
 
-
+import useMagic from '../../actions/useMagic'
 
 const NewFavorite = (props) => {
-
+  const [getLoggedIn] = useMagic()
   //skapa values för namn och telefonnr när en användare skapas
   const [nameFavorite, setNameFavorite] = useState("");
   const [phoneFavorite, setPhoneFavorite] = useState("");
@@ -23,17 +23,17 @@ const NewFavorite = (props) => {
       })
     })
     await responseRaw.json()
-    
+
     setModal(false)
-    props.updateFavorites()
+    getLoggedIn()
   }
-  
+
 
 
   const toggle = () => setModal(!modal);
 
   return (
-    <Container fluid={true} >
+    <Container className="p-0" fluid={true} >
       <Button className="primary-btn" onClick={toggle}>Ny Favorit</Button>
       <Modal isOpen={modal} toggle={toggle} className="add-favorite-container">
         <ModalHeader toggle={toggle}>
@@ -41,35 +41,27 @@ const NewFavorite = (props) => {
          </ModalHeader>
         <ModalBody>
           <Form onSubmit={sendFavorite}>
-            <Row className="input-field">
-              <Col sm="12" md={{ size: 6, offset: 3 }}>
-                <Label className="floating-label" for="exampleEmail">Användarnamn</Label>
-                <Input
-                  type="text"
-                  value={nameFavorite}
-                  onChange={e => setNameFavorite(e.target.value)}
-                  className="form-control"
-                  placeholder="Namn"
-                ></Input>
-              </Col>
-              <Col sm="12" md={{ size: 6, offset: 3 }}>
-                <Label className="floating-label" for="examplePassword">Lösenord</Label>
-                <Input
-                  type="text"
-                  pattern="[0-9]*"
-                  value={phoneFavorite}
-                  onChange={e => setPhoneFavorite(e.target.value)}
-                  className="form-control"
-                  placeholder="Telefonnr"
-                ></Input>
-              </Col>
-            </Row>
+            <Input
+              type="text"
+              value={nameFavorite}
+              onChange={e => setNameFavorite(e.target.value)}
+              className="form-control mb-3"
+              placeholder="Smeknamn"
+            />
+            <Input
+              type="text"
+              pattern="[0-9]*"
+              value={phoneFavorite}
+              onChange={e => setPhoneFavorite(e.target.value)}
+              className="form-control mb-4"
+              placeholder="Telefonnummer"
+            />
 
           </Form>
-          <Button className="primary-btn mt-4" onClick={sendFavorite}>Spara Favorit</Button>
+          <Button className="primary-btn mt-0" onClick={sendFavorite}>Spara Favorit</Button>
 
         </ModalBody>
-        
+
       </Modal>
     </Container>
   );
