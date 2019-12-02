@@ -38,22 +38,36 @@ const KidsList = () => {
           balance = (balance.toFixed(2) + '').split('.')
           balance[0] = Number(balance[0]).toLocaleString('sv-SE')
 
+          if (child.active) {
+            return (
+              <Row key={i} className="no-gutters align-items-center mb-4 p-3 child-box" onClick={() => history.push(`/mina-barn/${child._id}`)}>
+                <Col>
+                  <h6 className="mb-3">
+                    <User />
+                    <span className="ml-2">{firstName + ' ' + lastName}</span>
+                  </h6>
+                  <p className="mb-2"><span className="balance">{balance[0] + ',' + balance[1]}</span> SEK</p>
+                  <p className="info-text">
+                    <Info />
+                    <span className="ml-2">
+                      {firstName} har totalt <strong>{transThisMonth}</strong> {transThisMonth === 1 ? 'transaktion' : 'transaktioner'} den här månaden.
+                    </span>
+                  </p>
+                </Col>
+                <Col xs="auto"><ChevronRight /></Col>
+              </Row>
+            )
+          }
+
           return (
-            <Row key={i} className="no-gutters align-items-center mb-4 p-3 child-box" onClick={() => history.push(`/mina-barn/${child._id}`)}>
+            <Row key={i} className="no-gutters align-items-center mb-4 p-3 child-box inactive">
               <Col>
                 <h6 className="mb-3">
                   <User />
                   <span className="ml-2">{firstName + ' ' + lastName}</span>
                 </h6>
-                <p className="mb-2"><span className="balance">{balance[0] + ',' + balance[1]}</span> SEK</p>
-                <p className="info-text">
-                  <Info />
-                  <span className="ml-2">
-                    {firstName} har totalt <strong>{transThisMonth}</strong> {transThisMonth === 1 ? 'transaktion' : 'transaktioner'} den här månaden.
-                  </span>
-                </p>
+                <p className="mb-2">Kontot är inaktivt</p>
               </Col>
-              <Col xs="auto"><ChevronRight /></Col>
             </Row>
           )
         })}
