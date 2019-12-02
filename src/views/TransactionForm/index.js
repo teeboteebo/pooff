@@ -19,7 +19,7 @@ const TransactionForm = props => {
   const [paymentSent, setPaymentSent] = useState({ sent: false })
   const [statusMessage, setStatusMessage] = useState("")
 
-  const receiver = useRef(props.location.state ? { current: { value: props.location.state.phone } } : null)
+  const receiver = useRef(/* props.location.state ? { current: { value: props.location.state.phone } } : null */)
   const amount = useRef()
   const message = useRef()
 

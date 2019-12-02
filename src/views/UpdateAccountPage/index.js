@@ -7,50 +7,112 @@ import useMagic from '../../actions/useMagic';
 import ConfirmAccUpdate from '../ConfirmAccUpdate';
 
 const UpdateAccountPage = () => {
+  const state = usePooff()
+  const user = state.loggedIn
   const firstName = useRef()
   const lastName = useRef()
   const email = useRef()
   const phone = useRef()
   const [update, setUpdate] = useState(false)
+  const [validation, setValidation] = useState({
+    firstName: true,
+    lastName: true,
+    email: true,
+    phone: true
+  })
   const [setLoggedIn] = useMagic()
-  const state = usePooff()
-
-  const user = state.loggedIn
+  
 
   const updateUser = async (e) => {
-    e.preventDefault()
-    await fetch('/api/myuser', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        //check if value is falsy else use fetched user
-        firstName: firstName.current.value || user.firstName,
-        lastName: lastName.current.value || user.lastName,
-        email: email.current.value || user.email,
-        phone: phone.current.value || user.phone,
+    e.preventDefault()    
+
+    const validate = () => {
+      const x = { ...validation }
+
+      if (firstName.current.value.length && !(/^[A-ZÅÄÖa-zåäö]{2}[A-ZÅÄÖa-zåäö -]*$/.test(firstName.current.value))) {
+        x.firstName = false
+      }
+      else {
+        x.firstName = true
+      }
+      if (lastName.current.value.length && !(/^[A-ZÅÄÖa-zåäö]{2}[A-ZÅÄÖa-zåäö -]*$/.test(lastName.current.value))) {
+        x.lastName = false
+      }
+      else {
+        x.lastName = true
+      }
+      if(email.current.value.length && !(/\w\w+@\w\w+\.\w\w+/.test(email.current.value))) {
+        x.email = false
+      }
+      else {
+        x.email = true
+      }
+      if(phone.current.value.length && !(/^0[7][0-9]{8}$/.test(phone.current.value))) {
+        x.phone = false
+      }
+      else {
+        x.phone = true
+      }
+      setValidation(x)
+      // if(lastName.current.value.length && !(/^[A-ZÅÄÖa-zåäö]{2}[A-ZÅÄÖa-zåäö -]*$/.test(lastName.current.value))) {
+      //   setValidation({ ...validation, lastName: false })
+      //   // return false
+      //   console.log('turd')
+      // }
+      // else {
+      //   setValidation({ ...validation, lastName: true})
+      // }
+      // if() {
+      //   setValidation({ ...validation, email: false})
+      //   return false
+      // }
+      // else {
+      //   setValidation({ ...validation, email: true})
+      // }
+      // if() {
+      //   setValidation({ ...validation, phone: false })
+      //   return false
+      // } else {
+      //   setValidation({ ...validation, phone: true})
+      // }
+    
+      // Ändra till true när allt är klart
+      return false
+    }
+
+    if (validate()) {
+      await fetch('/api/myuser', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          //check if value is falsy else use fetched user
+          firstName: firstName.current.value || user.firstName,
+          lastName: lastName.current.value || user.lastName,
+          email: email.current.value || user.email,
+          phone: phone.current.value || user.phone,
+        })
       })
-    })
-    setUpdate(true)
-    setLoggedIn()
+      setUpdate(true)
+      setLoggedIn()
+    }
   }
   let inputData = [
     {
       placeholder: user.firstName,
       type: 'text',
       ref: firstName,
-      // validator: '[A-ZÅÄÖ][a-zåäö]+[a-zA-ZåäöÅÄÖ-]*', // börja på stor bokstav Minst 2 bokstäver.
-      validator: '[A-ZÅÄÖa-zåäö]{2,}[a-zA-ZåäöÅÄÖ-]*', // börja med vad som helst bokstav. Minst 2 bokstäver.
-      id: "firstname",
+      error: 'Ditt förnamn måste innehålla minst 2 bokstäver', // börja med vad som helst bokstav. Minst 2 bokstäver.
+      id: "firstName",
       title: '',
       icon: <User className="main-icon" />
     },
     {
       placeholder: user.lastName,
       type: 'text',
-      validator: '[A-ZÅÄÖa-zåäö]{2,}[a-zA-ZåäöÅÄÖ-]*',
-      id: "lastname",
+      error: 'Ditt efternamn måste innehålla minst 2 bokstäver',
+      id: "lastName",
       ref: lastName,
       icon: <User className="main-icon" />
     },
@@ -58,33 +120,33 @@ const UpdateAccountPage = () => {
       placeholder: user.email,
       type: 'email',
       ref: email,
-      validator:'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$',
-      id: 'email',
+      error: 'Förslag på epost "hej@mail.se"',
+      id: "email",
       icon: <Mail className="main-icon" />
     },
     {
       placeholder: user.phone,
       type: 'text',
       class: 'phonenumber',
-      validator: '\\d{10}',
+      error: 'Ogiltligt telefonnummer',
       id: 'phone',
       ref: phone,
       icon: <Phone className="main-icon" />
     },
   ]
-if(!update) {
+  if (!update) {
 
-  return (
-    <Container fluid={true} className="no-gutters update-account">
-      <h2 className="page-title">Uppdatera konto</h2>
-      <form onSubmit={(e) => updateUser(e)}>
-        <UpdateAccount inputs={inputData} />
-        <input className="primary-btn save-button" type="submit" value="Uppdatera" />
-      </form>
-    </Container>
-  )
-}
-return <ConfirmAccUpdate />
+    return (
+      <Container fluid={true} className="no-gutters update-account">
+        <h2 className="page-title">Uppdatera konto</h2>
+        <form className="form-input" onSubmit={(e) => updateUser(e)}>
+          <UpdateAccount inputs={inputData} validation={validation} />
+          <input className="primary-btn save-button" type="submit" value="Uppdatera" />
+        </form>
+      </Container>
+    )
+  }
+  return <ConfirmAccUpdate />
 
 }
 

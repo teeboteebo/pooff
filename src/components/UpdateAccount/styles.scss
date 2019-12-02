@@ -1,33 +1,53 @@
-.input-group {
-  position: relative;
-  .main-icon {
-    position: absolute;
-    left: 8px;
-    top: 10px;
-    height: 20px;
-    width: 20px;
-  }
-  .input-field {
-    width: 100%;
-    padding: 10px;
+// .update-account {
+  .input-group {
+    position: relative;
+    display: block;
     margin-bottom: 20px;
-    outline: none;
-    text-indent: 35px;
-    border: none;
-    border-bottom: 1px solid var(--textColor);
-    background-color: transparent;
-    color: var(--textColor);
-    &:focus {
-      border: none;
-      border-bottom: 1px solid var(--primary);
-      &::placeholder {
-        opacity: 0.7;
-        color: var(--primary);
-      }
+    .main-icon {
+      position: absolute;
+      left: 8px;
+      top: 10px;
+      height: 20px;
+      width: 20px;
     }
-    &::placeholder {
-      opacity: 0.5;
+    .input-field {
+      margin-bottom: 0;
+      width: 100%;
+      padding: 10px;
+      outline: none;
+      text-indent: 35px;
+      border: none;
+      border-bottom: 1px solid var(--textColor);
+      background-color: transparent;
       color: var(--textColor);
+      &:focus {
+        border: none;
+        border-bottom: 1px solid var(--primary);
+        &::placeholder {
+          opacity: 0.7;
+          color: var(--primary);
+        }
+      }
+      &::placeholder {
+        opacity: 0.5;
+        color: var(--textColor);
+      }
+      &:invalid:not(:focus):not(:placeholder-shown) {
+        // Show a light reminder
+        background: pink;
+        // & + label {
+        //   opacity: 0;
+        // }
+      }
+      // :invalid{
+      //   color: red;
+      // }
+    }
+
+    .error-text {
+      font-size: 12px;
+      color: var(--invalidInput);
+      position: absolute;
     }
   }
-}
+// }
