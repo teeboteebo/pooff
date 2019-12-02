@@ -85,17 +85,25 @@ const Menu = () => {
                   </Link>
                 </li>
                 {state.children.map((child, i) => (
-                  <li key={i}>
-                    <Link
-                      to={"/mina-barn/" + child._id}
-                      onClick={() => state.setMenuOpen(!state.menuOpen)}
-                    >
-                      <User />
-                      <span className="side-margin">
-                        {child.firstName + " " + child.lastName}
+                  child.active ?
+                    <li key={i}>
+                      <Link
+                        to={"/mina-barn/" + child._id}
+                        onClick={() => state.setMenuOpen(!state.menuOpen)}
+                      >
+                        <User />
+                        <span className="side-margin">
+                          {child.firstName + " " + child.lastName}
+                        </span>
+                      </Link>
+                    </li>
+                    :
+                    <li key={i}>
+                      <User className="inactive" />
+                      <span className="side-margin inactive">
+                        {child.firstName + ' ' + child.lastName} (inaktiv)
                       </span>
-                    </Link>
-                  </li>
+                    </li>
                 ))}
                 <li>
                   <Link
