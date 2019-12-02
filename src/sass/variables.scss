@@ -11,6 +11,7 @@
   --transactionBackgroundShadow: #666;
   --transactionIncoming: #003b46;
   --transactionOutgoing: #f02727;
+  --invalidInput: #f02727;
   --inputBackground: #fff;
   --inputBorder: #ced4da;
   --inputIcon: #757575;
@@ -46,7 +47,15 @@
     --inputplaceholder: #fff;
     --inputtext: #fff;
     --linkcolor: #4ecca3;
+  }
+}
 
+.modal-open{
+  --testbutton: #07575b;
+  --testbuttontext: #c4dfe6;
+  .dark-mode{
+    --testbutton: #000000;
+    --testbuttontext: #fff;
   }
 }
 

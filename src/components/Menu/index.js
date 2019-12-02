@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import Fade from 'react-reveal/Fade'
+
 import { Row, Col, CustomInput } from "reactstrap";
 import {
   Home,
@@ -73,9 +75,10 @@ const Menu = () => {
                 className={childrenListOpen ? "chevron chevron-up" : "chevron"}
               />
             </span>
-            {childrenListOpen ? (
-              <ul>
-                <li>
+
+            <ul className="mt-0">
+              <Fade top collapse duration={300} when={childrenListOpen}>
+                <li className={childrenListOpen ? 'mt-2' : ''}>
                   <Link
                     to="/mina-barn"
                     onClick={() => state.setMenuOpen(!state.menuOpen)}
@@ -85,35 +88,47 @@ const Menu = () => {
                   </Link>
                 </li>
                 {state.children.map((child, i) => (
-                  <li key={i}>
-                    <Link
-                      to={"/mina-barn/" + child._id}
-                      onClick={() => state.setMenuOpen(!state.menuOpen)}
-                    >
-                      <User />
-                      <span className="side-margin">
-                        {child.firstName + " " + child.lastName}
+                  child.active ?
+                    <li key={i}>
+                      <Link
+                        to={"/mina-barn/" + child._id}
+                        onClick={() => state.setMenuOpen(!state.menuOpen)}
+                      >
+                        <User />
+                        <span className="side-margin">
+                          {child.firstName + " " + child.lastName}
+                        </span>
+                      </Link>
+                    </li>
+                    :
+                    <li key={i}>
+                      <User className="inactive" />
+                      <span className="side-margin inactive">
+                        {child.firstName + ' ' + child.lastName} (inaktiv)
                       </span>
-                    </Link>
-                  </li>
+                    </li>
                 ))}
                 <li>
-                  <Plus />
-                  <span className="side-margin">Lägg till barn</span>
+                  <Link
+                    to="/lagg-till-barn"
+                    onClick={() => state.setMenuOpen(!state.menuOpen)}
+                  >
+                    <Plus />
+                    <span className="side-margin">Lägg till barn</span>
+                  </Link>
                 </li>
-              </ul>
-            ) : (
-              ""
-            )}
+              </Fade>
+            </ul>
+
           </li>
         ) : (
-          <li>
-            <Link to="/" onClick={() => state.setMenuOpen(!state.menuOpen)}>
-              <Plus />
-              <span className="side-margin">Lägg till barn</span>
-            </Link>
-          </li>
-        )}
+            <li>
+              <Link to="/lagg-till-barn" onClick={() => state.setMenuOpen(!state.menuOpen)}>
+                <Plus />
+                <span className="side-margin">Lägg till barn</span>
+              </Link>
+            </li>
+          )}
         <li>
           <Link to="/favoriter" onClick={() => state.setMenuOpen(!state.menuOpen)}>
             <Heart />

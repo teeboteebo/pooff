@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { HelpCircle, MessageCircle } from "react-feather"
+import Fade from 'react-reveal/Fade'
 
 const QandA = props => {
   const qna = { ...props.data }
@@ -21,10 +22,11 @@ const QandA = props => {
       <div type="text" className="question-content" onClick={openQna}>
         <HelpCircle className="qna-icon" /><p className="text-style"> {qna.question ? qna.question : 'Fråga saknas'}</p>
       </div>
-      {toggleState &&
+      <Fade right opposite collapse duration={300} when={toggleState}>
         <div className="answer-content"> <MessageCircle className="qna-icon" />
-          <p className="text-style"> {qna.answer ? qna.answer : 'Svar saknas'} </p>
-        </div>}
+          <p className="text-style "> {qna.answer ? qna.answer : 'Svar saknas'} </p>
+        </div>
+      </Fade>
 
     </div>
   )

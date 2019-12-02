@@ -2,7 +2,6 @@ import React from 'react';
 
 
 const UpdateAccount = props => {
-
   return (
     props.inputs.map((input, i) => {
       return (
@@ -10,10 +9,11 @@ const UpdateAccount = props => {
           {input.icon}
           <input
             ref={input.ref}
-            className="input"
+            className="input-field"
             placeholder={input.placeholder}
             type="text"
             />
+        {props.validation[input.id] ? '' : <p className=" error-text">{input.error}</p>}
         </div>
       )
     })

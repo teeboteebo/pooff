@@ -2,61 +2,36 @@ import React, { useState } from "react"
 import { Container, Form, Row, Col, Input, Button, Label } from "reactstrap"
 import { Link, useHistory } from "react-router-dom"
 
-import { usePooff } from "../../context"
+import useMagic from '../../actions/useMagic'
 
 const LoginPage = () => {
-  const state = usePooff()
+  const [getLoggedIn] = useMagic()
   // Force login route to go through to / route when
   // you push the login button 
   const history = useHistory()
 
-  const checkIfActive = async username => {
-    let user = await fetch(`/api/active/${username}`)
-    user = await user.json()
-    console.log(user)
-    return user
-  }
 
   const login = async (e, username, password) => {
     e.preventDefault()
 
-    const user = await checkIfActive(username)
+    let jsonRaw = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    })
 
-    if (user.active) {
-      let jsonRaw = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      })
+    let message = await jsonRaw.json()
 
-      let message = await jsonRaw.json()
-
-      if (message.error) {
-        setStatusMessage("Användarnamn eller lösenord är fel")
-      } else {
-        /* setStatusMessage(`Inloggad som ${message.username} - (${message.role})`)
-        props.history.push("/") */
-        const fetchedUser = await fetch("/api/myuser")
-        const user = await fetchedUser.json()
-        const fetchedBalance = await fetch('/api/mytransactions/balance')
-        const balanceObj = await fetchedBalance.json()
-        user.balance = balanceObj.balance
-        state.setLoggedIn(user)
-
-        if (user.role === "parent") {
-          const fetchedChildren = await fetch("api/mychildren")
-          const children = await fetchedChildren.json()
-          state.setChildren(children)
-        }
-
-        history.push('/')
-      }
-    } else {
+    if (message.error === "not found") {
+      setStatusMessage("Användarnamn eller lösenord är fel")
+    }
+      
+    else if (message.error === "not active") {
       setStatusMessage(
         "Ditt konto är inte aktiverat. Ett mail har skickats till dig ifall du vill aktivera det",
       )
@@ -67,24 +42,27 @@ const LoginPage = () => {
         method: "POST",
         body: JSON.stringify({
           type: "activate",
-          email: user.email,
+          email: message.email,
         }),
       })
     }
+      
+    else {
+      await getLoggedIn()
+      history.push('/')
+      }
   }
+  
   const [usernameValue, setUsernameValue] = useState("")
   const [passwordValue, setPasswordValue] = useState("")
   const [statusMessage, setStatusMessage] = useState("")
 
   return (
-    <Container fluid={true} className="login-container">
+    <Container fluid={true} className="login-container no-gutters">
+      <h2 className="page-title">Logga in</h2>
       <Form onSubmit={e => login(e, usernameValue, passwordValue)}>
-        <Row>
-          <Col sm="12" md={{ size: 6, offset: 3 }}>
-            <h1 className="text-center">Logga in</h1>
-          </Col>
-        </Row>
-        <Row className="input-field">
+
+        <Row className="input-field no-gutters">
           <Col sm="12" md={{ size: 6, offset: 3 }}>
             <Label className="floating-label" for="exampleUsername">
               Användarnamn
@@ -118,10 +96,10 @@ const LoginPage = () => {
             </Link>
           </Col>
         </Row>
-        <Row className="button-field">
+        <Row className="button-field no-gutters">
           <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
             <Button
-              className="login"
+              className="login primary-btn"
               name="submit"
               value="Logga in"
               type="submit"
@@ -134,13 +112,11 @@ const LoginPage = () => {
 
       <Row className="link-field">
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-          <Link className="no-account" to="/">
-            Har ej ett konto?
-          </Link>
+          <p>Har du ej ett konto?</p>
         </Col>
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
           <Link className="register" to="/registrera">
-            Registrera
+            Skapa konto
           </Link>
         </Col>
         <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>

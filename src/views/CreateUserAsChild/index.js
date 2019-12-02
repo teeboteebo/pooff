@@ -84,7 +84,6 @@ const CreateUserAsChild = () => {
     user = await user.json()
     setFetched(true)
     setUser(user)
-    console.log(user)
   }
 
   if (!fetched) {
@@ -105,7 +104,6 @@ const CreateUserAsChild = () => {
         active: true
       })
     })
-    console.log(lastName.current.value)
     await setUpdated(true)
   }
 
@@ -113,15 +111,17 @@ const CreateUserAsChild = () => {
     updated ?
       <Container fluid={true}>
         <h2 className="page-title">Din profil har updaterats</h2>
-        <Link to="/logga-in">Klicka här för att logga in</Link></Container> :
+        <Link to="/logga-in">Klicka här för att logga in</Link>
+      </Container> :
       <Container fluid={true}>
         <h2 className="page-title">Komplettera din profil</h2>
         <p className="page-info">Ange personuppgifter</p>
         <UserRegister inputs={childInputData} />
+        <input className="primary-btn" onClick={updateChild} type="submit" value="Registrera" />
         <div className="text-center">
-          <button className="save-button" onClick={updateChild}>Registrera</button>
-          <p>Har du redan ett konto?<Link className="login" to="/logga-in">Logga in</Link></p>
-        </div>
+          {/* <button className="save-button" onClick={updateChild}>Registrera</button> */}
+        <p className="mt-4">Har du redan ett konto?<Link className="login-link" to="/logga-in">Logga in</Link></p>
+      </div>
       </Container>
   )
 }
