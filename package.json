@@ -6,6 +6,7 @@
     "bootstrap": "^4.3.1",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
+    "react-amazing-proxy": "^1.0.61",
     "react-animations": "^1.0.0",
     "react-dom": "^16.11.0",
     "react-feather": "^2.0.3",
@@ -16,7 +17,7 @@
     "reactstrap": "^8.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node node_modules/react-amazing-proxy/start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
