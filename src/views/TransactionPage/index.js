@@ -42,7 +42,7 @@ const TransactionPage = () => {
                 <p className="name mb-2">{transaction.amount > 0 ? `${transaction.sender.firstName} ${transaction.sender.lastName}` : `${transaction.receiver.firstName} ${transaction.receiver.lastName}`}</p>
                 <p className="date mb-4">{date}</p>
                 <p className="phone mb-4">{transaction.receiver.phone}</p>
-                <p className={transaction.amount > 0 ? "mb-3 incoming" : "mb-3 outgoing"}>{transaction.amount}kr</p>
+                <p className={transaction.amount > 0 ? "mb-3 incoming" : "mb-3 outgoing"}>{transaction.amount.toLocaleString('sv-SE')}kr</p>
                 <div className="frame">
                   {transaction.message ?
                     <p className="message">{transaction.message}</p>
