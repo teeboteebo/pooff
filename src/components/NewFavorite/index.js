@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Row, Col, Input, Button, Container, ModalHeader, ModalBody, Modal } from "reactstrap";
+import { Form, Input, Button, Container, ModalHeader, ModalBody, Modal } from "reactstrap";
 
 import useMagic from '../../actions/useMagic'
 

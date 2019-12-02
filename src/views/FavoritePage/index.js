@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import { X } from "react-feather";
 import NewFavorite from "../../components/NewFavorite";
