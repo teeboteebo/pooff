@@ -17,7 +17,6 @@ const TransactionForm = props => {
     amount: true,
   })
   const [paymentSent, setPaymentSent] = useState({ sent: false })
-  const [favorites, setFavorites] = useState([])
   const [statusMessage, setStatusMessage] = useState("")
 
   const receiver = useRef(props.location.state ? { current: { value: props.location.state.phone } } : null)
@@ -33,12 +32,6 @@ const TransactionForm = props => {
       checkNumber(phoneField)
     }
 
-    const getFavorites = async () => {
-      let allFavoritesRaw = await fetch('/api/myuser/favorites')
-      let allFavorites = await allFavoritesRaw.json()
-      setFavorites(allFavorites)
-    }
-    getFavorites()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const validate = () => {
@@ -136,10 +129,10 @@ const TransactionForm = props => {
         <Row>
           <Col xs="auto">
             <div className="favorites">
-              {favorites.map((favorite, i) => {
+              {state.loggedIn.favorites.map((favorite, i) => {
                 return <button className="favorite-btn" onClick={() => setFavoriteAsReceiver(favorite.phone)} key={"fav-btn_" + i}>{favorite.nickname}</button>
               })}
-              {favorites[0] ? '' : <p>Du har ännu inga favoriter, <Link to="/favoriter">klicka här</Link> för att lägga till.</p>}
+              {state.loggedIn.favorites[0] ? '' : <p>Du har ännu inga favoriter, <Link to="/favoriter">klicka här</Link> för att lägga till.</p>}
             </div>
           </Col>
         </Row>
