@@ -87,7 +87,6 @@ const Menu = () => {
                 {state.children.map((child, i) => (
                   child.active ?
                     <li key={i}>
-                      {console.log(child)}
                       <Link
                         to={"/mina-barn/" + child._id}
                         onClick={() => state.setMenuOpen(!state.menuOpen)}
