@@ -1,5 +1,5 @@
 .qna-content {
-  box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
+  // box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
   .qna-icon {
     float: left;
   }
@@ -16,6 +16,8 @@
   border: none;
   outline: none;
   font-size: 15px;
+  box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
+  z-index: 2;
   svg {
     color: var(--primary);
   }
@@ -24,6 +26,8 @@
   padding: 10px;
   overflow: hidden;
   color: #333;
+  box-shadow: 0 1px 3px 0 var(--transactionBackgroundShadow);
+  z-index: 1;
   background-color: var(--secondary);
   font-size: 15px;
 }
