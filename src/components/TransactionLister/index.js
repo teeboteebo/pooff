@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 const TransactionLister = (props) => {
   const history = useHistory()
-  
+
   let transactions = props.transactions.map((transaction, i) => {
     // format date and remove punctuation
     let date = new Date(transaction.date).toLocaleString('sv-SE', { day: "numeric", month: "short" })
@@ -19,7 +19,9 @@ const TransactionLister = (props) => {
           "mb-2 no-gutters transaction-card outgoing align-items-center"
         }
         key={'transaction_' + i}
-        onClick={() => history.push('/enskild-transaktion/' + transaction._id)}
+        onClick={() => history.push(props.kid
+          ? '/mina-barn/' + props.kid + '/transaktioner/' + transaction._id
+          : '/mina-transaktioner/' + transaction._id)}
       >
         <Col xs="7">
           <p className="trans-date">{date}</p>

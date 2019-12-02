@@ -17,7 +17,7 @@ const Kid = () => {
   if (state.children.length) {
     const child = state.children.find(child => child._id === id)
 
-    let { firstName, lastName, balance, transactions, phone } = child
+    let { firstName, lastName, balance, transactions, phone, _id } = child
 
     balance = (balance.toFixed(2) + '').split('.')
     balance[0] = Number(balance[0]).toLocaleString('sv-SE')
@@ -58,7 +58,7 @@ const Kid = () => {
           <button onClick={() => setFilter('received')} className={filter === 'received' ? 'middle active' : 'middle'}>Mottagna</button>
           <button onClick={() => setFilter('sent')} className={filter === 'sent' ? 'right active' : 'right'}>Skickade</button>
         </div>
-        <TransactionLister transactions={filteredTransactions} />
+        <TransactionLister transactions={filteredTransactions} kid={_id} />
       </Container>
     )
   }
