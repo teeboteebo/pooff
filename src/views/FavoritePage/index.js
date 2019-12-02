@@ -1,39 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import { X } from "react-feather";
 import NewFavorite from "../../components/NewFavorite";
 
+import { usePooff } from '../../context'
+import useMagic from '../../actions/useMagic'
+
 const FavoritePage = () => {
-  const [userFavorites, setUserFavorites] = useState("");
+  const state = usePooff()
+  const [getLoggedIn] = useMagic()
+  /* const [userFavorites, setUserFavorites] = useState(""); */
 
   const removeFavorite = async phone => {
-    let favoritesAfterDelete = await fetch(`/api/myuser/favorites/${phone}`, {
+    await fetch(`/api/myuser/favorites/${phone}`, {
       method: "DELETE"
     });
-    let newFavorites = await favoritesAfterDelete.json();
-    setUserFavorites(newFavorites);
+
+    getLoggedIn()
+    // setUserFavorites(newFavorites);
   };
-  const getAllUserFavorites = async () => {
-    const allFavoritesRaw = await fetch("/api/myuser/favorites");
-    const allFavorites = await allFavoritesRaw.json();
-    if (allFavorites && allFavorites !== userFavorites)
-      setUserFavorites(allFavorites);
-  };
-  useEffect(() => {
-    getAllUserFavorites()
-     //comment below removes varning to include or exclude idToGet
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+
+  const { favorites } = state.loggedIn
 
   return (
     <Container className="favorites-container">
       <h2 className="page-title">Favoriter</h2>
       <Row className="no-gutters">
-        {userFavorites
-          ? userFavorites.map((favorite, i) => {
+        {favorites
+          ? favorites.map((favorite, i) => {
               return (
                 <Col xs="12" className="mb-3 bg-test" key={"favorite_" + i}>
-                  <Row>
+                  <Row className="no-gutters">
                     <Col xs="7" md="10">
                       <p className="nickname">{favorite.nickname}</p>
                       <p className="phonenr">{favorite.phone}</p>
@@ -43,7 +40,7 @@ const FavoritePage = () => {
                         className="remove-btn"
                         onClick={() => removeFavorite(favorite.phone)}
                       >
-                        Ta bort <X />
+                        Ta bort <X/>
                       </Button>
                     </Col>
                   </Row>
@@ -54,8 +51,8 @@ const FavoritePage = () => {
       </Row>
 
       <Row className="button-field no-gutters">
-        <Col className="text-center" sm="12" md={{ size: 6, offset: 3 }}>
-          <NewFavorite updateFavorites={getAllUserFavorites} />
+        <Col className="text-center mt-4">
+          <NewFavorite />
         </Col>
       </Row>
     </Container>
