@@ -1,39 +1,34 @@
 .trans-history {
-  .tab-select {
-    border: 3px solid var(--primary);
-    box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
-    border-radius: 4px;
-    overflow: hidden;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    margin: 0 auto 3rem;
-    &:nth-of-type(1) {
-      border-left: none !important;
-    }
-    .items {
-      border-radius: 0;
-      flex: 1;
-      text-align: center;
-      border-left: 3px solid var(--primary);
-      transition: 0.3s background-color, 0.3s color;
-      
-      .nav-link {
-        padding: 0.5rem 0rem;
-        color: var(--textColor);
-        cursor: pointer;
-      }
-      .active {
-        box-shadow: none;
+  .sort-section {
+    text-align: center; 
 
-        flex: 1;
-        font-weight: bold;
-        color: var(--background);
-        height: 100%;
-        border-radius: 0;
-        border: 2px solid var(--primary);
+    button {
+      padding: 10px;
+      width: 100px;
+      outline: none;
+      background-color: var(--background);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+
+      &.active {
         background-color: var(--primary);
-        transition: 0.3s background-color, 0.3s color;
+        color: var(--background);
+      }
+
+      &.left {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-right: none;
+      }
+
+      &.middle {
+        border-radius: 0;
+      }
+
+      &.right {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-left: none;
       }
     }
   }
