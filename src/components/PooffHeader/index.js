@@ -4,7 +4,7 @@ const PooffHeader = () => {
 
   return (
     <div className="pooff-wrapper">
-      <header className="pooff-header">POOFF</header>
+      <header className="pooff-header">POOFF!</header>
     </div>
   )
 }

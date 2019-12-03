@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { Container } from "reactstrap"
 import UserRegister from "../../components/UserRegister"
 import { User, Mail, Phone, Lock } from "react-feather"
+import { useState } from "react"
 
 const CreateNewUserPage = () => {
   const firstName = useRef()
@@ -12,6 +13,8 @@ const CreateNewUserPage = () => {
   const email = useRef()
   const phone = useRef()
   const password = useRef()
+
+  const [created, setCreated] = useState(false)
 
   let inputData = [
     {
@@ -69,7 +72,7 @@ const CreateNewUserPage = () => {
 
   const submitNewUser = async e => {
     e.preventDefault()
-    let responseRaw = await fetch("/api/users", {
+    await fetch("/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -84,10 +87,10 @@ const CreateNewUserPage = () => {
         phone: phone.current.value,
       }),
     })
-    let response = await responseRaw.json()
-    console.log(response)
+    // let response = await responseRaw.json()
 
     sendActivationMail()
+    setCreated(true)
   }
 
   const sendActivationMail = async () => {
@@ -103,6 +106,15 @@ const CreateNewUserPage = () => {
     })
   }
   return (
+    created ? 
+      <Container fluid={true} className="new-user-container">
+        <h2 className="page-title">Ditt konto har skapats!</h2>
+        <p className="page-info">Ett mail har skickats till dig med en aktiveringslänk.</p>
+        <Link to="/logga-in">
+        <input className="primary-btn mt-4" type="submit" value="Till inlogg" />
+        </Link>
+      </Container>
+        :
     <Container fluid={true} className="new-user-container">
       <h2 className="page-title">Registrera användare</h2>
       <p className="page-info">Ange personuppgifter</p>
@@ -111,12 +123,7 @@ const CreateNewUserPage = () => {
         <input className="primary-btn save-button mt-4" type="submit" value="Registrera" />
       </form>
       <div className="text-center">
-        <p className="mt-4">
-          Har du redan ett konto?
-          <Link className="login-link" to="/logga-in">
-            Logga in
-          </Link>
-        </p>
+        <p className="mt-4">Har du redan ett konto?<Link className="login-link" to="/logga-in">Logga in</Link></p>
       </div>
     </Container>
   )

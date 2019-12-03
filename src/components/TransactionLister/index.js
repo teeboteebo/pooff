@@ -19,7 +19,9 @@ const TransactionLister = (props) => {
           "mb-2 no-gutters transaction-card outgoing align-items-center"
         }
         key={'transaction_' + i}
-        onClick={() => history.push('/enskild-transaktion/' + transaction._id)}
+        onClick={() => history.push(props.kid
+          ? '/mina-barn/' + props.kid + '/transaktioner/' + transaction._id
+          : '/mina-transaktioner/' + transaction._id)}
       >
         <Col xs="7">
           <p className="trans-date">{date}</p>
@@ -30,7 +32,15 @@ const TransactionLister = (props) => {
       </Row>
     )
   })
-  return transactions
+  if (!props.transactions[0]) {
+    return (
+      <Row className="mb-2 no-gutters transaction-card align-items-center"      >
+        <Col xs="12">
+          <p className="trans-date text-center m-0">Inga transaktioner finns att visa här</p>
+        </Col>
+      </Row>
+    )
+  } else return transactions
 }
 
 export default TransactionLister

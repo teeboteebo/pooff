@@ -1,11 +1,36 @@
-.Favorite-user{
-    padding: 1rem 5rem!important;
+.favorites-container {
+  .Favorite-user {
+    padding: 1rem 5rem !important;
+  }
+
+  .newFavorite {
+    background-color: var(--buttonprimary);
+    color: var(--buttontext);
+    padding: 0.25rem 3rem;
+    border: none;
+  }
+
+  .bg-test {
+    padding: 1rem;
+    background-color: var(--transactionPreviewBackground);
+    box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
+    border-radius: 2px;
+  }
+  .nickname {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+  }
+  .nickname,
+  .phonenr {
+    color: var(--textColor);
+    padding-left: 1rem;
+    font-size: 22px;
+  }
+
+  .remove-btn {
+    margin-top: 10px;
+    background-color: transparent;
+    border-color: red;
+    color: var(--textColor);
+  }
 }
-
-.newFavorite{ 
-    background-color: var(--buttonprimary); 
-    color: var(--buttontext); 
-    padding: 0.25rem 3rem; 
-    border: none; 
-} 
-

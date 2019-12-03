@@ -7,8 +7,12 @@
       justify-content: center;
     }
     li {
-      margin-bottom: 20px;
-      .header {
+      svg {
+        color: var(--inputIcon);
+      }
+      // margin-bottom: 20px;
+      .header,
+      .bottom-header {
         margin-left: 15px;
         margin-right: 5px;
         vertical-align: super;
@@ -25,6 +29,9 @@
             flex: content;
           }
         }
+      }
+      .bottom-header {
+        margin-bottom: 0;
       }
     }
   }
@@ -57,5 +64,34 @@
     margin-left: 15px;
     margin-right: 15px;
     display: inline-block;
+  }
+}
+
+.deactivate-container {
+  h2.deactivate-heading {
+    padding: 1rem;
+    text-align:center;
+    margin: 0;
+    color: var(--modalheader)
+   }
+
+   .modal-content{
+    background-color: var(--modalbackground);
+   }
+   .modal-body{
+     text-align: center;
+   }
+
+  .deactivate-confirm {
+    background-color: var(--modalbutton);
+    margin-right: 1rem;
+    color: var(--modaltext);
+    border:none;
+  }
+
+  .deactivate-cancel {
+    background: red;
+    color: var(--modaltext);
+    border: none;
   }
 }

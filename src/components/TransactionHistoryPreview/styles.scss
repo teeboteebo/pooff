@@ -6,9 +6,8 @@
   top: calc(calc(var(--vh, 1vh) * 100) - 25px);
   left: 0;
   transition: 0.3s top;
-
-  .transaction-card {
-    background-color: rgb(27, 27, 27);
+  .transaction-card{
+    background-color: var(--transactionPreview);
   }
 
   background-color: var(--transactionPreviewBackground);
@@ -37,7 +36,7 @@
   .lister-container {
     border-top: 1px solid var(--primary);
     padding: 7px 3px 5px;
-    max-height: calc(var(--vh, 1vh) * 61);
+    max-height: 67vh;
     overflow-y: scroll;
   }
 }

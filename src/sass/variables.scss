@@ -6,10 +6,12 @@
   --secondary: #C4DFE6;
   --headerBackground: #003b46;
   --transactionBackground: #fff;
+  --transactionPreview: #fff;
   --transactionPreviewBackground: #fff;
   --transactionBackgroundShadow: #666;
   --transactionIncoming: #003b46;
   --transactionOutgoing: #f02727;
+  --invalidInput: #f02727;
   --inputBackground: #fff;
   --inputBorder: #ced4da;
   --inputIcon: #757575;
@@ -32,6 +34,7 @@
     --secondary: #4ecca3;
     --headerBackground: #232931;
     --transactionBackground: #232931;
+    --transactionPreview: #121212;
     --transactionPreviewBackground: #232931;
     --transactionBackgroundShadow: #333;
     --transactionIncoming: #4ecca3;
@@ -44,6 +47,27 @@
     --inputplaceholder: #fff;
     --inputtext: #fff;
     --linkcolor: #4ecca3;
+  }
+}
+
+.modal-open{
+  --modalbackground: #eee;
+  --modalbutton: #07575b;
+  --modalbuttontext: #c4dfe6;
+  --modalheader: #333;
+  --modalinputborder: #393e46;
+  --modalinputbk: #fff;
+  --modaltext: #eee;
+  .dark-mode{
+    //Modal
+    --modalbackground: #393e46;
+    --modalbutton: #4ecca3;
+    --modalbuttontext: #232931;
+    --modalheader: #fff;
+    --modaltext: #eee;
+    //Input
+    --modalinputborder: #4ecca3;
+    --modalinputbk: #393e46;
 
   }
 }

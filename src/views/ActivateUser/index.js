@@ -1,25 +1,25 @@
 import React, { useState } from "react"
 import { Spinner } from "reactstrap"
+import { Link } from "react-router-dom"
 
 const ActivateUser = () => {
   const [link, setLink] = useState("")
   const [activated, setActivated] = useState(false)
 
   const findUserAndActivate = async () => {
-    console.log()
     const user = await findUser()
     await activateUser(user)
     setActivated(true)
   }
 
   const findUser = async () => {
-    let user = await fetch("/api/users/email/" + link.email)
+    let user = await fetch("/api/email/" + link.email)
     user = await user.json()
     return user
   }
 
   const activateUser = async user => {
-    await fetch(`/api/users/activate/${user[0]._id}`, {
+    await fetch(`/api/activate/${user[0]._id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -35,7 +35,6 @@ const ActivateUser = () => {
     const fetchLink = async () => {
       let fetchedLink = await fetch("/api/links/" + path)
       fetchedLink = await fetchedLink.json()
-      console.log(fetchedLink)
       fetchedLink.link ? await setLink(fetchedLink) : await setLink("")
     }
     await fetchLink()
@@ -51,7 +50,7 @@ const ActivateUser = () => {
       {activated ? (
         <div>
           <h2>Ditt konto har nu aktiverats</h2>
-          <button className=".to-login-button">Till inlogg</button>
+          <Link to="/logga-in" className="to-login-button">Till inlogg</Link>
         </div>
       ) : (
         <div>
