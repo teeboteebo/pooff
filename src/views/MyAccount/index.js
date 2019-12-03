@@ -32,7 +32,7 @@ const MyAcccount = () => {
   return (
     <Container className="my-account" fluid={true}>
       <h2 className="page-title">Mitt konto</h2>
-      <Modal isOpen={modal} toggle={toggle} className="deactivate-container">
+      <Modal isOpen={modal} toggle={toggle} className={state.loggedIn && state.loggedIn.darkMode ? "deactivate-container dark-mode" : "deactivate-container"}>
           <h2 className="deactivate-heading">Vill du inaktivera ditt konto?</h2>
         <ModalBody>
           <Button className="deactivate-confirm" onClick={deactivateAccount}>Bekräfta</Button>

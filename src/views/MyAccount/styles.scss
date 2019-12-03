@@ -72,21 +72,26 @@
     padding: 1rem;
     text-align:center;
     margin: 0;
+    color: var(--modalheader)
    }
 
-
+   .modal-content{
+    background-color: var(--modalbackground);
+   }
    .modal-body{
      text-align: center;
    }
 
   .deactivate-confirm {
-    background-color: #07575b;
+    background-color: var(--modalbutton);
     margin-right: 1rem;
-    color: #eee;
+    color: var(--modaltext);
+    border:none;
   }
 
   .deactivate-cancel {
     background: red;
-    color: #eee;
+    color: var(--modaltext);
+    border: none;
   }
 }
