@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Container, Spinner } from 'reactstrap'
-import { Plus } from 'react-feather'
+import { DollarSign } from 'react-feather'
 
 import { usePooff } from '../../context'
 
@@ -49,7 +49,7 @@ const Kid = () => {
               phone
             }
           }}>
-            <button><Plus size="22" /></button>
+            <button><DollarSign size="22" /></button>
           </Link>
           <p>För över pengar</p>
         </div>
