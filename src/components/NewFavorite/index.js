@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Container, ModalHeader, ModalBody, Modal } from "reactstrap";
-import { usePooff } from "../../context"
+import { usePooff } from "../../context";
+import useMagic from "../../actions/useMagic";
 
 
 
 const NewFavorite = (props) => {
   const state = usePooff()
+  const [setLoggedIn] = useMagic()
 
 
   //skapa values för namn och telefonnr när en användare skapas
@@ -28,8 +30,8 @@ const NewFavorite = (props) => {
     await responseRaw.json()
     
     setModal(false)
-    props.updateFavorites()
-  }
+    setLoggedIn()
+    }
   
 
 
@@ -48,7 +50,7 @@ const NewFavorite = (props) => {
                   type="text"
                   value={nameFavorite}
                   onChange={e => setNameFavorite(e.target.value)}
-                  className="form-control mt-3"
+                  className="input-field mt-3"
                   placeholder="Namn"
                 ></Input>
                 <Input
@@ -56,7 +58,7 @@ const NewFavorite = (props) => {
                   pattern="[0-9]*"
                   value={phoneFavorite}
                   onChange={e => setPhoneFavorite(e.target.value)}
-                  className="form-control mt-3"
+                  className="input-field mt-3"
                   placeholder="Telefonnr"
                 ></Input>
           </Form>
