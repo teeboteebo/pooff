@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 // Components
 import PooffHeader from './components/PooffHeader'
 import Header from './components/Header'
+import PaymentReceived from './components/PaymentReceived'
 
 // Views
 import PooffStartPage from './views/PooffStartPage'
@@ -39,6 +40,7 @@ const App = () => {
   const state = usePooff()
   const [getLoggedIn] = useMagic()
   const [loading, setLoading] = useState(true)
+  const [received, setReceived] = useState({rec : false})
 
   let headerHeight = 44
   let vh = window.innerHeight * 0.01;
@@ -48,6 +50,7 @@ const App = () => {
   if (!sseListenerAdded) {
     sse.listen('payment', (data) => {
       console.log('payment', data);
+      setReceived({rec : true, data : data})
     });
     sseListenerAdded = true;
   }
@@ -75,6 +78,7 @@ const App = () => {
             className={state.loggedIn && state.loggedIn.darkMode ? "App dark-mode" : "App"}>
             {state.loggedIn ? <Header /> : <PooffHeader />}
             <main>
+              {received.rec ? <PaymentReceived data={received.data}/> : ""}
               {state.loggedIn ? (
                 <Switch>
                   {/* LOGGED IN */}
