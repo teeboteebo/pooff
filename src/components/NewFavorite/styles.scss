@@ -1,10 +1,24 @@
 .add-favorite-container {
-  .form-control {
-    border: 1px solid black !important;
+  .modal-content{
+    background-color: var(--modalbackground);
+  }
+  .modal-header{
+    color: var(--modalheader)
   }
   .primary-btn {
       width: 100% !important;
-      background-color: var(--testbutton);
-      color: var(--testbuttontext);
+      background-color: var(--modalbutton);
+      color: var(--modalbuttontext);
+  }
+  .form-control{
+    border: 2px solid var(--modalinputborder);
+    background-color: var(--modalinputbk);
+    color: var(--modalheader);
+  }
+  input.form-control.form-control::placeholder {
+    color: var(--modalheader);
+  }
+  .form-control:focus {
+    color: var(--modalheader);
   }
 }
