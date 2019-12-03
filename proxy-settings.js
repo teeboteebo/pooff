@@ -5,10 +5,10 @@ module.exports = {
   openInBrowser: true,
   // path to your own backend api
   // (set to empty string if yo don't have an internal JS-based api)
-  pathToAPI: '',
+  pathToAPI: '../pooff-api/index.js',
   // the host for your backend api 
   // set to another machine if your api is not local  
-  hostForAPI: '',
+  hostForAPI: 'localhost',
   // the ports
   ports: {
     // where you want to run the 'joint' proxied server
