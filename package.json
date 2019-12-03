@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "easy-server-sent-events": "^1.0.14",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
     "react-amazing-proxy": "^1.0.61",

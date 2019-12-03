@@ -30,6 +30,10 @@ import UpdatePasswordLoggedIn from './views/UpdatePasswordLoggedIn'
 
 import { usePooff } from "./context"
 import useMagic from './actions/useMagic'
+import SSE from 'easy-server-sent-events/sse';
+
+const sse = new SSE('/api/sse');
+let sseListenerAdded = false;
 
 const App = () => {
   const state = usePooff()
@@ -40,6 +44,14 @@ const App = () => {
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`)
   document.documentElement.style.setProperty('--headerHeight', `${headerHeight}px`)
+
+  if (!sseListenerAdded) {
+    sse.listen('payment', (data) => {
+      console.log('payment', data);
+    });
+    sseListenerAdded = true;
+  }
+
 
   useEffect(() => {
     const load = async () => {
@@ -83,7 +95,7 @@ const App = () => {
                   <Route exact path="/mina-transaktioner/:id" component={TransactionPage} />
                   <Route exact path="/mitt-konto" component={MyAccount} />
                   <Route path="/nytt-losenord" component={NewPassword} />
-                  <Route exact path="/uppdatera-losenord" component={UpdatePasswordLoggedIn} />
+                  <Route exact path="/uppdatera-losenord" component={UpdatePasswordLoggedIn} /> 
                 </Switch>
               ) : (
                   <Switch>
