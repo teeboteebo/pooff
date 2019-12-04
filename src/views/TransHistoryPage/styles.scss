@@ -3,8 +3,8 @@
     text-align: center; 
 
     button {
+      flex: 1;
       padding: 10px;
-      width: 100px;
       outline: none;
       background-color: var(--background);
       border: 1px solid var(--primary);

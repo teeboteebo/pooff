@@ -27,7 +27,7 @@ const TransHistoryPage = () => {
   return (
     <Container className="trans-history">
       <h2 className="page-title">Transaktioner</h2>
-      <div className="sort-section mb-4">
+      <div className="sort-section mb-4 w-100 d-flex">
         <button onClick={() => setFilter('all')} className={filter === 'all' ? 'left active' : 'left'}>Alla</button>
         <button onClick={() => setFilter('received')} className={filter === 'received' ? 'middle active' : 'middle'}>Mottagna</button>
         <button onClick={() => setFilter('sent')} className={filter === 'sent' ? 'right active' : 'right'}>Skickade</button>
