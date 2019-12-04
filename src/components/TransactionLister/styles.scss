@@ -12,8 +12,11 @@
     margin-top: 5px;
   }
   .trans-name {
-    font-size: 22px;
+    font-size: 16px;
     color: var(--textColorContrast);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .trans-amount {
     padding-right: 20px;
