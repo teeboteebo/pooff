@@ -78,7 +78,7 @@ const App = () => {
             className={state.loggedIn && state.loggedIn.darkMode ? "App dark-mode" : "App"}>
             {state.loggedIn ? <Header /> : <PooffHeader />}
             <main>
-              {received.rec ? <PaymentReceived data={received.data}/> : ""}
+              {received.rec ? <PaymentReceived data={received.data} clickHandler={() => setReceived({rec: false})}/> : ""}
               {state.loggedIn ? (
                 <Switch>
                   {/* LOGGED IN */}
