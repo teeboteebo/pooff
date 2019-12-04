@@ -235,7 +235,13 @@ const CreateNewUserPage = () => {
         <h2 className="page-title">Registrera användare</h2>
         <p className="page-info">Ange personuppgifter</p>
         <form onSubmit={e => createNewUser(e)}>
-          <UserRegister inputs={inputData} validation={validation} inputValues={inputValues} setInputValues={setInputValues} validate={validate} />
+          <UserRegister
+            inputs={inputData}
+            validation={validation}
+            inputValues={inputValues}
+            setInputValues={setInputValues}
+            validate={validate}
+          />
           <input className="primary-btn save-button mt-4" type="submit" value="Registrera" />
         </form>
         <div className="text-center">
