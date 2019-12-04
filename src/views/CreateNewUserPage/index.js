@@ -26,7 +26,6 @@ const CreateNewUserPage = () => {
       id: "firstName",
       error: 'Förnamn måste innehålla minst 2 bokstäver',
       type: "text",
-      // class: "first-name",
       icon: <User className="main-icon" />,
     },
     {
@@ -34,7 +33,6 @@ const CreateNewUserPage = () => {
       id: "lastName",
       error: 'Efternamn måste innehålla minst 2 bokstäver',
       type: "text",
-      // class: "last-name",
       icon: <User className="main-icon" />,
     },
     {
@@ -42,7 +40,6 @@ const CreateNewUserPage = () => {
       id: "personId",
       error: 'Personnummer skrivs ut med exakt 10 siffror',
       type: "text",
-      // class: "person-id",
       icon: <User className="main-icon" />,
     },
     {
@@ -50,7 +47,6 @@ const CreateNewUserPage = () => {
       id: "username",
       error: 'Användarnamn måste minst innehålla 6 tecken',
       type: "text",
-      // class: "username",
       icon: <User className="main-icon" />,
     },
     {
@@ -58,7 +54,6 @@ const CreateNewUserPage = () => {
       id: "email",
       error: 'Vänligen ange giltig email',
       type: "email",
-      // class: "email",
       icon: <Mail className="main-icon" />,
     },
     {
@@ -66,7 +61,6 @@ const CreateNewUserPage = () => {
       id: "phone",
       error: 'Vänligen ange mobilnummer',
       type: "text",
-      // class: "phone-number",
       icon: <Phone className="main-icon" />,
     },
     {
@@ -157,6 +151,8 @@ const CreateNewUserPage = () => {
       setInputData(inputObjs)
     }
     /****Phone Validation****/
+    // Regex: number needs to start with 0 with a following 7, 4 or 1
+    // and then eight random digits. 10 digits is required.
     if (phone !== undefined && !(/^0[7,4,1][0-9]{8}$/.test(phone))) {
       x.phone = false
     } else {
@@ -203,57 +199,27 @@ const CreateNewUserPage = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(/*{
-          firstName: firstName.current.value,
-          lastName: lastName.current.value,
-          personId: personId.current.value,
-          username: username.current.value,
-          email: email.current.value,
-          phone: phone.current.value,
-          password: password.current.value,
-        }*/)
+        body: JSON.stringify({
+          ...inputValues
+        })
       })
+      sendActivationMail()
       setCreated(true)
     }
   }
 
-
-
-  // const submitNewUser = async e => {
-  //   e.preventDefault()
-  //   await fetch("/api/users", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       firstName: firstName.current.value,
-  //       lastName: lastName.current.value,
-  //       personId: personId.current.value,
-  //       email: email.current.value,
-  //       password: password.current.value,
-  //       username: username.current.value,
-  //       phone: phone.current.value,
-  //     }),
-  //   })
-  // let response = await responseRaw.json()
-
-  // sendActivationMail()
-  //   setCreated(true)
-  // }
-
-  // const sendActivationMail = async () => {
-  //   await fetch("api/send", {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       type: "activate",
-  //       email: email.current.value,
-  //     }),
-  //   })
-  // }
+  const sendActivationMail = async () => {
+    await fetch("api/send", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        type: "activate",
+        email: inputValues.email,
+      }),
+    })
+  }
 
   return (
     created ?
