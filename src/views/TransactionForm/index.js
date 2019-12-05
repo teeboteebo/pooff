@@ -42,7 +42,7 @@ const TransactionForm = props => {
     } else {
       valid.receiver = true
     }
-    if (!amount.current.value) {
+    if (!amount.current.value || amount.current.value <= 0) {
       valid.amount = false
     } else {
       valid.amount = true
