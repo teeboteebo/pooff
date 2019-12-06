@@ -28,6 +28,7 @@ import ActivateUser from "./views/ActivateUser"
 import UpdateAccountPage from './views/UpdateAccountPage';
 import ConfirmAccUpdate from './views/ConfirmAccUpdate';
 import UpdatePasswordLoggedIn from './views/UpdatePasswordLoggedIn'
+import MissingPage from "./views/MissingPage"
 
 import { usePooff } from "./context"
 import useMagic from './actions/useMagic'
@@ -60,8 +61,8 @@ const App = () => {
     const load = async () => {
       await getLoggedIn()
       setLoading(false)
-    } 
-    
+    }
+
     load()
     //comment below removes varning to include or exclude idToGet
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -85,8 +86,8 @@ const App = () => {
                   <Route exact path="/" component={StartPage} />
                   <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
                   <Route exact path="/favoriter" component={FavoritePage} />
-                  <Route exact path="/registrera" component={CreateNewUserPage} />
-                  <Route exact path="/registrera-barn" component={CreateUserAsChild} />
+                  {/* <Route exact path="/registrera" component={CreateNewUserPage} />
+                  <Route exact path="/registrera-barn" component={CreateUserAsChild} /> */}
                   <Route exact path="/ny-betalning" component={TransactionForm} />
                   <Route exact path="/lagg-till-barn" component={ChildRegisterPage} />
                   <Route exact path="/uppdatera-konto" component={UpdateAccountPage} />
@@ -99,7 +100,8 @@ const App = () => {
                   <Route exact path="/mina-transaktioner/:id" component={TransactionPage} />
                   <Route exact path="/mitt-konto" component={MyAccount} />
                   <Route path="/nytt-losenord" component={NewPassword} />
-                  <Route exact path="/uppdatera-losenord" component={UpdatePasswordLoggedIn} /> 
+                  <Route exact path="/uppdatera-losenord" component={UpdatePasswordLoggedIn} />
+                  <Route path="/" component={MissingPage} />
                 </Switch>
               ) : (
                   <Switch>
@@ -112,6 +114,7 @@ const App = () => {
                     <Route path="/registrera-barn" component={CreateUserAsChild} />
                     <Route path="/aterstall-losenord" component={ResetPassword} />
                     <Route path="/nytt-losenord" component={NewPassword} />
+                    <Route path="/" component={MissingPage} />
                   </Switch>
                 )}
             </main>
