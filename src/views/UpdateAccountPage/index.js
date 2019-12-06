@@ -21,13 +21,13 @@ const UpdateAccountPage = () => {
     phone: true
   })
   const [setLoggedIn] = useMagic()
-  
+
 
   const updateUser = async (e) => {
-    e.preventDefault()    
+    e.preventDefault()
 
     const validate = () => {
-      const x = { ...validation }
+      let x = { ...validation }
 
       if (firstName.current.value.length && !(/^[A-ZÅÄÖa-zåäö]{2}[A-ZÅÄÖa-zåäö -]*$/.test(firstName.current.value))) {
         x.firstName = false
@@ -41,44 +41,23 @@ const UpdateAccountPage = () => {
       else {
         x.lastName = true
       }
-      if(email.current.value.length && !(/\w\w+@\w\w+\.\w\w+/.test(email.current.value))) {
+      if (email.current.value.length && !(/\w\w+@\w\w+\.\w\w+/.test(email.current.value))) {
         x.email = false
       }
       else {
         x.email = true
       }
-      if(phone.current.value.length && !(/^0[7][0-9]{8}$/.test(phone.current.value))) {
+      if (phone.current.value.length && !(/^0[7][0-9]{8}$/.test(phone.current.value))) {
         x.phone = false
       }
       else {
         x.phone = true
       }
       setValidation(x)
-      // if(lastName.current.value.length && !(/^[A-ZÅÄÖa-zåäö]{2}[A-ZÅÄÖa-zåäö -]*$/.test(lastName.current.value))) {
-      //   setValidation({ ...validation, lastName: false })
-      //   // return false
-      //   console.log('turd')
-      // }
-      // else {
-      //   setValidation({ ...validation, lastName: true})
-      // }
-      // if() {
-      //   setValidation({ ...validation, email: false})
-      //   return false
-      // }
-      // else {
-      //   setValidation({ ...validation, email: true})
-      // }
-      // if() {
-      //   setValidation({ ...validation, phone: false })
-      //   return false
-      // } else {
-      //   setValidation({ ...validation, phone: true})
-      // }
-    
-      // Ändra till true när allt är klart
-      return false
+      if(x.firstName && x.lastName && x.email && x.phone) return true
+      else return false
     }
+    
 
     if (validate()) {
       await fetch('/api/myuser', {
@@ -98,6 +77,7 @@ const UpdateAccountPage = () => {
       setLoggedIn()
     }
   }
+
   let inputData = [
     {
       placeholder: user.firstName,
@@ -105,7 +85,6 @@ const UpdateAccountPage = () => {
       ref: firstName,
       error: 'Ditt förnamn måste innehålla minst 2 bokstäver', // börja med vad som helst bokstav. Minst 2 bokstäver.
       id: "firstName",
-      title: '',
       icon: <User className="main-icon" />
     },
     {

@@ -1,14 +1,14 @@
-// .update-account {
+.update-account {
   .input-group {
     position: relative;
     display: block;
     margin-bottom: 20px;
     .main-icon {
       position: absolute;
-      left: 8px;
-      top: 10px;
-      height: 20px;
-      width: 20px;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: var(--inputIcon);
     }
     .input-field {
       margin-bottom: 0;
@@ -28,20 +28,6 @@
           color: var(--primary);
         }
       }
-      &::placeholder {
-        opacity: 0.5;
-        color: var(--textColor);
-      }
-      &:invalid:not(:focus):not(:placeholder-shown) {
-        // Show a light reminder
-        background: pink;
-        // & + label {
-        //   opacity: 0;
-        // }
-      }
-      // :invalid{
-      //   color: red;
-      // }
     }
 
     .error-text {
@@ -50,4 +36,4 @@
       position: absolute;
     }
   }
-// }
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Container, Spinner } from 'reactstrap'
-import { Plus } from 'react-feather'
+import { DollarSign } from 'react-feather'
 
 import { usePooff } from '../../context'
 
@@ -17,7 +17,7 @@ const Kid = () => {
   if (state.children.length) {
     const child = state.children.find(child => child._id === id)
 
-    let { firstName, lastName, balance, transactions, phone } = child
+    let { firstName, lastName, balance, transactions, phone, _id } = child
 
     balance = (balance.toFixed(2) + '').split('.')
     balance[0] = Number(balance[0]).toLocaleString('sv-SE')
@@ -49,16 +49,16 @@ const Kid = () => {
               phone
             }
           }}>
-            <button><Plus size="22" /></button>
+            <button><DollarSign size="22" /></button>
           </Link>
           <p>För över pengar</p>
         </div>
-        <div className="sort-section mb-4">
+        <div className="sort-section mb-4 w-100 d-flex">
           <button onClick={() => setFilter('all')} className={filter === 'all' ? 'left active' : 'left'}>Alla</button>
           <button onClick={() => setFilter('received')} className={filter === 'received' ? 'middle active' : 'middle'}>Mottagna</button>
           <button onClick={() => setFilter('sent')} className={filter === 'sent' ? 'right active' : 'right'}>Skickade</button>
         </div>
-        <TransactionLister transactions={filteredTransactions} />
+        <TransactionLister transactions={filteredTransactions} kid={_id} />
       </Container>
     )
   }

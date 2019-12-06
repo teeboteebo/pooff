@@ -47,14 +47,29 @@
     --inputplaceholder: #fff;
     --inputtext: #fff;
     --linkcolor: #4ecca3;
-
   }
 }
 
 .modal-open{
-  --testbutton: #07575b;
-  --testbuttontext: #c4dfe6;
+  --modalbackground: #eee;
+  --modalbutton: #07575b;
+  --modalbuttontext: #c4dfe6;
+  --modalheader: #333;
+  --modalinputborder: #393e46;
+  --modalinputbk: #fff;
+  --modaltext: #eee;
+  .dark-mode{
+    //Modal
+    --modalbackground: #393e46;
+    --modalbutton: #4ecca3;
+    --modalbuttontext: #232931;
+    --modalheader: #fff;
+    --modaltext: #eee;
+    //Input
+    --modalinputborder: #4ecca3;
+    --modalinputbk: #393e46;
 
+  }
 }
 
 $vh: calc(var(--vh, 1vh) * 100);

@@ -94,7 +94,7 @@ const App = () => {
                   <Route exact path="/vanliga-fragor" component={QnA} />
                   <Route exact path="/mina-barn" component={KidsList} />
                   <Route exact path="/mina-barn/:id" component={Kid} />
-                  <Route exact path="/mina-barn/:id/transaktioner/:transId" component={TransactionPage} />
+                  <Route exact path="/mina-barn/:childId/transaktioner/:id" component={TransactionPage} />
                   <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
                   <Route exact path="/mina-transaktioner/:id" component={TransactionPage} />
                   <Route exact path="/mitt-konto" component={MyAccount} />
