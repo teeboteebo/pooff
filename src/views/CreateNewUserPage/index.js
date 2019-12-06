@@ -27,6 +27,7 @@ const CreateNewUserPage = () => {
       error: 'Förnamn måste innehålla minst 2 bokstäver',
       type: "text",
       icon: <User className="main-icon" />,
+      autoComplete: 'off',
     },
     {
       name: "Efternamn",
@@ -34,6 +35,7 @@ const CreateNewUserPage = () => {
       error: 'Efternamn måste innehålla minst 2 bokstäver',
       type: "text",
       icon: <User className="main-icon" />,
+      autoComplete: 'off',
     },
     {
       name: "Personnummer (ååmmddxxxx)",
@@ -41,6 +43,7 @@ const CreateNewUserPage = () => {
       error: 'Personnummer skrivs ut med exakt 10 siffror',
       type: "text",
       icon: <User className="main-icon" />,
+      autoComplete: 'off',
     },
     {
       name: "Användarnamn",
@@ -48,6 +51,7 @@ const CreateNewUserPage = () => {
       error: 'Användarnamn måste minst innehålla 6 tecken',
       type: "text",
       icon: <User className="main-icon" />,
+      autoComplete: 'off',
     },
     {
       name: "E-post",
@@ -55,6 +59,7 @@ const CreateNewUserPage = () => {
       error: 'Vänligen ange giltig email',
       type: "email",
       icon: <Mail className="main-icon" />,
+      autoComplete: 'off',
     },
     {
       name: "Telefonnummer",
@@ -62,6 +67,7 @@ const CreateNewUserPage = () => {
       error: 'Vänligen ange mobilnummer',
       type: "text",
       icon: <Phone className="main-icon" />,
+      autoComplete: 'off',
     },
     {
       name: "Lösenord",
@@ -70,6 +76,7 @@ const CreateNewUserPage = () => {
       type: "password",
       class: "new-password",
       icon: <Lock className="main-icon" />,
+      autoComplete: 'new-password',
     },
     {
       name: "Bekräfta lösenord",
@@ -78,6 +85,7 @@ const CreateNewUserPage = () => {
       type: "password",
       class: "repeat-password",
       icon: <Lock className="main-icon" />,
+      autoComplete: 'new-password',
     },
   ])
   // let visitors fetch info from backend so we can check

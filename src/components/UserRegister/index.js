@@ -28,6 +28,7 @@ const UserRegister = props => {
         <div className="input-group" key={'input_' + i} onChange={input.class === 'repeat-password' ? checkIfMatch : null}>
           {input.icon}
           <input id={input.id}
+            autoComplete={input.autoComplete}
             onChange={inputChange}
             className={"input-register " + input.class}
             placeholder={input.name}
