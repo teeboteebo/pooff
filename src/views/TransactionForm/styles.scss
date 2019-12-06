@@ -10,22 +10,33 @@
       color: var(--inputIcon);
     }
 
-    input, textarea {
-      padding: 8.5px;
+    input {
+      margin-bottom: 0;
       width: 100%;
-      border: 1px solid var(--inputBorder);
-      border-radius: 4px;
+      padding: 10px;
+      outline: none;
+      text-indent: 35px;
+      border: none;
+      border-bottom: 1px solid var(--textColor);
+      background-color: transparent;
       color: var(--textColor);
-      text-indent: 40px;
-      background-color: var(--inputbackground);
-
       &:focus {
-        border-radius: .3rem;
+        // border-radius: .3rem;
         border-color: var(--inputborder);
         outline-color: var(--inputborder);
         box-shadow: var(--primary);
       }
-    }
+    
+  }
+  textarea {
+    padding: 8.5px;
+    width: 100%;
+    border: 1px solid var(--inputBorder);
+    border-radius: 4px;
+    color: var(--textColor);
+    text-indent: 40px;
+    background-color: var(--inputbackground);
+  }
 
     input {      
       &.error-input {

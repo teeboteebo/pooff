@@ -19,6 +19,7 @@ const ActivateUser = () => {
   }
 
   const activateUser = async user => {
+    console.log(user)
     await fetch(`/api/activate/${user[0]._id}`, {
       method: "PUT",
       headers: {
@@ -53,12 +54,12 @@ const ActivateUser = () => {
           <Link to="/logga-in" className="to-login-button">Till inlogg</Link>
         </div>
       ) : (
-        <div>
-          <h2>
-            <Spinner />
-          </h2>
-        </div>
-      )}
+          <div>
+            <h2>
+              <Spinner />
+            </h2>
+          </div>
+        )}
     </div>
   )
 }
