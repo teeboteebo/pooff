@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 // Components
 import PooffHeader from './components/PooffHeader'
 import Header from './components/Header'
+import PaymentReceived from './components/PaymentReceived'
 
 // Views
 import PooffStartPage from './views/PooffStartPage'
@@ -31,16 +32,30 @@ import MissingPage from "./views/MissingPage"
 
 import { usePooff } from "./context"
 import useMagic from './actions/useMagic'
+import SSE from 'easy-server-sent-events/sse';
+
+const sse = new SSE('/api/sse');
+let sseListenerAdded = false;
 
 const App = () => {
   const state = usePooff()
   const [getLoggedIn] = useMagic()
   const [loading, setLoading] = useState(true)
+  const [received, setReceived] = useState({rec : false})
 
   let headerHeight = 44
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`)
   document.documentElement.style.setProperty('--headerHeight', `${headerHeight}px`)
+
+  if (!sseListenerAdded) {
+    sse.listen('payment', (data) => {
+      console.log('payment', data);
+      setReceived({rec : true, data : data})
+    });
+    sseListenerAdded = true;
+  }
+
 
   useEffect(() => {
     const load = async () => {
@@ -64,6 +79,7 @@ const App = () => {
             className={state.loggedIn && state.loggedIn.darkMode ? "App dark-mode" : "App"}>
             {state.loggedIn ? <Header /> : <PooffHeader />}
             <main>
+              {received.rec ? <PaymentReceived data={received.data} clickHandler={() => setReceived({rec: false})}/> : ""}
               {state.loggedIn ? (
                 <Switch>
                   {/* LOGGED IN */}
