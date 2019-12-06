@@ -50,10 +50,9 @@ const App = () => {
 
   if (!sseListenerAdded) {
     sse.listen('payment', (data) => {
-      console.log('payment', data);
       setReceived({rec : true, data : data})
-    });
-    sseListenerAdded = true;
+    })
+    sseListenerAdded = true
   }
 
 
