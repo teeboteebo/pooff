@@ -10,21 +10,28 @@ const PaymentReceived = props => {
 
   useEffect(() => {
     setShow(true)
+    let timeOut = setTimeout(setFade, 5000)
+
+    return function cleanup() {
+      clearTimeout(timeOut)
+    }
   },[])
   
   const setFade = () => {
-    setShow(false)
-    setTimeout(props.clickHandler, 1000)
+      setShow(false)
+      setTimeout(props.clickHandler, 1000)
   }
-  
-  setTimeout(setFade, 5000)
+
+  const onNoticeClick = async() => {
+    await props.clickHandler()
+  }
   
   getLoggedIn()
   return (
     <div className="payment-received-container">
       <Fade className="payment-fade" right collapse opposite when={show}>
       <Link to={`/mina-transaktioner/${link}`}>
-        <div className="payment-received-card" onClick={props.clickHandler}> {sender} skickade {amount}kr </div>
+        <div className="payment-received-card" onClick={onNoticeClick}> {sender} skickade {amount}kr </div>
       </Link>
       </Fade>
       </div>
