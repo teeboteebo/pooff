@@ -139,7 +139,7 @@ const TransactionForm = props => {
         {!validInputs.receiver ? <p className="error-text mt-1">Vänligen ange ett telefonnummer</p> : ''}
         <div className="input-component mt-4">
           <DollarSign />
-          <input type="number" ref={amount} placeholder="Belopp" className={!validInputs.amount ? 'error-input' : ''} />
+          <input type="number" ref={amount} min="0" placeholder="Belopp" className={!validInputs.amount ? 'error-input' : ''} />
         </div>
         {!validInputs.amount ? <p className="error-text mt-1">Vänligen ange belopp</p> : ''}
         <div className="input-component textarea mt-4">

@@ -27,6 +27,7 @@ import ActivateUser from "./views/ActivateUser"
 import UpdateAccountPage from './views/UpdateAccountPage';
 import ConfirmAccUpdate from './views/ConfirmAccUpdate';
 import UpdatePasswordLoggedIn from './views/UpdatePasswordLoggedIn'
+import MissingPage from "./views/MissingPage"
 
 import { usePooff } from "./context"
 import useMagic from './actions/useMagic'
@@ -84,6 +85,7 @@ const App = () => {
                   <Route exact path="/mitt-konto" component={MyAccount} />
                   <Route path="/nytt-losenord" component={NewPassword} />
                   <Route exact path="/uppdatera-losenord" component={UpdatePasswordLoggedIn} />
+                  <Route path="/" component={MissingPage} />
                 </Switch>
               ) : (
                   <Switch>
@@ -96,6 +98,7 @@ const App = () => {
                     <Route path="/registrera-barn" component={CreateUserAsChild} />
                     <Route path="/aterstall-losenord" component={ResetPassword} />
                     <Route path="/nytt-losenord" component={NewPassword} />
+                    <Route path="/" component={MissingPage} />
                   </Switch>
                 )}
             </main>
