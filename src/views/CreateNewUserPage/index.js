@@ -194,17 +194,26 @@ const CreateNewUserPage = () => {
     e.preventDefault()
 
     if (validate()) {
-      await fetch('/api/users', {
+      const { email, firstName, lastName, username, password, phone, personId } = inputValues
+      console.log(email)
+      let res = await fetch('/api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          ...inputValues
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+          username: username,
+          password: password,
+          phone: phone,
+          personId: personId
         })
       })
       sendActivationMail()
-      setCreated(true)
+      res = await res.json()
+      res.success ? setCreated(true) : setCreated(false)
     }
   }
 
