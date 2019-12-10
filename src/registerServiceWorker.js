@@ -29,7 +29,7 @@ class RegisterServiceWorker {
   }
  
   async registerPushNotifications(registered) {
-    const publicVapidKey = 'BIQ6xu6E4r9OiLzN4IM8UW5oCaNoZiQ6D_pWYGTAUpc5n993eBkXQJ_tlkf3ONHkM79YP0StumQGlBHJt47B6mI';
+    const publicVapidKey = 'BFc21V5367vHF3b6LJdnzqUEDwocfIDTKTm7Oj8O3AwZCHw7a442Zdrssgy9q6teJQ0E5MvlZhECjWzgBe3Vp3M';
     // Register
     const subscription = await registered.pushManager.subscribe({
       userVisibleOnly: true,

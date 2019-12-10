@@ -14,7 +14,7 @@ class ServiceWorker {
   // ironboy 2019
  
   constructor() {
-    this.debug = false;
+    this.debug = true;
     this.version = 1.58;
     this.production = false;
     this.myRoute = 'serviceWorker.js';
@@ -173,10 +173,10 @@ class ServiceWorker {
     // Check if in production mode
     this.production = !!text.match(/this.production\s*=\s*true/);
     this.log('production mode', this.production);
-    if (!this.production) {
+    //if (!this.production) {
       // turn off logging if not in production
-      this.debug = false;
-    }
+     // this.debug = false;
+    //}
   }
  
   networkFirst(method, url) {
@@ -208,7 +208,7 @@ class ServiceWorker {
     // save urls as keys, not method + url as keys)
     if (method !== 'GET') { return true; }
  
-    // Server Sent Evens should probably never be cached
+    // Server Sent Events should probably never be cached
     if (route.indexOf('/api/sse') === 0) { return true; }
  
     // Let chrome extensions through
