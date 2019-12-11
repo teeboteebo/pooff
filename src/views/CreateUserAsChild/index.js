@@ -90,6 +90,16 @@ const CreateUserAsChild = () => {
     run()
   }
 
+  const findLinkAndRemove = async () => {
+    console.log(user[0].email)
+    await fetch(`/api/child/${user[0].email}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+  }
+
   const updateChild = async () => {
     await fetch(`/api/child/${user[0]._id}`, {
       method: 'PUT',
@@ -104,6 +114,7 @@ const CreateUserAsChild = () => {
         active: true
       })
     })
+    await findLinkAndRemove()
     await setUpdated(true)
   }
 
