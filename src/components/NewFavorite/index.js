@@ -18,6 +18,9 @@ const NewFavorite = (props) => {
     nameFavorite: true,
     phoneFavorite: true
   })
+  const toggle = () => setModal(!modal);
+
+  
   let nameError = "Ange ett namn"
   let phoneError = "Ange ett telefonnr"
 
@@ -26,16 +29,28 @@ const NewFavorite = (props) => {
 
     const validate = () =>{
       let x = {...validation}
+     
       if(nameFavorite === ""){
         x.nameFavorite = false
-        alert("undefined name")
+       
+      }
+      else{
+        x.nameFavorite = true
+      }
+      if(nameFavorite.length < 3){
+        x.nameFavorite = false
       }
       else{
         x.nameFavorite = true
       }
       if(phoneFavorite === ""){
         x.phoneFavorite = false
-        alert("undefined phonenr")
+      }
+      else{
+        x.phoneFavorite = true
+      }
+      if(phoneFavorite.length < 10){
+        x.phoneFavorite = false
       }
       else{
         x.phoneFavorite = true
@@ -57,14 +72,12 @@ const NewFavorite = (props) => {
         })
       })
       console.log(phoneFavorite,nameFavorite)
+      setModal(false)
     }
     
-    
-    setModal(false)
     setLoggedIn()
   }
 
-  const toggle = () => setModal(!modal);
 
   return (
     <Container className="p-0" fluid={true} >
@@ -82,7 +95,7 @@ const NewFavorite = (props) => {
                   className="input-field mt-3"
                   placeholder="Namn"
                 ></Input>
-                                        {nameFavorite ? "" : <p className="error-text">{nameError}</p>}
+                  {nameFavorite.length > 2 ? "" : <p className="error-text">{nameError}</p>}
 
                 <Input
                   type="text"
@@ -92,7 +105,7 @@ const NewFavorite = (props) => {
                   className="input-field mt-3"
                   placeholder="Telefonnr"
                 ></Input>
-                        {phoneFavorite ? "" : <p className="error-text">{phoneError}</p>}
+                  {phoneFavorite.length > 9 ? "" : <p className="error-text">{phoneError}</p>}
 
           </Form>
           
