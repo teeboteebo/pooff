@@ -22,26 +22,34 @@ const UserRegister = props => {
     props.validate && props.validate(newVals);
   }
 
+  if (props.inputs) {
+    return (
+      props.inputs.map((input, i) => {
+        return (
+          <div className="input-group" key={'input_' + i} onChange={input.class === 'repeat-password' ? checkIfMatch : null}>
+            {input.icon}
+            <input id={input.id}
+              autoComplete={input.autoComplete}
+              onChange={inputChange}
+              className={"input-register " + input.class}
+              placeholder={input.name}
+              type={input.class === 'new-password' ? (peek ? 'text' : 'password') : input.type}
+              value={input.value ? input.value : props.inputValues[input.id] || ''}
+              readOnly={input.readOnly ? input.readOnly : false}
+            />
+            {props.inputValues[input.id] === undefined || props.validation[input.id] ? '' : <p className="error-text">{input.error}</p>}
+            {input.class === 'new-password' ? (peek ? <EyeOff className="peeker" onClick={() => setPeek(!peek)} /> : <Eye className="peeker" onClick={() => setPeek(!peek)} />) : null}
+            {input.icon}
+            {input.class === 'repeat-password' ? (match ? <Check className="checked green" /> : <X className="checked" />) : null}
+          </div>
+        )
+      })
+    )
+  }
+
   return (
-    props.inputs.map((input, i) => {
-      return (
-        <div className="input-group" key={'input_' + i} onChange={input.class === 'repeat-password' ? checkIfMatch : null}>
-          {input.icon}
-          <input id={input.id}
-            autoComplete={input.autoComplete}
-            onChange={inputChange}
-            className={"input-register " + input.class}
-            placeholder={input.name}
-            type={input.class === 'new-password' ? (peek ? 'text' : 'password') : input.type}
-            value={props.inputValues[input.id] || ''}
-          />
-          {props.inputValues[input.id] === undefined || props.validation[input.id] ? '' : <p className="error-text">{input.error}</p>}
-          {input.class === 'new-password' ? (peek ? <EyeOff className="peeker" onClick={() => setPeek(!peek)} /> : <Eye className="peeker" onClick={() => setPeek(!peek)} />) : null}
-          {input.icon}
-          {input.class === 'repeat-password' ? (match ? <Check className="checked green" /> : <X className="checked" />) : null}
-        </div>
-      )
-    })
+    <div></div>
   )
+  
 };
 export default UserRegister;
