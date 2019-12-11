@@ -14,26 +14,55 @@ const NewFavorite = (props) => {
   const [nameFavorite, setNameFavorite] = useState("");
   const [phoneFavorite, setPhoneFavorite] = useState("");
   const [modal, setModal] = useState(false);
+  const [validation, setvalidation] = useState({
+    nameFavorite: true,
+    phoneFavorite: true
+  })
+  let nameError = "Ange ett namn"
+  let phoneError = "Ange ett telefonnr"
 
   const sendFavorite = async (evt) => {
     evt.preventDefault();
-    const responseRaw = await fetch('/api/myuser/favorites', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        nickname: nameFavorite,
-        phone: phoneFavorite
+
+    const validate = () =>{
+      let x = {...validation}
+      if(nameFavorite === ""){
+        x.nameFavorite = false
+        alert("undefined name")
+      }
+      else{
+        x.nameFavorite = true
+      }
+      if(phoneFavorite === ""){
+        x.phoneFavorite = false
+        alert("undefined phonenr")
+      }
+      else{
+        x.phoneFavorite = true
+      }
+      setvalidation(x)
+      if(x.nameFavorite && x.phoneFavorite) return true
+      else return false
+    }
+    
+    if(validate()){
+      await fetch('/api/myuser/favorites', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nickname: nameFavorite,
+          phone: phoneFavorite
+        })
       })
-    })
-    await responseRaw.json()
+      console.log(phoneFavorite,nameFavorite)
+    }
+    
     
     setModal(false)
     setLoggedIn()
-    }
-  
-
+  }
 
   const toggle = () => setModal(!modal);
 
@@ -53,6 +82,8 @@ const NewFavorite = (props) => {
                   className="input-field mt-3"
                   placeholder="Namn"
                 ></Input>
+                                        {nameFavorite ? "" : <p className="error-text">{nameError}</p>}
+
                 <Input
                   type="text"
                   pattern="[0-9]*"
@@ -61,7 +92,10 @@ const NewFavorite = (props) => {
                   className="input-field mt-3"
                   placeholder="Telefonnr"
                 ></Input>
+                        {phoneFavorite ? "" : <p className="error-text">{phoneError}</p>}
+
           </Form>
+          
           <Button className="primary-btn mt-4" onClick={sendFavorite}>Spara Favorit</Button>
         </ModalBody>
       </Modal>
