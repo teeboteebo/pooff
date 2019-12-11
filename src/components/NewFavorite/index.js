@@ -30,26 +30,13 @@ const NewFavorite = (props) => {
     const validate = () =>{
       let x = {...validation}
      
-      if(nameFavorite === ""){
-        x.nameFavorite = false
-       
-      }
-      else{
-        x.nameFavorite = true
-      }
-      if(nameFavorite.length < 3){
+      if(nameFavorite === "" || nameFavorite.length < 3 || !(/^[A-ZÅÄÖa-zåäö]{2}[A-ZÅÄÖa-zåäö -]*$/.test(nameFavorite))){
         x.nameFavorite = false
       }
       else{
         x.nameFavorite = true
       }
-      if(phoneFavorite === ""){
-        x.phoneFavorite = false
-      }
-      else{
-        x.phoneFavorite = true
-      }
-      if(phoneFavorite.length < 10){
+      if(phoneFavorite === "" || phoneFavorite.length < 10 || !(/^0[7][0-9]{8}$/.test(phoneFavorite))){
         x.phoneFavorite = false
       }
       else{
