@@ -15,27 +15,28 @@ const PaymentReceived = props => {
     return function cleanup() {
       clearTimeout(timeOut)
     }
-  },[])
-  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const setFade = () => {
-      setShow(false)
-      setTimeout(props.clickHandler, 1000)
+    setShow(false)
+    setTimeout(props.clickHandler, 1000)
   }
 
-  const onNoticeClick = async() => {
+  const onNoticeClick = async () => {
     await props.clickHandler()
   }
-  
+
   getLoggedIn()
   return (
     <div className="payment-received-container">
       <Fade className="payment-fade" right collapse opposite when={show}>
-      <Link to={`/mina-transaktioner/${link}`}>
-        <div className="payment-received-card" onClick={onNoticeClick}> {sender} skickade {amount}kr </div>
-      </Link>
+        <Link to={`/mina-transaktioner/${link}`}>
+          <div className="payment-received-card" onClick={onNoticeClick}> {sender} skickade {amount}kr </div>
+        </Link>
       </Fade>
-      </div>
+    </div>
   )
-} 
+}
 
 export default PaymentReceived;
