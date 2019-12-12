@@ -22,8 +22,8 @@
       color: var(--textColor);
       &:focus {
         // border-radius: .3rem;
-        border-color: var(--inputborder);
-        outline-color: var(--inputborder);
+        border-color: var(--primary);
+        outline-color: var(--primary);
         box-shadow: var(--primary);
       }
     
@@ -31,11 +31,17 @@
   textarea {
     padding: 8.5px;
     width: 100%;
+
     border: 1px solid var(--inputBorder);
     border-radius: 4px;
     color: var(--textColor);
     text-indent: 40px;
     background-color: var(--inputbackground);
+    &:focus {
+      border-color: var(--primary);
+      outline-color: var(--primary);
+      box-shadow: var(--primary);
+    }
   }
 
     input {      

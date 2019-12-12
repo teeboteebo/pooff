@@ -122,8 +122,6 @@ const CreateNewUserPage = () => {
     } else {
       x.personId = true
     }
-
-    // TA BORT OM USERNAME INTE SKA ANVÄNDAS
     /****username Validation****/
     if (username !== undefined && username.length < 6) {
       x.username = false
@@ -203,7 +201,6 @@ const CreateNewUserPage = () => {
 
     if (validate()) {
       const { email, firstName, lastName, username, password, phone, personId } = inputValues
-      console.log(email)
       let res = await fetch('/api/users', {
         method: 'POST',
         headers: {
