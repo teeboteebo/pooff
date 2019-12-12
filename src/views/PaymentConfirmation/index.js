@@ -8,7 +8,7 @@ const PaymentConfirmation = props => {
   const { darkMode } = usePooff()
   return (
     <div className="payment-confirmation-container">
-      <h3 className="title-field">Betalning skickad</h3>
+      <h2 className="page-title">Betalning skickad</h2>
       <img
         className="check-mark"
         src={darkMode ? "/images/checkmarkDM.png" : "/images/checkmarkLM.png"}
@@ -16,7 +16,7 @@ const PaymentConfirmation = props => {
       ></img>
       <h4 className="name-field">{props.name}</h4>
       <h6 className="number-field">{props.number}</h6>
-      <h4 className="amount-field">{props.amount + " kr"}</h4>
+      <h4 className="amount-field">{props.amount.toLocaleString('sv-SE') + " kr"}</h4>
       <h6 className="message-field">{props.message}</h6>
       <Link to="/mina-transaktioner" className="link-button">
         Till transaktionshistorik
