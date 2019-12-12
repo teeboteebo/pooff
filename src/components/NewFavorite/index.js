@@ -21,8 +21,8 @@ const NewFavorite = (props) => {
   const toggle = () => setModal(!modal);
 
   
-  let nameError = "Ange ett namn"
-  let phoneError = "Ange ett telefonnr"
+  let nameError = "Ange minst 3 bokstäver"
+  let phoneError = "Ange giltig telefonnummer"
 
   const sendFavorite = async (evt) => {
     evt.preventDefault();
@@ -81,7 +81,7 @@ const NewFavorite = (props) => {
                   className="input-field mt-3"
                   placeholder="Namn"
                 ></Input>
-                  {nameFavorite.length > 3 ? "" : <p className="error-text">{nameError}</p>}
+                  {nameFavorite.length > 2 ? "" : <p className="error-text">{nameError}</p>}
 
                 <Input
                   type="text"
@@ -92,7 +92,6 @@ const NewFavorite = (props) => {
                   placeholder="Telefonnr"
                 ></Input>
                   {phoneFavorite.length > 9 ? "" : <p className="error-text">{phoneError}</p>}
-
           </Form>
 
           
