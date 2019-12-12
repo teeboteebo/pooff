@@ -13,12 +13,30 @@
   .form-control{
     border: 2px solid var(--modalinputborder);
     background-color: var(--modalinputbk);
-    color: var(--modalheader);
   }
   input.form-control.form-control::placeholder {
     color: var(--modalheader);
   }
   .form-control:focus {
     color: var(--modalheader);
+  }
+
+  .input-field {
+    width: 100%;
+    margin-bottom: 10px;
+    border: 2px solid var(--modalinputborder);;
+    color: var(--modalheader);
+    &:focus {
+      color: var(--modalheader);
+      border: 2px solid var(--modalinputborder);
+
+      &::placeholder {
+        color: var(--modaltext);
+      }
+    }
+  }
+
+  .error-text{
+    color:red;
   }
 }
