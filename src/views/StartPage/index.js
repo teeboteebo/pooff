@@ -49,7 +49,7 @@ const StartPage = () => {
           </Col>
         </Row>
       </div>
-      <TransactionHistoryPreview />
+      <TransactionHistoryPreview transactions={[...state.loggedIn.transactions].slice(0,10)}/>
       <TopUp toggle={topUpToggle} clickHandler={() => setTopUpToggle(false)} />
     </Container>
   )
