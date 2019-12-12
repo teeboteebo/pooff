@@ -144,7 +144,7 @@ const TransactionForm = props => {
         {!validInputs.amount ? <p className="error-text mt-1">Vänligen ange belopp</p> : ''}
         <div className="input-component textarea mt-4">
           <MessageCircle />
-          <textarea rows="4" ref={message} placeholder="Meddelande..." />
+          <textarea rows="4" ref={message} placeholder="Meddelande..." maxLength="200" />
           <p className="no-funds">{statusMessage}</p>
         </div>
         <div className="button-div mt-4">
