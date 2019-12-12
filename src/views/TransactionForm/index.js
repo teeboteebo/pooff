@@ -18,6 +18,7 @@ const TransactionForm = props => {
   })
   const [paymentSent, setPaymentSent] = useState({ sent: false })
   const [statusMessage, setStatusMessage] = useState("")
+  const [textLength, setTextLength] = useState(0)
 
   const receiver = useRef(/* props.location.state ? { current: { value: props.location.state.phone } } : null */)
   const amount = useRef()
@@ -34,6 +35,9 @@ const TransactionForm = props => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const countChars = e => setTextLength(e.target.value.length)
+
   const validate = () => {
     const valid = { ...validInputs }
 
@@ -142,9 +146,10 @@ const TransactionForm = props => {
           <input type="number" ref={amount} min="0" placeholder="Belopp" className={!validInputs.amount ? 'error-input' : ''} />
         </div>
         {!validInputs.amount ? <p className="error-text mt-1">Vänligen ange belopp</p> : ''}
-        <div className="input-component textarea mt-4">
+            <p className="mt-4 text-right">{textLength + '/200'}</p>
+        <div className="input-component textarea">
           <MessageCircle />
-          <textarea rows="4" ref={message} placeholder="Meddelande..." />
+          <textarea rows="4" ref={message} placeholder="Meddelande..." maxLength="200" onChange={countChars} />
           <p className="no-funds">{statusMessage}</p>
         </div>
         <div className="button-div mt-4">
