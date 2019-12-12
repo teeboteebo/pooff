@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Container, ModalHeader, ModalBody, Modal } from "reactstrap";
+import { Form, Button, Container, ModalHeader, ModalBody, Modal } from "reactstrap";
 import { usePooff } from "../../context";
 import useMagic from "../../actions/useMagic";
 
 
 
-const NewFavorite = (props) => {
+const NewFavorite = () => {
   const state = usePooff()
   const [setLoggedIn] = useMagic()
 
@@ -73,25 +73,29 @@ const NewFavorite = (props) => {
          </ModalHeader>
         <ModalBody>
           <Form onSubmit={sendFavorite}>
-                <Input
+                <input
                   type="text"
                   value={nameFavorite}
                   onChange={e => setNameFavorite(e.target.value)}
                   className="input-field mt-3"
                   placeholder="Namn"
-                ></Input>
-                  {nameFavorite.length > 2 ? "" : <p className="error-text">{nameError}</p>}
+                ></input>
+                  {nameFavorite.length < 1 ? "" : <p className="error-text">{nameError}</p> 
+                  && nameFavorite.length > 2 ? "" : <p className="error-text">{nameError}</p>  }
 
-                <Input
+                <input
                   type="text"
                   pattern="[0-9]*"
                   value={phoneFavorite}
                   onChange={e => setPhoneFavorite(e.target.value)}
                   className="input-field mt-3"
                   placeholder="Telefonnr"
-                ></Input>
-                  {phoneFavorite.length > 9 ? "" : <p className="error-text">{phoneError}</p>}
-                  {phoneFavorite.length < 11 ? "" : <p className="error-text">{phoneError}</p>}
+                ></input>
+                  {phoneFavorite.length < 1 ? "" : <p className="error-text">{phoneError}</p>
+                   && phoneFavorite.length > 9 ? "" : <p className="error-text">{phoneError}</p>   
+                  }
+                  {phoneFavorite.length < 11 ? "" : <p className="error-text">{phoneError}</p>  }
+                  
           </Form>
 
           

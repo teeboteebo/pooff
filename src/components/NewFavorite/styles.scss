@@ -10,25 +10,15 @@
       background-color: var(--modalbutton);
       color: var(--modalbuttontext);
   }
-  .form-control{
-    border: 2px solid var(--modalinputborder);
-    background-color: var(--modalinputbk);
-  }
-  input.form-control.form-control::placeholder {
-    color: var(--modalheader);
-  }
-  .form-control:focus {
-    color: var(--modalheader);
-  }
-
   .input-field {
     width: 100%;
     margin-bottom: 10px;
-    border: 2px solid var(--modalinputborder);;
     color: var(--modalheader);
+    border-bottom: 2px solid var(--modalinputborder);
     &:focus {
       color: var(--modalheader);
-      border: 2px solid var(--modalinputborder);
+      outline: none;
+      border-bottom: 2px solid var(--modalinputborder);
 
       &::placeholder {
         color: var(--modaltext);
