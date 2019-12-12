@@ -14,14 +14,14 @@
     width: 100%;
     margin-bottom: 10px;
     color: var(--modalheader);
-    border-bottom: 2px solid var(--modalinputborder);
+    border-bottom: 1px solid var(--modalLine);
     &:focus {
       color: var(--modalheader);
       outline: none;
-      border-bottom: 2px solid var(--modalinputborder);
+      border-bottom: 1px solid var(--modalbutton);
 
       &::placeholder {
-        color: var(--modaltext);
+        color: var(--modalsecondLine);
       }
     }
   }
