@@ -82,17 +82,35 @@ const TransactionForm = props => {
       getLoggedIn()
 
       if (amount.current.value > state.loggedIn.balance) {
-        setStatusMessage("Ditt konto saknar täckning för att utföra överföringen")
+        setStatusMessage("Ditt konto saknar täckning")
 
       }
       else {
+        const numberVal = receiver.current.value
+        const amountVal = amount.current.value
+        const messageVal = message.current.value
+        console.log(messageVal, amountVal, numberVal)
+
         setPaymentSent({
           sent: true,
           name: receiverName,
-          number: receiver.current.value,
-          amount: amount.current.value,
-          message: message.current.value,
+          amount: amountVal,
+          number: numberVal,
+          message: messageVal
         })
+        
+        await fetch("/api/push-payment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: receiverName,
+            amount: amountVal,
+            number: numberVal
+          }),
+        })
+
       }
     }
   }

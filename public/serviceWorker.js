@@ -14,8 +14,8 @@ class ServiceWorker {
   // ironboy 2019
  
   constructor() {
-    this.debug = true;
-    this.version = 1.58;
+    this.debug = false;
+    this.version = 1.59;
     this.production = false;
     this.myRoute = 'serviceWorker.js';
     this.lastRequestTime = 0;
@@ -175,7 +175,7 @@ class ServiceWorker {
     this.log('production mode', this.production);
     //if (!this.production) {
       // turn off logging if not in production
-     // this.debug = false;
+      this.debug = false;
     //}
   }
  
