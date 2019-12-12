@@ -19,7 +19,6 @@ const ActivateUser = () => {
   }
 
   const activateUser = async user => {
-    console.log(user)
     await fetch(`/api/activate/${user[0]._id}`, {
       method: "PUT",
       headers: {
