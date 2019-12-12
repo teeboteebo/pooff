@@ -58,7 +58,6 @@ const NewFavorite = (props) => {
           phone: phoneFavorite
         })
       })
-      console.log(phoneFavorite,nameFavorite)
       setModal(false)
     }
     
@@ -82,7 +81,7 @@ const NewFavorite = (props) => {
                   className="input-field mt-3"
                   placeholder="Namn"
                 ></Input>
-                  {nameFavorite.length > 2 ? "" : <p className="error-text">{nameError}</p>}
+                  {nameFavorite.length > 3 ? "" : <p className="error-text">{nameError}</p>}
 
                 <Input
                   type="text"
@@ -95,6 +94,7 @@ const NewFavorite = (props) => {
                   {phoneFavorite.length > 9 ? "" : <p className="error-text">{phoneError}</p>}
 
           </Form>
+
           
           <Button className="primary-btn mt-4" onClick={sendFavorite}>Spara Favorit</Button>
         </ModalBody>
