@@ -51,6 +51,7 @@
 }
 
 .modal-open{
+  --modaltextcolor: #333;
   --modalbackground: #eee;
   --modalbutton: #07575b;
   --modalbuttontext: #c4dfe6;
@@ -58,8 +59,13 @@
   --modalinputborder: #393e46;
   --modalinputbk: #fff;
   --modaltext: #eee;
+  --modalLine: #07575b;
+  --modalsecondLine: #07575b;
   .dark-mode{
     //Modal
+    --modalsecondLine: #4ecca3;
+    --modalLine: #eee;
+    --modaltextcolor: #eee;
     --modalbackground: #393e46;
     --modalbutton: #4ecca3;
     --modalbuttontext: #232931;
