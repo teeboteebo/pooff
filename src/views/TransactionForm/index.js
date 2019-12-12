@@ -93,7 +93,8 @@ const TransactionForm = props => {
         const numberVal = receiver.current.value
         const amountVal = amount.current.value
         const messageVal = message.current.value
-        console.log(messageVal, amountVal, numberVal)
+        const senderName = state.loggedIn.firstName + " " + state.loggedIn.lastName
+        console.log(senderName)
 
         setPaymentSent({
           sent: true,
@@ -109,7 +110,7 @@ const TransactionForm = props => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            name: receiverName,
+            name: senderName,
             amount: amountVal,
             number: numberVal
           }),
