@@ -29,7 +29,6 @@ const NewFavorite = (props) => {
 
     const validate = () =>{
       let x = {...validation}
-     
       if(nameFavorite === "" || nameFavorite.length < 3 || !(/^[A-ZÅÄÖa-zåäö]{2}[A-ZÅÄÖa-zåäö -]*$/.test(nameFavorite))){
         x.nameFavorite = false
       }
@@ -92,6 +91,7 @@ const NewFavorite = (props) => {
                   placeholder="Telefonnr"
                 ></Input>
                   {phoneFavorite.length > 9 ? "" : <p className="error-text">{phoneError}</p>}
+                  {phoneFavorite.length < 11 ? "" : <p className="error-text">{phoneError}</p>}
           </Form>
 
           
