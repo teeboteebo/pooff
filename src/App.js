@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 // Components
 import PooffHeader from './components/PooffHeader'
 import Header from './components/Header'
+import PaymentReceived from './components/PaymentReceived'
 
 // Views
 import PooffStartPage from './views/PooffStartPage'
@@ -27,26 +28,40 @@ import ActivateUser from "./views/ActivateUser"
 import UpdateAccountPage from './views/UpdateAccountPage';
 import ConfirmAccUpdate from './views/ConfirmAccUpdate';
 import UpdatePasswordLoggedIn from './views/UpdatePasswordLoggedIn'
+import MissingPage from "./views/MissingPage"
 
 import { usePooff } from "./context"
 import useMagic from './actions/useMagic'
+import SSE from 'easy-server-sent-events/sse';
+
+const sse = new SSE('/api/sse');
+let sseListenerAdded = false;
 
 const App = () => {
   const state = usePooff()
   const [getLoggedIn] = useMagic()
   const [loading, setLoading] = useState(true)
+  const [received, setReceived] = useState({rec : false})
 
   let headerHeight = 44
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`)
   document.documentElement.style.setProperty('--headerHeight', `${headerHeight}px`)
 
+  if (!sseListenerAdded) {
+    sse.listen('payment', (data) => {
+      setReceived({rec : true, data : data})
+    })
+    sseListenerAdded = true
+  }
+
+
   useEffect(() => {
     const load = async () => {
       await getLoggedIn()
       setLoading(false)
-    } 
-    
+    }
+
     load()
     //comment below removes varning to include or exclude idToGet
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,14 +78,15 @@ const App = () => {
             className={state.loggedIn && state.loggedIn.darkMode ? "App dark-mode" : "App"}>
             {state.loggedIn ? <Header /> : <PooffHeader />}
             <main>
+              {received.rec ? <PaymentReceived data={received.data} clickHandler={() => setReceived({rec: false})}/> : ""}
               {state.loggedIn ? (
                 <Switch>
                   {/* LOGGED IN */}
                   <Route exact path="/" component={StartPage} />
                   <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
                   <Route exact path="/favoriter" component={FavoritePage} />
-                  <Route exact path="/registrera" component={CreateNewUserPage} />
-                  <Route exact path="/registrera-barn" component={CreateUserAsChild} />
+                  {/* <Route exact path="/registrera" component={CreateNewUserPage} />
+                  <Route exact path="/registrera-barn" component={CreateUserAsChild} /> */}
                   <Route exact path="/ny-betalning" component={TransactionForm} />
                   <Route exact path="/lagg-till-barn" component={ChildRegisterPage} />
                   <Route exact path="/uppdatera-konto" component={UpdateAccountPage} />
@@ -84,6 +100,7 @@ const App = () => {
                   <Route exact path="/mitt-konto" component={MyAccount} />
                   <Route path="/nytt-losenord" component={NewPassword} />
                   <Route exact path="/uppdatera-losenord" component={UpdatePasswordLoggedIn} />
+                  <Route path="/" component={MissingPage} />
                 </Switch>
               ) : (
                   <Switch>
@@ -96,6 +113,7 @@ const App = () => {
                     <Route path="/registrera-barn" component={CreateUserAsChild} />
                     <Route path="/aterstall-losenord" component={ResetPassword} />
                     <Route path="/nytt-losenord" component={NewPassword} />
+                    <Route path="/" component={MissingPage} />
                   </Switch>
                 )}
             </main>

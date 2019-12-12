@@ -21,10 +21,10 @@ const UpdateAccountPage = () => {
     phone: true
   })
   const [setLoggedIn] = useMagic()
-  
+
 
   const updateUser = async (e) => {
-    e.preventDefault()    
+    e.preventDefault()
 
     const validate = () => {
       let x = { ...validation }
@@ -41,13 +41,13 @@ const UpdateAccountPage = () => {
       else {
         x.lastName = true
       }
-      if(email.current.value.length && !(/\w\w+@\w\w+\.\w\w+/.test(email.current.value))) {
+      if (email.current.value.length && !(/\w\w+@\w\w+\.\w\w+/.test(email.current.value))) {
         x.email = false
       }
       else {
         x.email = true
       }
-      if(phone.current.value.length && !(/^0[7][0-9]{8}$/.test(phone.current.value))) {
+      if (phone.current.value.length && !(/^0[7][0-9]{8}$/.test(phone.current.value))) {
         x.phone = false
       }
       else {

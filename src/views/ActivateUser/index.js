@@ -53,12 +53,12 @@ const ActivateUser = () => {
           <Link to="/logga-in" className="to-login-button">Till inlogg</Link>
         </div>
       ) : (
-        <div>
-          <h2>
-            <Spinner />
-          </h2>
-        </div>
-      )}
+          <div>
+            <h2>
+              <Spinner />
+            </h2>
+          </div>
+        )}
     </div>
   )
 }

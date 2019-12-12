@@ -46,7 +46,10 @@ const KidsList = () => {
                     <User />
                     <span className="ml-2">{firstName + ' ' + lastName}</span>
                   </h6>
-                  <p className="mb-2"><span className="balance">{balance[0] + ',' + balance[1]}</span> SEK</p>
+                  <p className="mb-2 balance">
+                    <span className="amount-integer">{balance[0]}</span>
+                    <span className="amount-decimal">,{balance[1]} kr</span>
+                  </p>
                   <p className="info-text">
                     <Info />
                     <span className="ml-2">

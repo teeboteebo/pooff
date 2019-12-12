@@ -42,7 +42,7 @@ const TransactionForm = props => {
     } else {
       valid.receiver = true
     }
-    if (!amount.current.value) {
+    if (!amount.current.value || amount.current.value <= 0) {
       valid.amount = false
     } else {
       valid.amount = true
@@ -139,12 +139,12 @@ const TransactionForm = props => {
         {!validInputs.receiver ? <p className="error-text mt-1">Vänligen ange ett telefonnummer</p> : ''}
         <div className="input-component mt-4">
           <DollarSign />
-          <input type="number" ref={amount} placeholder="Belopp" className={!validInputs.amount ? 'error-input' : ''} />
+          <input type="number" ref={amount} min="0" placeholder="Belopp" className={!validInputs.amount ? 'error-input' : ''} />
         </div>
         {!validInputs.amount ? <p className="error-text mt-1">Vänligen ange belopp</p> : ''}
         <div className="input-component textarea mt-4">
           <MessageCircle />
-          <textarea rows="4" ref={message} placeholder="Meddelande..." />
+          <textarea rows="4" ref={message} placeholder="Meddelande..." maxLength="200" />
           <p className="no-funds">{statusMessage}</p>
         </div>
         <div className="button-div mt-4">

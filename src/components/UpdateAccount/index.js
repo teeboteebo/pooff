@@ -5,7 +5,7 @@ const UpdateAccount = props => {
   return (
     props.inputs.map((input, i) => {
       return (
-        <div className="input-group" key={input + i} >
+        <div className="input-group update-account" key={input + i} >
           {input.icon}
           <input
             ref={input.ref}

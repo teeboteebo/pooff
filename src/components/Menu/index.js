@@ -170,7 +170,7 @@ const Menu = () => {
             </Col>
           </Row>
         </li>
-        <li>
+        <li className="mb-4">
           <LogOut />
           <span
             className="side-margin"
