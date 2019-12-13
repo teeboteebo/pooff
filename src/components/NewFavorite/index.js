@@ -13,40 +13,50 @@ const NewFavorite = () => {
   //skapa values för namn och telefonnr när en användare skapas
   const [nameFavorite, setNameFavorite] = useState("");
   const [phoneFavorite, setPhoneFavorite] = useState("");
+  const [nameError] = useState("ange minst 3 bokstäver")
+  const [phoneError] = useState("ange giltig telefonnummer")
   const [modal, setModal] = useState(false);
   const [validation, setvalidation] = useState({
     nameFavorite: true,
-    phoneFavorite: true
+    phoneFavorite: true,
+    nameError: true,
+    phoneError: true
   })
   const toggle = () => setModal(!modal);
 
-  
-  let nameError = "Ange minst 3 bokstäver"
-  let phoneError = "Ange giltig telefonnummer"
 
+ 
   const sendFavorite = async (evt) => {
+
     evt.preventDefault();
 
     const validate = () =>{
       let x = {...validation}
       if(nameFavorite === "" || nameFavorite.length < 3){
         x.nameFavorite = false
+        console.log(nameError)
       }
       else{
         x.nameFavorite = true
       }
       if(phoneFavorite === "" || phoneFavorite.length < 10 || !(/^0[7][0-9]{8}$/.test(phoneFavorite))){
         x.phoneFavorite = false
+       
+        console.log(phoneError)
       }
       else{
         x.phoneFavorite = true
       }
       setvalidation(x)
-      if(x.nameFavorite && x.phoneFavorite) return true
+      if(x.nameFavorite && x.phoneFavorite){
+        console.log("works!")
+        return true
+      } 
       else return false
     }
     
     if(validate()){
+      console.log(phoneFavorite,nameFavorite)
       await fetch('/api/myuser/favorites', {
         method: 'PUT',
         headers: {
@@ -91,14 +101,10 @@ const NewFavorite = () => {
                   className="input-field mt-3"
                   placeholder="Telefonnr"
                 ></input>
-                  {phoneFavorite.length < 1 ? "" : <p className="error-text">{phoneError}</p>
-                   && phoneFavorite.length > 9 ? "" : <p className="error-text">{phoneError}</p>   
-                  }
-                  {phoneFavorite.length < 11 ? "" : <p className="error-text">{phoneError}</p>  }
-                  
+                {phoneFavorite.length < 1 ? "" : <p className="error-text">{phoneError}</p> && 
+                phoneFavorite.length > 9 ? "" : <p className="error-text">{phoneError}</p>}
+                {phoneFavorite.length < 11 ? "" : <p className="error-text">{phoneError}</p>  }
           </Form>
-
-          
           <Button className="primary-btn mt-4" onClick={sendFavorite}>Spara Favorit</Button>
         </ModalBody>
       </Modal>
