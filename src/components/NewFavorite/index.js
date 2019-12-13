@@ -29,7 +29,7 @@ const NewFavorite = () => {
 
     const validate = () =>{
       let x = {...validation}
-      if(nameFavorite === "" || nameFavorite.length < 3 || !(/^[A-ZÅÄÖa-zåäö]{2}[A-ZÅÄÖa-zåäö -]*$/.test(nameFavorite))){
+      if(nameFavorite === "" || nameFavorite.length < 3){
         x.nameFavorite = false
       }
       else{
