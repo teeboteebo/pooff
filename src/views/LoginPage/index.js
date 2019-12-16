@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import { Container, Form, Row, Col, Input, Button, Label } from "reactstrap"
-import { Link, useHistory } from "react-router-dom"
+import { Container, Form, Row, Col, Input, Button, Label, Spinner } from "reactstrap"
+import { Link } from "react-router-dom"
 
 import useMagic from '../../actions/useMagic'
 
@@ -8,12 +8,11 @@ const LoginPage = () => {
   const [getLoggedIn] = useMagic()
   // Force login route to go through to / route when
   // you push the login button 
-  const history = useHistory()
-
+  const [loginPosted, setLoginPosted] = useState(false)
 
   const login = async (e, username, password) => {
     e.preventDefault()
-
+    setLoginPosted(true)
     let jsonRaw = await fetch("/api/login", {
       method: "POST",
       headers: {
@@ -30,7 +29,7 @@ const LoginPage = () => {
     if (message.error === "not found") {
       setStatusMessage("Användarnamn eller lösenord är fel")
     }
-      
+
     else if (message.error === "not active") {
       setStatusMessage(
         "Ditt konto är inte aktiverat. Ett mail har skickats till dig ifall du vill aktivera det",
@@ -46,12 +45,14 @@ const LoginPage = () => {
         }),
       })
     }
-      
+
     else {
       await getLoggedIn()
-      }
+      return
+    }
+    setLoginPosted(false)
   }
-  
+
   const [usernameValue, setUsernameValue] = useState("")
   const [passwordValue, setPasswordValue] = useState("")
   const [statusMessage, setStatusMessage] = useState("")
@@ -102,8 +103,9 @@ const LoginPage = () => {
               name="submit"
               value="Logga in"
               type="submit"
+              disabled={loginPosted}
             >
-              Logga in
+              {!loginPosted ? 'Logga in' : <Spinner size="sm" />}
             </Button>
           </Col>
         </Row>

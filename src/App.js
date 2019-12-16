@@ -33,7 +33,6 @@ import MissingPage from "./views/MissingPage"
 import { usePooff } from "./context"
 import useMagic from './actions/useMagic'
 import SSE from 'easy-server-sent-events/sse';
-import Flimmerhack from "./views/FlimmerHack"
 
 const sse = new SSE('/api/sse');
 let sseListenerAdded = false;
