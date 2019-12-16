@@ -33,6 +33,7 @@ import MissingPage from "./views/MissingPage"
 import { usePooff } from "./context"
 import useMagic from './actions/useMagic'
 import SSE from 'easy-server-sent-events/sse';
+import Flimmerhack from "./views/FlimmerHack"
 
 const sse = new SSE('/api/sse');
 let sseListenerAdded = false;
@@ -100,6 +101,7 @@ const App = () => {
                   <Route exact path="/mitt-konto" component={MyAccount} />
                   <Route path="/nytt-losenord" component={NewPassword} />
                   <Route exact path="/uppdatera-losenord" component={UpdatePasswordLoggedIn} />
+                  <Route exact path="/logga-in" component={Flimmerhack} />
                   <Route path="/" component={MissingPage} />
                 </Switch>
               ) : (
