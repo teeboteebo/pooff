@@ -101,7 +101,6 @@ const App = () => {
                   <Route exact path="/mitt-konto" component={MyAccount} />
                   <Route path="/nytt-losenord" component={NewPassword} />
                   <Route exact path="/uppdatera-losenord" component={UpdatePasswordLoggedIn} />
-                  <Route exact path="/logga-in" component={Flimmerhack} />
                   <Route path="/" component={MissingPage} />
                 </Switch>
               ) : (
