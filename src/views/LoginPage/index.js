@@ -49,7 +49,6 @@ const LoginPage = () => {
       
     else {
       await getLoggedIn()
-      history.push('/')
       }
   }
   

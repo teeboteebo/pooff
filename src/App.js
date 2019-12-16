@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
 
 // Components
 import PooffHeader from './components/PooffHeader'
@@ -82,6 +82,7 @@ const App = () => {
               {state.loggedIn ? (
                 <Switch>
                   {/* LOGGED IN */}
+                  <Redirect from="/logga-in" to='/'/>
                   <Route exact path="/" component={StartPage} />
                   <Route exact path="/mina-transaktioner" component={TransHistoryPage} />
                   <Route exact path="/favoriter" component={FavoritePage} />
