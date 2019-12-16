@@ -137,7 +137,7 @@ const TransactionForm = props => {
   ) : (
       <Container className="transaction-form" fluid={true}>
         <h2 className="page-title">Ny betalning</h2>
-        <p style={{opacity: '0.7', textAlign: 'center', marginTop:'-80px', fontSize: '16px'}}>Nuvarande saldo: <span style={{fontWeight: 700}}>{state.loggedIn.balance.toLocaleString('sv-SE')} kr</span></p>
+        <p style={{opacity: '0.7', textAlign: 'center', marginTop:'-80px', fontSize: '16px'}}>Nuvarande saldo: <span style={{fontWeight: 700}}>{state.loggedIn.balance.toFixed(2).toLocaleString('sv-SE')} kr</span></p>
 
         <Row className="no-gutters align-items-center" style={{marginTop: '60px'}}>
           <Col>
