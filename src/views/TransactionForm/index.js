@@ -94,8 +94,6 @@ const TransactionForm = props => {
         const amountVal = amount.current.value
         const messageVal = message.current.value
         const senderName = state.loggedIn.firstName + " " + state.loggedIn.lastName
-        console.log(senderName)
-
         setPaymentSent({
           sent: true,
           name: receiverName,
