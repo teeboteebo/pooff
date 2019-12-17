@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container } from 'reactstrap'
+import { Container, Spinner } from 'reactstrap'
 import { Link } from 'react-router-dom'
 
 import FAQ from '../../components/FAQ'
@@ -21,9 +21,12 @@ const QuestionAndAnswers = () => {
       {qnas.map((qna, i) => {
         return <FAQ data={qna} key={"qna_" + i} />
       })}
-      <Link to="/">
-        <input className="primary-btn save-button mt-4" type="submit" value="Tillbaka" />
-      </Link>
+      {qnas[0]
+        ? <Link to="/">
+          <input className="primary-btn save-button mt-4" type="submit" value="Tillbaka" />
+        </Link>
+        : <div style={{ textAlign: 'center' }}><Spinner /></div>
+      }
     </Container>
   )
 }
