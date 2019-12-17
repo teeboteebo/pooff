@@ -14,8 +14,8 @@
     width: 100%;
     text-align: center;
     font-size: 1rem;
-    color: var(--primary);
-    background: var(--secondary);
+    color: var(--notificationText);
+    background-color: var(--secondary) !important;
     border-radius: 0.25rem;
     box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
   }
