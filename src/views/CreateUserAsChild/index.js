@@ -255,7 +255,9 @@ const CreateUserAsChild = () => {
     updated ?
       <Container fluid={true}>
         <h2 className="page-title">Din profil har updaterats</h2>
-        <Link to="/logga-in">Klicka här för att logga in</Link>
+        <Link className="password-button" to="/logga-in">
+          <input className="primary-btn" type="submit" value="Till inloggning" />
+        </Link>
       </Container> :
       <Container fluid={true} className="new-user-container">
         <h2 className="page-title">Komplettera din profil</h2>
