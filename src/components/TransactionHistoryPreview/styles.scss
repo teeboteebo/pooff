@@ -1,0 +1,42 @@
+.preview-container {
+  position: fixed;
+  width: 100vw;
+  height: 70vh;
+  padding: 0;
+  top: calc(calc(var(--vh, 1vh) * 100) - 25px);
+  left: 0;
+  transition: 0.3s top;
+  .transaction-card{
+    background-color: var(--transactionPreview);
+  }
+
+  background-color: var(--transactionPreviewBackground);
+  box-shadow: 0 0 5px 2px var(--transactionBackgroundShadow);
+  &.open {
+    top: 30vh;
+    transition: 0.3s top;
+  }
+  p {
+    margin: 0;
+  }
+  .preview-tab {
+    position: relative;
+    top: -24px;
+    height: 25px;
+    width: 150px;
+    cursor: pointer;
+    margin: 0 auto;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: var(--transactionPreviewBackground);
+    box-shadow: 0 -3px 3px 0px var(--transactionBackgroundShadow);
+  }
+
+  .lister-container {
+    border-top: 1px solid var(--primary);
+    padding: 7px 3px 5px;
+    max-height: 67vh;
+    overflow-y: scroll;
+  }
+}

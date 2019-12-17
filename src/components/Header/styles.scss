@@ -1,0 +1,14 @@
+header {
+  background-color: var(--headerBackground);
+  color: var(--secondary);
+
+  svg,
+  img {
+    margin: 10px;
+  }
+
+  img {
+    width: 24px;
+    float: right;
+  }
+}

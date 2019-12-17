@@ -1,0 +1,35 @@
+.trans-history {
+  .sort-section {
+    text-align: center; 
+
+    button {
+      flex: 1;
+      padding: 10px;
+      outline: none;
+      background-color: var(--background);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+
+      &.active {
+        background-color: var(--primary);
+        color: var(--background);
+      }
+
+      &.left {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-right: none;
+      }
+
+      &.middle {
+        border-radius: 0;
+      }
+
+      &.right {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-left: none;
+      }
+    }
+  }
+}

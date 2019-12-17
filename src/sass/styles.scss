@@ -1,6 +1,46 @@
-// Import all our light / dark color variables
-@import './variables';
-@import './basic-styles';
+// Import of necessary bootstrap files
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
-// Component stylings
-@import '../views/StartPage/styles';
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,700,700i&display=swap");
+// Import all our light / dark color variables
+@import "./variables";
+
+// Our basic layout styles
+@import "./basic-styles";
+
+// Components Styling
+@import "../components/TopUp/styles";
+@import "../components/TransactionHistoryPreview/styles";
+@import "../components/TransactionLister/styles";
+@import "../components/UserRegister/styles";
+@import "../components/Header/styles";
+@import "../components/PooffHeader/styles";
+@import "../components/Menu/styles";
+@import "../components/FAQ/styles";
+@import "../components/NewFavorite/styles";
+@import "../components/UpdateAccount/styles";
+@import "../components/PaymentReceived/styles";
+
+// Views Styling
+@import "../views/PooffStartPage/styles";
+@import "../views/StartPage/styles";
+@import "../views/TransHistoryPage/styles";
+@import "../views/CreateNewUserPage/styles";
+@import "../views/CreateUserAsChild/styles";
+@import "../views/TransactionForm/styles";
+@import "../views/PaymentConfirmation/styles";
+@import "../views/ResetPassword/styles";
+@import "../views/NewPassword/styles";
+@import "../views/DesktopPage/styles";
+@import "../views/FavoritePage/styles";
+@import "../views/TransactionPage/styles";
+@import "../views/LoginPage/styles";
+@import "../views/KidsList/styles";
+@import "../views/Kid/styles";
+@import "../views/ChildRegisterPage/styles";
+@import '../views/MyAccount/styles';
+@import "../views/UpdateAccountPage/styles";
+@import "../views/ConfirmAccUpdate/styles";
+@import "../views/ActivateUser/styles";
+@import "../views/MissingPage/styles";
+

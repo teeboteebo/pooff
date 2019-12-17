@@ -1,0 +1,58 @@
+.kids-list {
+  .child-box {
+    background-color: var(--transactionPreviewBackground);
+    box-shadow: 0 0 3px 0 var(--transactionBackgroundShadow);
+
+    h6 {
+      color: var(--primary);
+
+      span {
+        vertical-align: middle;
+      }
+    }
+
+    .balance {
+      font-family: "Montserrat", sans-serif;
+      font-weight: bold;
+
+      .amount-integer {
+        font-size: 30px;
+      }
+
+      .amount-decimal {
+        font-size: 15px;
+        letter-spacing: 2px;
+        margin-left: 2px;
+      }
+    }
+
+    /* .balance {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 27px;
+      // letter-spacing: 1.5px;
+      word-spacing: -6.5px;
+    } */
+
+    .info-text {
+      opacity: 0.7;
+
+      svg {
+        width: 12px;
+        vertical-align: middle;
+      }
+
+      span {
+        font-size: 13px;
+        font-style: italic;
+      }
+    }
+
+    &.inactive {
+      opacity: 0.5;
+    }
+  }
+
+  &.spinner {
+    text-align: center;
+  }
+}

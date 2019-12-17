@@ -1,0 +1,32 @@
+.new-password-container {
+  display: block;
+  .new-password-item {
+    margin-left: 10px;
+  }
+  .password-input {
+    display: block;
+    margin: 0px 10px 10px;
+    border: none;
+    outline: none;
+    border-radius: 0.25rem;
+    height: 30px;
+    width: 200px;
+    font-size: 1.2rem;
+  }
+  .password-button {
+    text-align: center;
+    line-height: 40px;
+    display: block;
+    width: 150px;
+    height: 40px;
+    margin: 15px 10px;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: var(--buttonprimary);
+    color: var(--buttontext);
+  }
+}
+
+h2 {
+  margin-left: 10px;
+}
