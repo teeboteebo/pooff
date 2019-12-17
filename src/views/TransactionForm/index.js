@@ -10,7 +10,9 @@ import useMagic from '../../actions/useMagic'
 const TransactionForm = props => {
   const state = usePooff()
   const [getLoggedIn] = useMagic()
-
+  const [amount, setAmount] = useState('')
+  const [formattedAmount, setFormattedAmount] = useState('')
+  const [focus, setFocus] = useState(false)
   const [receiverName, setReceiverName] = useState("")
   const [validInputs, setValidInputs] = useState({
     receiver: true,
@@ -21,7 +23,7 @@ const TransactionForm = props => {
   const [textLength, setTextLength] = useState(0)
 
   const receiver = useRef(/* props.location.state ? { current: { value: props.location.state.phone } } : null */)
-  const amount = useRef()
+  /* const amount = useRef() */
   const message = useRef()
 
   useEffect(() => {
@@ -46,7 +48,13 @@ const TransactionForm = props => {
     } else {
       valid.receiver = true
     }
-    if (!amount.current.value || amount.current.value <= 0) {
+
+    /* if (!amount.current.value || amount.current.value <= 0) {
+      valid.amount = false
+    } else {
+      valid.amount = true
+    } */
+    if (!amount || amount <= 0) {
       valid.amount = false
     } else {
       valid.amount = true
@@ -69,8 +77,42 @@ const TransactionForm = props => {
       } else setReceiverName("Ingen mottagare med detta nummer finns")
     }
   }
+
+  const toCurrency = number => {
+    if (!number) return
+
+    const formatter = new Intl.NumberFormat('sv-SE', {
+      style: 'currency',
+      currency: 'SEK'
+    });
+
+    return formatter.format(number);
+  }
+
+  const onAmountFocus = () => {
+    setFocus(true)
+  }
+
+  const onAmountBlur = () => {
+    if (!amount) {
+      setFormattedAmount('')
+      return
+    }
+    const format = amount.replace(',', '.')
+    setFormattedAmount(toCurrency(format))
+    setFocus(false)
+  }
+
+  const onAmountChange = e => {
+    const val = e.target.value.replace('.', ',')
+    const valid = /^\d*$|^\d+,\d{0,2}$/
+    if (!valid.test(val) || val > 9999999999999) { return }
+    setAmount(val)
+  }
+
   const onSubmit = async () => {
     if (validate()) {
+      const formatted = amount.replace(',', '.')
       await fetch("/api/transactions", {
         method: "POST",
         headers: {
@@ -78,22 +120,27 @@ const TransactionForm = props => {
         },
         body: JSON.stringify({
           receiver: receiver.current.value,
-          amount: amount.current.value,
+          // amount: amount.current.value,
+          amount: formatted,
           message: message.current.value,
         }),
       })
 
       getLoggedIn()
 
-      if (amount.current.value > state.loggedIn.balance) {
+      //if (amount.current.value > state.loggedIn.balance) {
+        //setStatusMessage("Ditt konto saknar täckning")
+      //}
+      if (formatted > state.loggedIn.balance) {
         setStatusMessage("Ditt konto saknar täckning")
-
       }
       else {
         const numberVal = receiver.current.value
-        const amountVal = amount.current.value
+        // const amountVal = amount.current.value
+        const amountVal = formatted
         const messageVal = message.current.value
         const senderName = state.loggedIn.firstName + " " + state.loggedIn.lastName
+
         setPaymentSent({
           sent: true,
           name: receiverName,
@@ -101,7 +148,7 @@ const TransactionForm = props => {
           number: numberVal,
           message: messageVal
         })
-        
+
         await fetch("/api/push-payment", {
           method: "POST",
           headers: {
@@ -113,8 +160,9 @@ const TransactionForm = props => {
             number: numberVal
           }),
         })
-
       }
+      setAmount('')
+      setFormattedAmount('')
     }
   }
   const setFavoriteAsReceiver = (phone) => {
@@ -135,9 +183,9 @@ const TransactionForm = props => {
   ) : (
       <Container className="transaction-form" fluid={true}>
         <h2 className="page-title">Ny betalning</h2>
-        <p style={{opacity: '0.7', textAlign: 'center', marginTop:'-80px', fontSize: '16px'}}>Nuvarande saldo: <span style={{fontWeight: 700}}>{state.loggedIn.balance.toFixed(2).toLocaleString('sv-SE')} kr</span></p>
+        <p style={{ opacity: '0.7', textAlign: 'center', marginTop: '-80px', fontSize: '16px' }}>Nuvarande saldo: <span style={{ fontWeight: 700 }}>{state.loggedIn.balance.toLocaleString('sv-SE')} kr</span></p>
 
-        <Row className="no-gutters align-items-center" style={{marginTop: '60px'}}>
+        <Row className="no-gutters align-items-center" style={{ marginTop: '60px' }}>
           <Col>
             <p className="number-msg">{receiverName}</p>
             <div className="input-component">
@@ -160,10 +208,20 @@ const TransactionForm = props => {
         {!validInputs.receiver ? <p className="error-text mt-1">Vänligen ange ett telefonnummer</p> : ''}
         <div className="input-component mt-4">
           <DollarSign />
-          <input type="number" ref={amount} min="0" placeholder="Belopp" className={!validInputs.amount ? 'error-input' : ''} />
+          {/* <input type="number" ref={amount} min="0" placeholder="Belopp" className={!validInputs.amount ? 'error-input' : ''} /> */}
+          <input
+            type="text"
+            inputMode="numeric"
+            placeholder="Belopp i SEK"
+            className={!validInputs.amount ? 'error-input' : ''}
+            onFocus={onAmountFocus}
+            onBlur={onAmountBlur}
+            onChange={onAmountChange}
+            value={focus ? amount : formattedAmount}
+          />
         </div>
         {!validInputs.amount ? <p className="error-text mt-1">Vänligen ange belopp</p> : ''}
-            <p className="mt-4 text-right">{textLength + '/200'}</p>
+        <p className="mt-4 text-right">{textLength + '/200'}</p>
         <div className="input-component textarea">
           <MessageCircle />
           <textarea rows="4" ref={message} placeholder="Meddelande..." maxLength="200" onChange={countChars} />
