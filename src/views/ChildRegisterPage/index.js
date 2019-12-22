@@ -39,7 +39,7 @@ const ChildRegisterPage = () => {
       })
       setSent(true)
     } else {
-      setStatusMessage(JSON.stringify(response.error))
+      setStatusMessage('Något gick dessvärre fel. Försök igen.')
     }
   }
   return (
