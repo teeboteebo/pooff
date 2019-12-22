@@ -16,7 +16,7 @@ const PaymentConfirmation = props => {
       ></img>
       <h4 className="name-field">{props.name}</h4>
       <h6 className="number-field">{props.number}</h6>
-      <h4 className="amount-field">{props.amount.toLocaleString('sv-SE') + " kr"}</h4>
+      <h4 className="amount-field">{props.amount.toLocaleString('sv-SE')}kr</h4>
       <h6 className="message-field">{props.message}</h6>
       <Link to="/mina-transaktioner" className="link-button">
         Till transaktionshistorik

@@ -9,6 +9,9 @@ import useMagic from '../../actions/useMagic'
 
 const TransactionForm = props => {
   const state = usePooff()
+  let { balance } = state.loggedIn
+  balance = (balance.toFixed(2) + '').split('.')
+  balance[0] = Number(balance[0]).toLocaleString('sv-SE')
   const [getLoggedIn] = useMagic()
   const [amount, setAmount] = useState('')
   const [formattedAmount, setFormattedAmount] = useState('')
@@ -112,7 +115,7 @@ const TransactionForm = props => {
 
   const onSubmit = async () => {
     if (validate()) {
-      const formatted = amount.replace(',', '.')
+      const formatted = amount.replace('.', ',')
       await fetch("/api/transactions", {
         method: "POST",
         headers: {
@@ -144,7 +147,7 @@ const TransactionForm = props => {
         setPaymentSent({
           sent: true,
           name: receiverName,
-          amount: amountVal,
+          amount: amountVal.toLocaleString('sv-SE'),
           number: numberVal,
           message: messageVal
         })
@@ -173,17 +176,18 @@ const TransactionForm = props => {
     checkNumber(phoneField)
   }
 
+  console.log("hej", paymentSent.amount)
   return paymentSent.sent ? (
     <PaymentConfirmation
-      name={paymentSent.name}
-      number={paymentSent.number}
-      amount={paymentSent.amount}
-      message={paymentSent.message}
+    name={paymentSent.name}
+    number={paymentSent.number}
+    amount={paymentSent.amount}
+    message={paymentSent.message}
     />
   ) : (
       <Container className="transaction-form" fluid={true}>
         <h2 className="page-title">Ny betalning</h2>
-        <p style={{ opacity: '0.7', textAlign: 'center', marginTop: '-80px', fontSize: '16px' }}>Nuvarande saldo: <span style={{ fontWeight: 700 }}>{state.loggedIn.balance.toLocaleString('sv-SE')} kr</span></p>
+        <p style={{ opacity: '0.7', textAlign: 'center', marginTop: '-80px', fontSize: '16px' }}>Nuvarande saldo: <span style={{ fontWeight: 700 }}>{balance[0]},{balance[1]} kr</span></p>
 
         <Row className="no-gutters align-items-center" style={{ marginTop: '60px' }}>
           <Col>
